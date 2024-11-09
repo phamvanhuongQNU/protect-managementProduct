@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hop-header {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  background-color: #f2efe5;
+  padding: 10px;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: auto;
+}
+
+.logo-trang img {
+  width: 40px;
+  height: 60px;
+  margin-right: 1rem;
+}
+.hop-tim-kiem {
+  width: 30%;
+}
+.hop-tim-kiem input,
+button {
+  margin-left: 1rem;
+  padding: 5px;
+  border-radius: 20px;
+}
+.hop-tim-kiem input {
+  width: 80%;
+}
+.phan-lien-ket ul {
+  list-style: none;
+}
+.phan-lien-ket li {
+  display: inline;
+  margin-left: 1rem;
+}
+.phan-lien-ket a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  padding: 1.2rem;
+}
+.phan-lien-ket {
+  margin-left: 15px;
+}
