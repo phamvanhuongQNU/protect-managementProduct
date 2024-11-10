@@ -1,7 +1,7 @@
 
 import "./App.css";
-import ProductDetail from "./pages/client/ProductDetail";
-import Products from "./pages/admin/Products";
+import ProductDetail from "./pages/client/DetailProduct/ProductDetail";
+import Products from "./pages/admin/Products/Products";
 
 function App() {
   return (

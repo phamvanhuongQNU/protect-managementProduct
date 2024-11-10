@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../layout/admin/Header";
+import Header from "../../../layout/admin/Header";
 import "./Products.css";
 
 const Products = () => {
