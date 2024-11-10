@@ -3,49 +3,71 @@
   padding: 0;
   box-sizing: border-box;
 }
-.hop-header {
+/* header */
+.header {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: #f2efe5;
-  padding: 10px;
+  background-color: #698eff;
+  padding: 15px 0px;
   position: fixed;
   z-index: 999;
   width: 100%;
   height: auto;
 }
 
-.logo-trang img {
+.logo-page img {
   width: 40px;
   height: 60px;
   margin-right: 1rem;
 }
-.hop-tim-kiem {
+.form__search {
   width: 30%;
+  position: relative;
 }
-.hop-tim-kiem input,
-button {
+.form__search input {
   margin-left: 1rem;
-  padding: 5px;
+  padding: 8px;
   border-radius: 20px;
 }
-.hop-tim-kiem input {
+.form__search .btn-search{
+  position: absolute;
+  top: 0;
+  right: 40px;
+  background-color: transparent;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+}
+.form__search input {
   width: 80%;
 }
-.phan-lien-ket ul {
+
+.inner-menu ul {
   list-style: none;
+  display: flex;
 }
-.phan-lien-ket li {
-  display: inline;
+.inner-menu li {
   margin-left: 1rem;
 }
-.phan-lien-ket a {
+.inner-menu a {
   text-decoration: none;
   font-weight: bold;
   color: black;
-  padding: 1.2rem;
+  padding: 22px;
 }
-.phan-lien-ket {
-  margin-left: 15px;
+.inner-menu a:hover {
+  background-color: aqua;
+}
+
+.list-icon{
+  list-style: none;
+  display: flex;
+}
+.list-icon li{
+  margin-left: 20px;
+}
+.list-icon li .icon{
+  font-size: 25px;
 }

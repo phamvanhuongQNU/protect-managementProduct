@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const CountSLSP = () => {
-  const [dem, setCount] = useState(0);
+  const [dem, setCount] = useState(1);
   const tang = () => {
     setCount(dem + 1);
   };

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+
 import "./ProductDetail.css";
-import CountSLSP from "../../components/client/CountSLSP";
-import Header from "../../layout/client/Header";
-import Footer from "../../layout/client/Footer";
+import CountSLSP from "../../../components/client/CountSLSP";
+import Header from "../../../layout/client/Header";
+import Footer from "../../../layout/client/Footer";
 
 const ProductDetail = () => {
-  const { dem, tang, giam } = CountSLSP(0);
+  const { dem, tang, giam } = CountSLSP();
   return (
     <div className="layout-wrapper">
       <div className="header-fixed">
@@ -63,17 +63,17 @@ const ProductDetail = () => {
                 for Linux/Win/Mac(Gateron G Pro Brown, White)
               </h1>
               <div className="product-price">
-                <span className="original-price">2.300.000đ</span>
+                <span className="original-price"><del>2.300.000đ</del></span>
                 <span className="sale-price">1.999.000đ</span>
               </div>
               <div className="product-sold">Đã bán 200</div>
               <div className="product-options">
                 <div className="quantity-selector">
                   <span>Số lượng:</span>
-                  <button onClick={giam} disabled={dem == 0}>
+                  <button onClick={giam} disabled={dem === 1}>
                     -
                   </button>
-                  <input type="number" value={dem} />
+                  <input type="text" value={dem} disabled />
                   <button onClick={tang}>+</button>
                 </div>
                 <div className="color-selector">
