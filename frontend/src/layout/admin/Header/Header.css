@@ -14,7 +14,7 @@
 
 .header-container {
   display: flex;
-  width: 324px;
+  width: 25%;
   padding: 40px 24px;
   flex-direction: column;
   align-items: center;
@@ -81,10 +81,6 @@
 }
 
 /* Thêm hiệu ứng khi người dùng click vào mục */
-.account:active,
-.products:active,
-.orders:active,
-.categories:active,
-.logout:active {
+.active:active {
   border-left: 5px solid var(--White); /* Viền màu trắng khi nhấn */
 }

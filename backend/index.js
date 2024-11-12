@@ -1,11 +1,14 @@
 const express = require("express");
+const routesAdmin = require("./routes/admin/index.route")
+const databse = require("./config/database")
+const cors = require('cors')
+const dotenv = require("dotenv").config();
 const app = express();
-const port = 5000;
+const port = dotenv.parsed.PORT;
 
-
-app.get("/",(req,res) =>{
-    res.send("OK")
-})
+app.use(cors());
+routesAdmin(app)
+databse.connect(dotenv.parsed.URL_MONGO)
 app.listen(port,()=>{
-    console.log("Tao cong thanh cong")
+    console.log(port + "success")
 })
