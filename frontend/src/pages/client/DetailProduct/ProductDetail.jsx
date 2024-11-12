@@ -1,17 +1,12 @@
 
 import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
-import Header from "../../../layout/client/Header";
-import Footer from "../../../layout/client/Footer";
+
 
 const ProductDetail = () => {
   const { dem, tang, giam } = CountSLSP();
   return (
     <div className="layout-wrapper">
-      <div className="header-fixed">
-        <Header />
-      </div>
-
       <main className="main-content">
         <div className="container">
           <div className="breadcrumb">
@@ -103,10 +98,6 @@ const ProductDetail = () => {
           </div>
         </div>
       </main>
-
-      <div className="Footer-fixed">
-        <Footer />
-      </div>
     </div>
   );
 };

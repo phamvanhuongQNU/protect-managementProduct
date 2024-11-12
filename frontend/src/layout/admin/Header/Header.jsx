@@ -16,31 +16,31 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="account">
+      <div className="account active">
         <span>
           <a href="#">Tài Khoản</a>
         </span>
       </div>
 
-      <div className="products">
+      <div className="products active">
         <span>
           <a href="#">Sản Phẩm</a>
         </span>
       </div>
 
-      <div className="orders">
+      <div className="orders active">
         <span>
           <a href="#">Đơn Hàng</a>
         </span>
       </div>
 
-      <div className="categories">
+      <div className="categories active">
         <span>
           <a href="#">Danh Mục</a>
         </span>
       </div>
 
-      <div className="logout">
+      <div className="logout active">
         <span>
           <a href="#">Đăng Xuất</a>
         </span>

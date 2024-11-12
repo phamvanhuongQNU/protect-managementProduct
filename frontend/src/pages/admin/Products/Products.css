@@ -19,50 +19,7 @@
   width: 100%;
 }
 
-/* Top Bar */
-.top-bar {
-  display: flex;
-  height: 120px;
-  padding: 0px 40px;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  margin-bottom: 20px;
-  background-color: white;
-  margin-top: 0;
-}
 
-.top-bar h4 {
-  color: #0f2c59;
-  font-weight: bold;
-  font-size: 24px;
-}
-
-.search-bar input {
-  width: 400px;
-  height: 46px;
-  padding: 8px;
-  border: 1px solid #b4b4b8;
-  border-radius: 0;
-  margin-right: 30px;
-}
-
-.complete-button {
-  width: 109px;
-  height: 46px;
-  padding: 8px 16px;
-  background-color: #0f2c59;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-}
-
-.user-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid lightblue;
-}
 
 /* Filter Section */
 .filter-section {
@@ -172,8 +129,14 @@
   border-radius: 0;
   font-weight: bold;
   margin-left: 0;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.7s;
 }
-
+.add-product:hover{
+  background-color: #007bff;
+  color: black;
+}
 .pagination-buttons button {
   padding: 8px 12px;
   background: white;

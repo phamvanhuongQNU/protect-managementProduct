@@ -1,0 +1,31 @@
+.create-product{
+    width: 95%;
+    height: 100%;
+    background:#fff;
+    margin: 0 auto;
+}
+.create-product__table{
+    margin: 0 auto;
+    text-align: left;
+    width: 60%;
+}
+
+.create-product__table__field{
+    height: 20px;
+}
+.create-product__table__field__label{
+    font-size: 20px;
+    font-weight: 600;
+}
+.create-product__table__field td{
+    padding: 10px;
+}
+/* THẻ input(type=text) */
+.create-product__table__field input[type=text]{
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+}
+.create-product__table__field__radio{
+    margin-right: 10px;
+}

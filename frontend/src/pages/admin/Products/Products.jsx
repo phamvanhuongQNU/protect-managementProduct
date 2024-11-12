@@ -1,27 +1,24 @@
-import React from "react";
-import Header from "../../../layout/admin/Header";
+import React, { useEffect, useState } from "react";
+import {Link } from "react-router-dom";
+import Product from "../../../components/admin/Product/Product"
 import "./Products.css";
+import { getProducts } from "../../../API/getAPI";
 
 const Products = () => {
-  return (
-    <div className="layout-container">
-      <Header />
+  const [dataProducts,setDataProducts] = useState([]);
+  useEffect(()=>{
+      
+      const fechAPI =async ()=>{
+        const data = await getProducts("products");
+        console.log(data)
+        // setDataProducts(data);
+      }
+      fechAPI();
+  },[])
 
-      <main className="main-content-product">
-        <div className="top-bar">
-          <h4>Danh Sách Sản Phẩm</h4>
-          <div className="search-bar">
-            <input type="text" placeholder="Tìm kiếm..." />
-            <button className="complete-button">Hoàn tất</button>
-          </div>
 
-          <img
-            className="user-avatar"
-            src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
-            alt="User Avatar"
-          />
-        </div>
-
+  return (  
+  <>
         <div className="filter-section">
           <span>Bộ lọc:</span>
           <div className="filter">
@@ -49,34 +46,15 @@ const Products = () => {
             </thead>
             <tbody>
               {[...Array(4)].map((_, index) => (
-                <tr key={index}>
-                  <td>
-                    <input type="checkbox" />
-                  </td>
-                  <td>{index + 1}</td>
-                  <td>
-                    <img
-                      src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
-                      alt="Sản phẩm"
-                    />
-                  </td>
-                  <td>Bàn Phím Cơ</td>
-                  <td>1,999,000đ</td>
-                  <td>
-                    <span className="status active">Hoạt Động</span>
-                  </td>
-                  <td>
-                    <button className="edit-button">Sửa</button>
-                    <button className="delete-button">Xóa</button>
-                  </td>
-                </tr>
+                <Product/>
               ))}
             </tbody>
           </table>
         </div>
 
         <div className="bottom-bar">
-          <button className="add-product">Thêm Sản Phẩm</button>
+          <Link to={"create"} className="add-product">Thêm Sản Phẩm</Link>
+          
           <div className="pagination-buttons">
             <button>1</button>
             <button>2</button>
@@ -84,8 +62,8 @@ const Products = () => {
             <button>4</button>
           </div>
         </div>
-      </main>
-    </div>
+        
+    </>
   );
 };
 

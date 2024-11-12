@@ -1,0 +1,11 @@
+.input-image{
+    margin-bottom: 10px;
+}
+
+.preview-image{
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    /* display: none; */
+}

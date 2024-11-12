@@ -1,12 +1,13 @@
 
 import "./App.css";
-import ProductDetail from "./pages/client/DetailProduct/ProductDetail";
-import Products from "./pages/admin/Products/Products";
 
+import RouteClient from "./routes/client/index.jsx";
+import RouteAdmin from "./routes/admin/index.jsx";
 function App() {
   return (
     <div className="App">
-      <Products />
+      <RouteClient/>
+      <RouteAdmin/>
     </div>
   );
 }
