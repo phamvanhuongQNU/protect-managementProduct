@@ -10,6 +10,8 @@ function CreateProduct() {
                 console.log(e)
             })
         }
+
+        
         
     })
   return (

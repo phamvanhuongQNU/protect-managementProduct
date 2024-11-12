@@ -7,11 +7,11 @@ import { getProducts } from "../../../API/getAPI";
 const Products = () => {
   const [dataProducts,setDataProducts] = useState([]);
   useEffect(()=>{
-      
+      // Lấy data
       const fechAPI =async ()=>{
         const data = await getProducts("products");
         console.log(data)
-        // setDataProducts(data);
+        setDataProducts(data);
       }
       fechAPI();
   },[])
@@ -45,8 +45,8 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {[...Array(4)].map((_, index) => (
-                <Product/>
+              {dataProducts.map((element) => (
+                <Product data={element}/>
               ))}
             </tbody>
           </table>
