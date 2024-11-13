@@ -8,14 +8,14 @@ const ProductSchema = new mongoose.Schema({
     discount : Number,
     category_id : String,
     stock_quantity : Number,
-    thumnail : String,
+    status : String,
+    images : [String],
     deleted : {
         type : Boolean,
         default : false
     },
     position : Number,
-    status : String,
-    images : [String],
+    thumbnail : String,
 },
 { timestamps: true }
 )

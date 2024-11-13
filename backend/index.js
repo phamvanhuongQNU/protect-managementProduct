@@ -7,6 +7,7 @@ const app = express();
 const port = dotenv.parsed.PORT;
 
 app.use(cors());
+app.use(express.json());
 routesAdmin(app)
 databse.connect(dotenv.parsed.URL_MONGO)
 app.listen(port,()=>{

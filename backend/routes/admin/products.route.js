@@ -7,4 +7,7 @@ const controller = require("../../controllers/admin/product.controller")
 
 route.get("/products",controller.Products)
 
+// Them san pham
+route.post("/products/create", controller.createProducts);
+
 module.exports = route;
