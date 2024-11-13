@@ -1,24 +1,23 @@
-import { useEffect } from "react"
 import "./style.css"
-
-function Product(){
+function Product(props){
+  const {data} = props;
     return (
         <>
                 <tr>
                   <td>
                     <input type="checkbox" />
                   </td>
-                  <td>{1}</td>
+                  <td>{data.position}</td>
                   <td>
                     <img
-                      src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
+                      src={data.thumbnail}
                       alt="Sản phẩm"
                     />
                   </td>
-                  <td>Bàn Phím Cơ</td>
-                  <td>1,999,000đ</td>
+                  <td className="name">{data.name}</td>
+                  <td className="price">{data.price}đ</td>
                   <td>
-                    <span className="status active">Hoạt Động</span>
+                    <span className="status active">{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</span>
                   </td>
                   <td>
                     <button className="edit-button">Sửa</button>
