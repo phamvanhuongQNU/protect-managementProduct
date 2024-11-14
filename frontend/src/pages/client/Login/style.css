@@ -1,0 +1,110 @@
+* {
+  box-shadow: none;
+  padding: 0;
+}
+.page-login {
+  background-color: #698eff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section-login {
+  padding: 20px;
+  position: relative;
+}
+.inner-wrap {
+  border-radius: 10px;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.07);
+
+  backdrop-filter: blur(10px);
+}
+.shape:first-child {
+  position: absolute;
+  top: -80px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #ff512f, #f09819);
+}
+
+.shape:last-child {
+    position: absolute;
+    top: -80px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #3f803d, #2c1055);
+  }
+.inner-wrap__left {
+  width: 50%;
+}
+.inner-wrap__left__content {
+  display: flex;
+  align-items: center;
+}
+.inner-wrap__left__content__logo {
+  width: 150px;
+  height: 150px;
+}
+.inner-wrap__right {
+  padding: 20px;
+  flex: 1;
+}
+.inner-wrap__right__title {
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 30px;
+}
+.inner-wrap__right__form-login input[type="text"] {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+}
+.inner-wrap__right__form-login input[type="text"]::placeholder {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.inner-wrap__right__form-login__forgot-password {
+  display: block;
+  margin-bottom: 15px;
+  text-decoration: none;
+}
+.inner-wrap__right__form-login__btn-login {
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: red;
+  transition: all 0.2s;
+}
+.inner-wrap__right__form-login__btn-login:hover {
+  opacity: 0.8;
+}
+.inner-wrap__right__form-login__btn-register {
+  padding: 15px 30px;
+  color: #000;
+  text-decoration: none;
+  background-color: wheat;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./style.css"
 function Product(props){
   const {data} = props;
@@ -20,8 +21,9 @@ function Product(props){
                     <span className="status active">{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</span>
                   </td>
                   <td>
-                    <button className="edit-button">Sửa</button>
-                    <button className="delete-button">Xóa</button>
+                  <Link to={`edit/${data._id}`} className="edit-button">Sửa</Link>
+                    <button className="delete-button">Xoá</button>
+                    
                   </td>
                 </tr>
         </>

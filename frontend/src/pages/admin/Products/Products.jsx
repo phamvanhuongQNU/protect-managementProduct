@@ -13,7 +13,10 @@ const Products = () => {
         console.log(data)
         setDataProducts(data);
       }
-      fechAPI();
+      
+        fechAPI();
+      
+      
   },[])
 
 

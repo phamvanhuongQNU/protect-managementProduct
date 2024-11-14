@@ -48,14 +48,12 @@
   list-style: none;
   display: flex;
 }
-.inner-menu li {
-  margin-left: 1rem;
-}
+
 .inner-menu a {
   text-decoration: none;
   font-weight: bold;
   color: black;
-  padding: 22px;
+  padding: 37px 15px;
 }
 .inner-menu a:hover {
   background-color: aqua;

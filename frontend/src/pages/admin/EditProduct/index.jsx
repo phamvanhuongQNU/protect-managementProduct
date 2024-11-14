@@ -1,22 +1,9 @@
 import "./style.css"
-import { useEffect } from "react";
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
-function CreateProduct() {
-    useEffect(()=>{
-        const form = document.querySelector(".form__create");
-        if (form){
-            form.addEventListener("submit",(e)=>{
-                e.preventDefault();
-                console.log(e)
-            })
-        }
-
-        
-        
-    })
-  return (
+function EditProduct(){
+    return (
     <>
-      <div className="create-product">
+    <div className="create-product">
         <form className="form__create" action="" method="get">
         <table className="create-product__table" >
           <tbody>
@@ -80,10 +67,10 @@ function CreateProduct() {
             </tr>
           </tbody>
         </table>
-        <input type="submit" name="" id="" value={"Thêm"} />
+        <input type="submit" name="" id="" value={"Sửa"} />
         </form>
       </div>
     </>
-  );
+    )
 }
-export default CreateProduct;
+export default EditProduct;

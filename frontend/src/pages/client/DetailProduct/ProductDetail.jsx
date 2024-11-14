@@ -10,7 +10,7 @@ const ProductDetail = () => {
       <main className="main-content">
         <div className="container">
           <div className="breadcrumb">
-            <a href="#">Trang chủ</a> &gt; <span>Bàn phím</span>
+            <a href="/">Trang chủ</a> &gt; <span>Bàn phím</span>
           </div>
 
           <div className="product-container">
@@ -71,12 +71,7 @@ const ProductDetail = () => {
                   <input type="text" value={dem} disabled />
                   <button onClick={tang}>+</button>
                 </div>
-                <div className="color-selector">
-                  <span>Màu:</span>
-                  <button className="color-btn">Trắng</button>
-                  <button className="color-btn">Đen</button>
-                  <button className="color-btn">Xanh</button>
-                </div>
+                
               </div>
               <div className="product-actions">
                 <button className="add-to-cart-btn">THÊM VÀO GIỎ</button>
