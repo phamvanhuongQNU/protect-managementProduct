@@ -31,3 +31,31 @@ module.exports.createProducts = async (req, res) => {
         res.status(500).json(err);
     }
 };
+
+// [put] admin/products
+module.exports.updatedProduct = async (req, res) => {
+    try {
+        const updatedProduct = await Products.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            },
+            { new: true }
+        );
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+// [delete] admin/products
+module.exports.deleteProduct = async (req, res) => {
+    try {
+        await Products.findByIdAndUpdate(req.params.id, {
+            $set: { deleted: true },
+        });
+        res.status(200).json("Product has been deleted...");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
