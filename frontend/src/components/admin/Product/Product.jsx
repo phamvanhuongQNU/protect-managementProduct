@@ -18,7 +18,7 @@ function Product(props){
                   <td className="name">{data.name}</td>
                   <td className="price">{data.price}đ</td>
                   <td>
-                    <span className="status active">{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</span>
+                    <span className="pro status active">{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</span>
                   </td>
                   <td>
                   <Link to={`edit/${data._id}`} className="edit-button">Sửa</Link>

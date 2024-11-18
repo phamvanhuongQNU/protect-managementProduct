@@ -10,4 +10,10 @@ route.get("/products",controller.Products)
 // Them san pham
 route.post("/products/create", controller.createProducts);
 
+// Sua san pham
+route.put("/products/:id", controller.updatedProduct);
+
+// Xoa san pham
+route.put("/products/delete/:id", controller.deleteProduct);
+
 module.exports = route;

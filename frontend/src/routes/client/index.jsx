@@ -1,8 +1,7 @@
 import ProductDetail from "../../pages/client/DetailProduct/ProductDetail";
 import LayoutDefault from "../../layout/client/layoutDefault/layoutDefault";
-import Login from "../../pages/client/Login/index";
-import Cart from "../../pages/client/Cart/Cart"; // Đảm bảo đường dẫn chính xác
-import { Route, Routes } from "react-router-dom";
+import Login from "../../pages/client/Login/index"
+import { Route,Routes } from "react-router-dom";
 
 function RouteClient() {
   return (
