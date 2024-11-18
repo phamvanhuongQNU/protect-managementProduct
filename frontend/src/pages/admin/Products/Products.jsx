@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {Link } from "react-router-dom";
-import Product from "../../../components/admin/Product/Product"
+import Product from "./Product"
 import "./Products.css";
 import { getProducts } from "../../../API/getAPI";
 

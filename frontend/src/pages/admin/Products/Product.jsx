@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./style.css"
+import "./product.css"
 function Product(props){
   const {data} = props;
     return (

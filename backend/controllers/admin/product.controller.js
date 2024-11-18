@@ -2,13 +2,15 @@ const Products = require("../../models/product.model");
 
 // [get] admin/products
 module.exports.Products = async (req, res) => {
-    const find = {};
+    const find = {
+        deleted : false
+    };
 
     const products = await Products.find(find).sort({ position: "asc" });
     res.json(products);
 };
 
-// [post] admin/products
+// [post] admin/products/create
 module.exports.createProducts = async (req, res) => {
     try {
         const countProduct = await Products.countDocuments();
@@ -32,7 +34,7 @@ module.exports.createProducts = async (req, res) => {
     }
 };
 
-// [put] admin/products
+// [put] admin/products/edit/:id
 module.exports.updatedProduct = async (req, res) => {
     try {
         const updatedProduct = await Products.findByIdAndUpdate(
@@ -48,13 +50,22 @@ module.exports.updatedProduct = async (req, res) => {
     }
 };
 
-// [delete] admin/products
+// [delete] admin/products/deleted/:id
 module.exports.deleteProduct = async (req, res) => {
     try {
         await Products.findByIdAndUpdate(req.params.id, {
             $set: { deleted: true },
         });
         res.status(200).json("Product has been deleted...");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+// [delete] admin/products/:id
+module.exports.detailProduct = async (req, res) => {
+    try {
+        const Product = await Products.find({_id : req.params.id})
+        res.status(200).json(Product);
     } catch (error) {
         res.status(500).json(error);
     }

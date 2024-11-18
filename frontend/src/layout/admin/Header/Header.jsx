@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import "./Header.css";
 
 const Header = () => {
@@ -18,19 +19,19 @@ const Header = () => {
 
       <div className="account active">
         <span>
-          <a href="#">Tài Khoản</a>
+          <Link to={"/admin/account"}>Tài Khoản</Link>
         </span>
       </div>
 
       <div className="products active">
         <span>
-          <a href="#">Sản Phẩm</a>
+          <Link to={"/admin/products"}>Sản Phẩm</Link>
         </span>
       </div>
 
       <div className="orders active">
         <span>
-          <a href="#">Đơn Hàng</a>
+          <Link to={"/admin/oder"}>Đơn Hàng</Link>
         </span>
       </div>
 

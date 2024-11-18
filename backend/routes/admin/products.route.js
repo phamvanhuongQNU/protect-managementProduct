@@ -11,9 +11,11 @@ route.get("/products",controller.Products)
 route.post("/products/create", controller.createProducts);
 
 // Sua san pham
-route.put("/products/:id", controller.updatedProduct);
+route.put("/products/edit/:id", controller.updatedProduct);
 
 // Xoa san pham
 route.put("/products/delete/:id", controller.deleteProduct);
+// Chi tiết sản phẩm
+route.get("/products/:id", controller.detailProduct);
 
 module.exports = route;
