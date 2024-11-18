@@ -27,8 +27,8 @@
 }
 .shape:first-child {
   position: absolute;
-  top: -80px;
-  left: -60px;
+  bottom: -70px;
+  right: -70px;
   width: 200px;
   height: 200px;
   border-radius: 50%;

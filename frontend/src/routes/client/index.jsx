@@ -1,6 +1,7 @@
 import ProductDetail from "../../pages/client/DetailProduct/ProductDetail";
 import LayoutDefault from "../../layout/client/layoutDefault/layoutDefault";
 import Login from "../../pages/client/Login/index"
+import Cart from "../../pages/client/Cart/Cart"
 import { Route,Routes } from "react-router-dom";
 
 function RouteClient() {
