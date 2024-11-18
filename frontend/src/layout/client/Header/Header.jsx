@@ -1,5 +1,6 @@
 import React from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./Header.css";
 const Header = () => {
   
@@ -20,16 +21,16 @@ const Header = () => {
       <div className="inner-menu">
         <ul>
           <li>
-            <a href="#">Trang Chủ</a>
+            <Link to={"/"}>Trang Chủ</Link>
           </li>
           <li>
-            <a href="#">Liên Hệ</a>
+            <Link to="#">Liên Hệ</Link>
           </li>
           <li>
-            <a href="#">Sản Phẩm</a>
+            <Link to={"#"}>Sản Phẩm</Link>
           </li>
           <li>
-            <a href="#">Giới Thiệu</a>
+            <Link to={"#"}>Giới Thiệu</Link>
           </li>
           
         </ul>
@@ -37,13 +38,13 @@ const Header = () => {
       <div className="inner-logo">
         <ul className="list-icon">
         <li>
-            <a href="#"><FaUser className="icon" /></a>
+            <Link to={"/login"}><FaUser className="icon" /></Link>
             
           </li>
           <li>
-            <a href="#">
+            <Link to={"/cart"}>
               <FaShoppingCart className="icon" />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

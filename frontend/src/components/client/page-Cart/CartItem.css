@@ -1,0 +1,75 @@
+/* CartItem.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.sp1 {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  gap: 20px;
+}
+
+.xoaanh {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.xoa button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 16px;
+}
+
+.anh img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.tenmausoluong {
+  flex-grow: 1;
+}
+
+.tenmausoluong h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.tenmausoluong p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.tenmausoluong button {
+  background: none;
+  border: 1px solid #ddd;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.tenmausoluong input {
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ddd;
+  margin: 0 5px;
+}
+
+.gia {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: #333;
+  min-width: 120px;
+  text-align: right;
+}
