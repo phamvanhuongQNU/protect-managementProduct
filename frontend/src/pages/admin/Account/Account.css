@@ -86,39 +86,6 @@
   margin-right: 2rem;
 }
 
-/* Product List */
-.product-list table {
-  width: 1036px;
-  margin-left: 2.5rem;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border: 2px solid black;
-  background-color: #222831;
-  color: white;
-  font-weight: bold;
-}
-
-.product-list th,
-.product-list td {
-  height: 100px;
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.product-list img {
-  width: 92px;
-  height: 36px;
-  flex-shrink: 0;
-}
-
-.status.active {
-  background-color: #007bff;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-}
-
 .delete,
 .edit {
   color: white;

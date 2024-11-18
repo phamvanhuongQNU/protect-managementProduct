@@ -9,8 +9,8 @@ const Oder = () => {
         <span>Bộ lọc:</span>
         <div className="filter">
           <button className="filter-button">Tất Cả</button>
-          <button className="filter-button">Hoạt Động</button>
-          <button className="filter-button">Dừng Hoạt Động</button>
+          <button className="filter-button">Đang Giao</button>
+          <button className="filter-button">Đã Nhận</button>
         </div>
         <button className="sort-button">Sắp Xếp Theo</button>
       </div>
