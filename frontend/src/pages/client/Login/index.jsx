@@ -37,7 +37,7 @@ function Login() {
                       placeholder="Email"
                     />
                   </div>
-                  <label htmlFor="password">Email</label>
+                  <label htmlFor="password">Mật khẩu</label>
                   <div className="inner-wrap__right__form-login__password">
                     <input
                       type="text"

@@ -61,10 +61,10 @@ module.exports.deleteProduct = async (req, res) => {
         res.status(500).json(error);
     }
 };
-// [delete] admin/products/:id
+// [get] admin/products/:id
 module.exports.detailProduct = async (req, res) => {
     try {
-        const Product = await Products.find({_id : req.params.id})
+        const Product = await Products.findOne({_id : req.params.id})
         res.status(200).json(Product);
     } catch (error) {
         res.status(500).json(error);

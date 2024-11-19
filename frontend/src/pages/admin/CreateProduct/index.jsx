@@ -1,23 +1,27 @@
 import "./style.css"
 import { useEffect } from "react";
+
+
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 function CreateProduct() {
+   
     useEffect(()=>{
-        const form = document.querySelector(".form__create");
+     
+        const form = document.querySelector(".form-create");
         if (form){
             form.addEventListener("submit",(e)=>{
                 e.preventDefault();
                 console.log(e)
             })
         }
-
+     
         
         
     })
   return (
     <>
       <div className="create-product">
-        <form className="form__create" action="" method="get">
+        <form className="form-create" action="" method="get">
         <table className="create-product__table" >
           <tbody>
             <tr className="create-product__table__field">
@@ -80,7 +84,7 @@ function CreateProduct() {
             </tr>
           </tbody>
         </table>
-        <input type="submit" name="" id="" value={"Thêm"} />
+        <input className="form-create__submit" type="submit" name="" id="" value={"Thêm"} />
         </form>
       </div>
     </>

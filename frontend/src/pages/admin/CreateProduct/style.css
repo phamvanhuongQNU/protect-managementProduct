@@ -29,3 +29,15 @@
 .create-product__table__field__radio{
     margin-right: 10px;
 }
+
+.form-create__submit{
+    font-size: 18px;
+    padding: 10px 30px;
+    background: red;
+    border: none;
+    border-radius: 7px;
+    margin-left: 21.1%;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
