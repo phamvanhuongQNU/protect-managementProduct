@@ -3,7 +3,7 @@
   padding: 0;
 }
 .page-login {
-  background-color: #698eff;
+  background-color: #c3cff4;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -36,14 +36,14 @@
 }
 
 .shape:last-child {
-    position: absolute;
-    top: -80px;
-    left: -60px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: linear-gradient(to right, #3f803d, #2c1055);
-  }
+  position: absolute;
+  top: -80px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #aef4ab, #9b6ae2);
+}
 .inner-wrap__left {
   width: 50%;
 }
@@ -64,47 +64,75 @@
   font-weight: 600;
   font-size: 30px;
 }
-.inner-wrap__right__form-login input[type="text"] {
-  margin-bottom: 20px;
-  width: 100%;
-  height: 35px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  padding: 10px;
-  font-size: 16px;
-}
-.inner-wrap__right__form-login input[type="text"]::placeholder {
-  font-size: 15px;
-  font-weight: 500;
+.form-login__box-input {
+  display: flex;
+
+  align-items: center;
+  position: relative;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-.inner-wrap__right__form-login__forgot-password {
+.login-input {
+  width: 100%;
+  background: none;
+  padding: 20px 14px 13px 14px;
+
+  border-radius: 7px;
+  font-size: 14px;
+}
+.login-label {
+  position: absolute;
+  left: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.4s;
+}
+.login-iconEye {
+  right: 10px;
+  font-size: 25px;
+  position: absolute;
+  transition: all 0.4s;
+}
+.login-input:focus ~ .login-label {
+  transform: translateY(-15px);
+  font-size: 12px;
+  color: #2934e0;
+}
+.login-input:focus  {
+  padding-block: 20px 14px 13px 14px;
+  border: #2934e0 solid;
+}
+.login-input:focus ~ .login-iconEye{
+  color: #2934e0;
+}
+.login-input:not(:placeholder-shown) ~ .login-label {
+  transform: translateY(-14px);
+  font-size: 12px;
+  color: #2934e0;
+}
+
+
+.form-login__forgot-password {
   display: block;
   margin-bottom: 15px;
   text-decoration: none;
 }
-.inner-wrap__right__form-login__btn-login {
+
+.form-login__btn-login {
   color: white;
   border: none;
+  width: 100%;
   padding: 15px 30px;
-  margin-right: 20px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 600;
-  background-color: red;
+  background-color: #1578ea;
   transition: all 0.2s;
+  margin-bottom: 10px;
 }
-.inner-wrap__right__form-login__btn-login:hover {
+.form-login__btn-login:hover {
   opacity: 0.8;
-}
-.inner-wrap__right__form-login__btn-register {
-  padding: 15px 30px;
-  color: #000;
-  text-decoration: none;
-  background-color: wheat;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
 }
