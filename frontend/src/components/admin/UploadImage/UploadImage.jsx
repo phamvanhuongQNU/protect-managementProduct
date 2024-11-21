@@ -1,40 +1,65 @@
-import "./style.css"
-import { useEffect } from "react"
+import "./style.css";
+import { useEffect, useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
+import { GrUpload } from "react-icons/gr";
 function UploadImage() {
+  const [urlImage, setUrlImage] = useState("");
+  const handleFileUpload = async (even) => {
+    const file = even.target.files[0];
+    if (file) {
+      console.log(file);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "management-product");
+      formData.append("cloud_name", "dop07bzjs");
+      formData.append("api_key", "853112843439446");
 
-    useEffect(()=>{
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dop07bzjs/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const uploadImg = await res.json();
+      setUrlImage(uploadImg.url);
+    }
+  };
 
 
-        const fileInput = document.querySelector("input[name=image]")
-        console.log(fileInput)
-    
-            if (fileInput){
-                console.log(fileInput)
-                const previewFile = document.querySelector(".preview-image")
-                fileInput.addEventListener("change",(e)=>{
-                    previewFile.setAttribute("display", "none")
-                   
-                    console.log(e.target.files[0])
-                    const urlImage = URL.createObjectURL(e.target.files[0]);
-                    console.log(urlImage)
-                    previewFile.src = urlImage
-                })
-            }
-    })
-    
-            
-        
+  // Xử lí sự kiện xoá ảnh
+  const handleCloseImg = (even)=>{
+    console.log(even.target);
+    const inputFile = document.querySelector(".input-file");
+    inputFile.value = ""
+    setUrlImage("")
+  }
+
+  console.log(urlImage);
   return (
     <>
-      <div className="image">
+      <div className="image-upload">
         <input
+        
           type="file"
           accept="image/*"
           name="image"
-          id=""
-          className="input-image"
+          
+          id="input-image"
+          className="input-file"
+          onChange={handleFileUpload}
         />
-        <img className="preview-image" src="" alt="" display="none" />
+
+        
+        {urlImage === "" ? (
+          <div className="upload-block">
+          <GrUpload className="upload-icon"/>
+          <label className="image-label" htmlFor="input-image">Upload File</label>
+          </div>
+        ) : (
+          <><div className="image-block"><img className="preview-image" src={urlImage} alt="" /><IoIosCloseCircle className="icon-close" onClick={handleCloseImg}/></div></>
+        )}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import "./style.css"
 import { useEffect } from "react";
-
+import TinyMCE from "../../../components/admin/UploadImage/TinyMCE";
 
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 function CreateProduct() {
@@ -11,7 +11,7 @@ function CreateProduct() {
         if (form){
             form.addEventListener("submit",(e)=>{
                 e.preventDefault();
-                console.log(e)
+                console.log(e.target)
             })
         }
      
@@ -33,7 +33,7 @@ function CreateProduct() {
             <tr className="create-product__table__field">
               <td className="create-product__table__field__label">Mô tả</td>
               <td>
-                <input type="text" name="description" id="" />
+                <TinyMCE/>
               </td>
             </tr>
             <tr className="create-product__table__field">
