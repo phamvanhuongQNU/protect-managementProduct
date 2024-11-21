@@ -1,8 +1,11 @@
 import "./style.css";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { GrUpload } from "react-icons/gr";
-function UploadImage() {
+function UploadImage(props) {
+  const inputImgRef = useRef();
+
+
   const [urlImage, setUrlImage] = useState("");
   const handleFileUpload = async (even) => {
     const file = even.target.files[0];
@@ -23,6 +26,8 @@ function UploadImage() {
       );
 
       const uploadImg = await res.json();
+      inputImgRef.current.value = uploadImg.url;
+      props.onchangeData(inputImgRef.current)
       setUrlImage(uploadImg.url);
     }
   };
@@ -36,7 +41,7 @@ function UploadImage() {
     setUrlImage("")
   }
 
-  console.log(urlImage);
+  // console.log(urlImage);
   return (
     <>
       <div className="image-upload">
@@ -44,14 +49,15 @@ function UploadImage() {
         
           type="file"
           accept="image/*"
-          name="image"
+          name="thumbnail"
           
           id="input-image"
           className="input-file"
-          onChange={handleFileUpload}
+          onChange={(e)=>{
+            handleFileUpload(e);
+            
+          }}
         />
-
-        
         {urlImage === "" ? (
           <div className="upload-block">
           <GrUpload className="upload-icon"/>
@@ -60,6 +66,7 @@ function UploadImage() {
         ) : (
           <><div className="image-block"><img className="preview-image" src={urlImage} alt="" /><IoIosCloseCircle className="icon-close" onClick={handleCloseImg}/></div></>
         )}
+           <input type="hidden" name="thumbnail" ref={inputImgRef} />
       </div>
     </>
   );

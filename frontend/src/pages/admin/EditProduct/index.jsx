@@ -1,21 +1,24 @@
 import {useParams} from "react-router-dom"
 import { useEffect,useState } from "react";
-import { getDetailProduct } from "../../../API/getAPI";
+import { getData } from "../../../API/getAPI";
 import "./style.css"
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 function EditProduct(){
   const [product,setProduct] = useState({});
   const {id} = useParams();
+
   useEffect(()=>{
     
     
     const fetchApi = async ()=>{
-      const data = await getDetailProduct(`products/${id}`);
+      const data = await getData(`products/${id}`);
       console.log(data)
       setProduct(data);
     }
     fetchApi();
-  },[])
+
+  })
+
     return (
     <>
     <div className="edit-product">

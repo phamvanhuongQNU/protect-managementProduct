@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import {Link } from "react-router-dom";
 import Product from "./Product"
 import "./Products.css";
-import { getProducts } from "../../../API/getAPI";
+import { getData} from "../../../API/getAPI";
 
 const Products = () => {
   const [dataProducts,setDataProducts] = useState([]);
   useEffect(()=>{
       // Lấy data
       const fechAPI =async ()=>{
-        const data = await getProducts("products");
+        const data = await getData("products");
         console.log(data)
         setDataProducts(data);
       }
@@ -19,7 +19,7 @@ const Products = () => {
       
   },[])
 
-
+  console.log(dataProducts)
   return (  
   <>
         <div className="filter-section">
@@ -48,7 +48,7 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {dataProducts.map((element) => (
+              {[...dataProducts].map((element) => (
                 <Product data={element}/>
               ))}
             </tbody>
