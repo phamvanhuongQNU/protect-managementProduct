@@ -15,9 +15,9 @@ function TinyMCE(props) {
         editorRef.current = editor;
       }}
       apiKey="1stpzev07oj2hej4uo35alebe127604u356mvveaqpjfib7n"
-      initialValue="<p>This is the initial content of the editor.</p>"
+      initialValue= {props.content}
       init={{
-        height: 500,
+        height: 300,
         menubar: false,
         plugins: [
           "advlist",

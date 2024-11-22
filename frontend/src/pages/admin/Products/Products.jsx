@@ -11,7 +11,7 @@ const Products = () => {
       const fechAPI =async ()=>{
         const data = await getData("products");
         console.log(data)
-        setDataProducts(data);
+        setDataProducts(data.result);
       }
       
         fechAPI();
@@ -40,7 +40,7 @@ const Products = () => {
                   <input type="checkbox" />
                 </th>
                 <th>STT</th>
-                <th>Ảnh</th>
+                <th><div className="title-image">Ảnh</div></th>
                 <th>Tiêu Đề</th>
                 <th>Giá</th>
                 <th>Trạng Thái</th>

@@ -1,16 +1,18 @@
 import "./style.css";
-import { useRef, useState } from "react";
+import {useEffect, useRef, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { GrUpload } from "react-icons/gr";
 function UploadImage(props) {
+  const {urlImg,onchangeData } = props;
   const inputImgRef = useRef();
+  
+  const [urlImage, setUrlImage] = useState({});
 
-
-  const [urlImage, setUrlImage] = useState("");
+  //  upload ảnh
   const handleFileUpload = async (even) => {
     const file = even.target.files[0];
     if (file) {
-      console.log(file);
+    
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "management-product");
@@ -27,46 +29,57 @@ function UploadImage(props) {
 
       const uploadImg = await res.json();
       inputImgRef.current.value = uploadImg.url;
-      props.onchangeData(inputImgRef.current)
+      onchangeData(inputImgRef.current);
       setUrlImage(uploadImg.url);
     }
   };
 
-
   // Xử lí sự kiện xoá ảnh
-  const handleCloseImg = (even)=>{
-    console.log(even.target);
+  const handleCloseImg = (event) => {
     const inputFile = document.querySelector(".input-file");
-    inputFile.value = ""
-    setUrlImage("")
-  }
+    inputFile.value = "";
+    inputImgRef.current.value = "";
+    onchangeData(inputImgRef.current);
 
-  // console.log(urlImage);
+
+    setUrlImage("");
+  };
+  useEffect(()=>{
+    setUrlImage(urlImg)
+  },[urlImg])
+  
   return (
     <>
       <div className="image-upload">
         <input
-        
           type="file"
           accept="image/*"
           name="thumbnail"
-          
           id="input-image"
           className="input-file"
-          onChange={(e)=>{
+          onChange={(e) => {
             handleFileUpload(e);
-            
           }}
         />
         {urlImage === "" ? (
           <div className="upload-block">
-          <GrUpload className="upload-icon"/>
-          <label className="image-label" htmlFor="input-image">Upload File</label>
+            <GrUpload className="upload-icon" />
+            <label className="image-label" htmlFor="input-image">
+              Upload File
+            </label>
           </div>
         ) : (
-          <><div className="image-block"><img className="preview-image" src={urlImage} alt="" /><IoIosCloseCircle className="icon-close" onClick={handleCloseImg}/></div></>
+          <>
+            <div className="image-block">
+              <img className="preview-image" src={urlImage} alt="" />
+              <IoIosCloseCircle
+                className="icon-close"
+                onClick={handleCloseImg}
+              />
+            </div>
+          </>
         )}
-           <input type="hidden" name="thumbnail" ref={inputImgRef} />
+        <input type="hidden" name="thumbnail" ref={inputImgRef}/>
       </div>
     </>
   );
