@@ -165,7 +165,7 @@
   background-color: #007bff;
   color: white;
 }
-.filter button:focus {
+.filter button.active {
   background-color: #ff4d4d;
   color: white;
 }

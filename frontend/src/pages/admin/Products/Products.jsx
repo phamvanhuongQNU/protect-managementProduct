@@ -6,6 +6,7 @@ import { getProducts } from "../../../API/getAPI";
 
 const Products = () => {
   const [dataProducts,setDataProducts] = useState([]);
+  const [filterStatus, setFilterStatus] = useState("");
   useEffect(()=>{
       // Lấy data
       const fechAPI =async ()=>{
@@ -19,15 +20,27 @@ const Products = () => {
       
   },[])
 
+  // Loc san pham theo trang thai
+  const filteredProducts = dataProducts.filter((product) => {
+    if (!filterStatus) return true;
+    
+    return product.status === filterStatus;
+  });
 
   return (  
   <>
         <div className="filter-section">
           <span>Bộ lọc:</span>
           <div className="filter">
-            <button className="filter-button">Tất Cả</button>
-            <button className="filter-button">Hoạt Động</button>
-            <button className="filter-button">Dừng Hoạt Động</button>
+            <button className={`filter-button ${filterStatus === "" ? "active" : ""}`}
+              onClick={() => setFilterStatus("")}
+            >Tất Cả</button>
+            <button className={`filter-button ${filterStatus === "active" ? "active" : ""}`}
+              onClick={() => setFilterStatus("active")}
+            >Hoạt Động</button>
+            <button className={`filter-button ${filterStatus === "inactive" ? "active" : ""}`}
+              onClick={() => setFilterStatus("inactive")}
+            >Dừng Hoạt Động</button>
           </div>
           <button className="sort-button">Sắp Xếp Theo</button>
         </div>
@@ -48,8 +61,8 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {dataProducts.map((element) => (
-                <Product data={element}/>
+              {filteredProducts.map((element) => (
+                <Product data={element} />
               ))}
             </tbody>
           </table>
