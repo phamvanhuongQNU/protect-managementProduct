@@ -33,7 +33,7 @@ const Products = () => {
         </div>
 
         <div className="product-list">
-          <table>
+          <table className="product-table">
             <thead>
               <tr>
                 <th>

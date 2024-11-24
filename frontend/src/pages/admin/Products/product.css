@@ -39,28 +39,24 @@
   }
   
   /* Product List */
-  .product-list table {
-    width: 1036px;
-    margin-left: 2.5rem;
+  .product-table {
+    border-radius: 10px;
     border-collapse: collapse;
-    margin-top: 20px;
-    border: 2px solid black;
-    background-color: #222831;
-    color: white;
-    font-weight: bold;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
   }
-  
-  .product-list th,
-  .product-list td {
-    height: 100px;
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+  .product-table thead{
+    background-color: #1e233c;
+    color: #5668e0;
+    height: 60px;
   }
-  
+ 
+  .product-table tbody tr{
+    border-bottom: 1px solid #dddddd;
+  }
+
   .product-list img {
-    width: 92px;
-    height: 36px;
+    width: 100px;
     flex-shrink: 0;
   }
   
@@ -90,6 +86,9 @@
     background-color: #ff4d4d;
   }
   
+  .product-list td{
+    padding: 10px;
+  }
   /* Pagination Section */
   .bottom-bar {
     width: 1036px;

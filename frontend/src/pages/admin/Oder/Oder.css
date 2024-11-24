@@ -1,43 +1,3 @@
-/* Reset and Layout */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Sidebar */
-
-/* Main Content */
-.layout-container {
-  display: flex;
-  width: 100%;
-  height: 860px;
-}
-
-.main-content-oder {
-  background-color: #f5f5f5;
-  width: 100%;
-}
-
-/* Top Bar */
-.top-bar {
-  display: flex;
-  height: 120px;
-  padding: 0px 40px;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  margin-bottom: 20px;
-  background-color: white;
-  margin-top: 0;
-}
-
-.top-bar h4 {
-  color: #0f2c59;
-  font-weight: bold;
-  font-size: 24px;
-}
-
 .search-bar input {
   width: 400px;
   height: 46px;
@@ -47,23 +7,38 @@
   margin-right: 30px;
 }
 
-.complete-button {
-  width: 109px;
-  height: 46px;
-  padding: 8px 16px;
-  background-color: #0f2c59;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-}
-
 .user-avatar {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   border: 2px solid lightblue;
 }
-
+.order-list {
+  width: 100%;
+  padding: 50px;
+}
+.order-table {
+  width: 100%;
+  border-radius: 10px;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+.order-table thead {
+  background-color: #1e233c;
+  color: #5668e0;
+  height: 60px;
+}
+.order-table thead tr {
+  text-align: left;
+}
+.order-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.order-table th,
+.order-table td {
+    padding: 12px 15px;
+}
 /* Filter Section */
 .filter-section {
   display: flex;

@@ -7,7 +7,7 @@ function TopBar(props) {
           <h4>{titlePage}</h4>
           <div className="search-bar">
             <input type="text" placeholder="Tìm kiếm..." />
-            <button className="complete-button">Hoàn tất</button>
+            <button className="complete-button">Tìm Kiếm</button>
           </div>
 
           <img
