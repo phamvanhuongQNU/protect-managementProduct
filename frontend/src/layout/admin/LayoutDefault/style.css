@@ -5,8 +5,7 @@
     height: 860px;
   }
 .top-bar {
-    display: flex;
-    
+    display: flex; 
     padding: 20px 40px;
     justify-content: space-between;
     flex: 1;
@@ -21,6 +20,7 @@
     font-weight: bold;
     font-size: 24px;
   }
+
   .search-bar input {
     width: 400px;
     height: 46px;
@@ -38,6 +38,18 @@
     color: #fff;
     border: none;
     border-radius: 0;
+    transition: all 0.3s ease;
+  }
+
+  .complete-button:hover {
+    background-color: var(--cream-color);
+    color: #0f2c59;
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #0f2c59;
+  }
+
+  .complete-button:active {
+    transform: scale(0.95);
   }
   
   .user-avatar {

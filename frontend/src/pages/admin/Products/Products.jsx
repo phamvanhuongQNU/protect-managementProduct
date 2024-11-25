@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from "react";
-import {Link } from "react-router-dom";
+import {Link, useOutletContext } from "react-router-dom";
 import Product from "./Product"
 import "./Products.css";
-import { getProducts } from "../../../API/getAPI";
+import { getData} from "../../../API/getAPI";
 
 const Products = () => {
+  const { searchQuery } = useOutletContext();
   const [dataProducts,setDataProducts] = useState([]);
   const [filterStatus, setFilterStatus] = useState("");
-  useEffect(()=>{
-      // Lấy data
-      const fechAPI =async ()=>{
-        const data = await getProducts("products");
-        console.log(data)
-        setDataProducts(data);
-      }
-      
-        fechAPI();
-      
-      
+
+  useEffect(() => {
+    // Lấy data
+    const fechAPI = async () => {
+      const data = await getData("products");
+      console.log(data)
+      setDataProducts(data.result);
+    };
+    
+    fechAPI();
+       
   },[])
 
-  // Loc san pham theo trang thai
+  /**
+   * Lọc sản phẩm theo trạng thái
+   * Tìm kiếm sản phẩm
+   */
   const filteredProducts = dataProducts.filter((product) => {
-    if (!filterStatus) return true;
-    
-    return product.status === filterStatus;
+    let isStatusMatched = true;
+    if (filterStatus) {
+      isStatusMatched = product.status === filterStatus;
+    }
+
+    const isSearchMatched = !searchQuery || (product.name && product.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    return isStatusMatched && isSearchMatched;
   });
 
+  console.log(dataProducts)
   return (  
   <>
         <div className="filter-section">
@@ -53,7 +63,7 @@ const Products = () => {
                   <input type="checkbox" />
                 </th>
                 <th>STT</th>
-                <th>Ảnh</th>
+                <th><div className="title-image">Ảnh</div></th>
                 <th>Tiêu Đề</th>
                 <th>Giá</th>
                 <th>Trạng Thái</th>
@@ -61,9 +71,16 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map((element) => (
-                <Product data={element} />
-              ))}
+              {filteredProducts.length > 0 ? ([...filteredProducts].map((element) => (
+                <Product data={element}/>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" style={{ textAlign: "center", color: "gray" }}>
+                  Không tìm thấy sản phẩm nào ở đây.
+                </td>
+              </tr>
+            )}
             </tbody>
           </table>
         </div>
