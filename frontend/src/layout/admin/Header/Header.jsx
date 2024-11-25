@@ -1,7 +1,10 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { NavLink, Link } from "react-router-dom";
 import "./Header.css";
-
+import { CiUser } from "react-icons/ci";
+import { FaProductHunt } from "react-icons/fa6";
+import { BiCategory } from "react-icons/bi";
+import { BsCart4 } from "react-icons/bs";
 const Header = () => {
   return (
     <header className="header-container">
@@ -16,35 +19,38 @@ const Header = () => {
           <h1>ADMIN NIMBUS</h1>
         </div>
       </div>
-
-      <div className="account active">
-        <span>
-          <Link to={"/admin/account"}>Tài Khoản</Link>
-        </span>
-      </div>
-
-      <div className="products active">
-        <span>
-          <Link to={"/admin/products"}>Sản Phẩm</Link>
-        </span>
-      </div>
-
-      <div className="orders active">
-        <span>
-          <Link to={"/admin/oder"}>Đơn Hàng</Link>
-        </span>
-      </div>
-
-      <div className="categories active">
-        <span>
-          <a href="#">Danh Mục</a>
-        </span>
-      </div>
-
-      <div className="logout active">
-        <span>
-          <a href="#">Đăng Xuất</a>
-        </span>
+      <div className="header-menu">
+        <ul>
+          <li>
+            
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "isActive" : ""
+              }
+              to={"/admin/account"}
+            >
+              <CiUser className="icon-menu"/>
+              Tài Khoản
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "isActive" : ""
+              } to={"/admin/products"}>
+                <FaProductHunt className="icon-menu"/>
+              Sản Phẩm
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "isActive" : ""
+              } to={"/admin/oder"}> <BsCart4 className="icon-menu"/> Đơn hàng</NavLink>
+          </li>
+          <li>
+            {" "}
+            <Link to={"#"}>  <BiCategory className="icon-menu"/> Danh mục</Link>
+          </li>
+        </ul>
       </div>
     </header>
   );

@@ -15,8 +15,8 @@ const Oder = () => {
         <button className="sort-button">Sắp Xếp Theo</button>
       </div>
 
-      <div className="product-list">
-        <table>
+      <div className="order-list">
+        <table className="order-table">
           <thead>
             <tr>
               <th>
@@ -45,7 +45,7 @@ const Oder = () => {
                 </td>
                 <td>
                   <a href="#" className="detail">
-                    Chi Tiết
+                    Chi Tiết 
                   </a>
                 </td>
               </tr>

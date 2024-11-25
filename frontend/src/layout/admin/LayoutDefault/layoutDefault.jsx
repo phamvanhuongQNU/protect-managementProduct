@@ -13,7 +13,7 @@ function LayoutDefault(){
     }
     return(
         <>
-              <div className="layout_default">
+             
                 <div className="layout-container">
                     <Header/>
                     <main className="main-content-product">
@@ -23,7 +23,7 @@ function LayoutDefault(){
                 </div>
                 
                 
-              </div>
+             
         </>
     )   
 }

@@ -10,8 +10,8 @@ const Account = () => {
         <button className="add-button">Thêm Tài Khoản</button>
       </div>
 
-      <div className="product-list">
-        <table>
+      <div className="user-list">
+        <table className="user-table">
           <thead>
             <tr>
               <th>

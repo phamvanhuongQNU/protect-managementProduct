@@ -15,10 +15,10 @@ function Product(props){
                       alt="Sản phẩm"
                     />
                   </td>
-                  <td className="name">{data.name}</td>
+                  <td className="name" width={"40%"} ><div>{data.name}</div></td>
                   <td className="price">{data.price}đ</td>
                   <td>
-                    <span className="pro status active">{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</span>
+                    <div className="status">{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</div>
                   </td>
                   <td>
                   <Link to={`edit/${data._id}`} className="edit-button">Sửa</Link>
