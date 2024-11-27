@@ -17,5 +17,5 @@ route.put("/products/edit/:id", controller.updatedProduct);
 route.put("/products/delete/:id", controller.deleteProduct);
 // Chi tiết sản phẩm
 route.get("/products/:id", controller.detailProduct);
-
+// Sắp xếp theo tiêu chí
 module.exports = route;

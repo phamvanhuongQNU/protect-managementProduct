@@ -1,13 +1,34 @@
 const Products = require("../../models/product.model");
-
+const paginationHelper = require("../../helpers/paginationHelper");
 // [get] admin/products
 module.exports.Products = async (req, res) => {
     const find = {
         deleted : false
     };
 
-    const products = await Products.find(find).sort({ position: "asc" });
-    res.json(products);
+    // Phân trang
+    const countProduct =await Products.findOne(find).countDocuments();
+    const pagination = paginationHelper({
+        limit : 5,
+        skip : 0
+    },req.query
+    )
+    // Sắp xếp theo tiêu chi
+    let sort = {
+    }
+    if (req.query.key){
+        sort[req.query.key] = req.query.value
+        
+    }else{
+        sort.position = "asc"
+    }
+    console.log(sort)
+
+    const products = await Products.find(find).sort(sort).limit(pagination.limit).skip(pagination.skip);
+    res.json({
+        products : products,
+        total : countProduct
+    });
 };
 
 // [post] admin/products/create
