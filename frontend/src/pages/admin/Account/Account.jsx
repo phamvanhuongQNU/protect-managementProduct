@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 import "./Account.css";
 
 const Account = () => {
@@ -38,12 +38,13 @@ const Account = () => {
                   <a href="#" className="detail">
                     Chi Tiết
                   </a>
+
                   <a href="#" className="edit">
-                    <AiFillEdit />
+                    <FaRegEdit />
                   </a>
 
                   <a href="#" className="delete">
-                    <AiFillDelete />
+                    <FaRegTrashAlt />
                   </a>
                 </td>
               </tr>

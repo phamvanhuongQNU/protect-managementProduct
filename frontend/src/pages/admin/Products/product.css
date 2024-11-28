@@ -68,23 +68,28 @@
     border-radius: 4px;
   }
   
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
   .edit-button,
   .delete-button {
-    padding: 5px 10px;
-    margin-left: 5px;
+    font-size: 20px;
     border: none;
-    color: white;
-    border-radius: 5px;
+    cursor: pointer;
   }
   
   .edit-button {
-    background-color: #ffcc00;
+    color: var(--blue-color);
     text-decoration: none;
-    
   }
   
   .delete-button {
-    background-color: #ff4d4d;
+    color: #ff4d4d;
+    margin-right: 20px;
   }
   
   .product-list td{

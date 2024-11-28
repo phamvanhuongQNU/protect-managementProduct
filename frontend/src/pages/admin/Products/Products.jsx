@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {Link, useOutletContext } from "react-router-dom";
+import {Link, useOutletContext, useParams } from "react-router-dom";
 import Product from "./Product"
 import "./Products.css";
 import { getData} from "../../../API/getAPI";
 
 const Products = () => {
   const { searchQuery } = useOutletContext();
+  const { categoryId } = useParams();
   const [dataProducts,setDataProducts] = useState([]);
   const [filterStatus, setFilterStatus] = useState("");
 
   useEffect(() => {
     // Lấy data
     const fechAPI = async () => {
-      const data = await getData("products");
-      console.log(data)
+      const endpoint = categoryId ? `products/category/${categoryId}` : "products";
+      const data = await getData(endpoint);
       setDataProducts(data.result);
     };
     
     fechAPI();
        
-  },[])
-
+  }, [categoryId])
+   
   /**
    * Lọc sản phẩm theo trạng thái
    * Tìm kiếm sản phẩm

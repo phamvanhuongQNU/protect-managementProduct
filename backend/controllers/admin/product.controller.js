@@ -1,9 +1,10 @@
+const { default: mongoose } = require("mongoose");
 const Products = require("../../models/product.model");
 
 // [get] admin/products
 module.exports.Products = async (req, res) => {
     const find = {
-        deleted : false
+        deleted: false,
     };
 
     const products = await Products.find(find).sort({ position: "asc" });
@@ -64,8 +65,23 @@ module.exports.deleteProduct = async (req, res) => {
 // [get] admin/products/:id
 module.exports.detailProduct = async (req, res) => {
     try {
-        const Product = await Products.findOne({_id : req.params.id})
+        const Product = await Products.findOne({ _id: req.params.id });
         res.status(200).json(Product);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+// [get] admin/products/:category
+module.exports.getProductsByCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params;
+        const getProducts = await Products.find({
+            category_id: categoryId,
+            deleted: false
+        });
+
+        res.status(200).json(getProducts);
     } catch (error) {
         res.status(500).json(error);
     }

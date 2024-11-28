@@ -48,7 +48,9 @@ const Header = () => {
           </li>
           <li>
             {" "}
-            <Link to={"#"}>  <BiCategory className="icon-menu"/> Danh mục</Link>
+            <NavLink className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "isActive" : ""
+              } to={"/admin/category"}>  <BiCategory className="icon-menu"/> Danh mục</NavLink>
           </li>
         </ul>
       </div>

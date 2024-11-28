@@ -1,0 +1,96 @@
+/* Category List */
+.category-list {
+    padding: 50px;
+}
+
+.category-table {
+    border-radius: 10px;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    width: 100%;
+}
+.category-table thead {
+    background-color: #1e233c;
+    color: #5668e0;
+    height: 60px;
+}
+
+.category-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-table tbody tr:hover {
+    background-color: var(--cream-color);
+}
+    
+.category-table th,
+.category-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.category-table .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.edit-button,
+.delete-button {
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-button {
+    color: var(--blue-color);
+    text-decoration: none;
+}
+
+.delete-button {
+    color: #ff4d4d;
+}
+
+/* Pagination Section */
+.bottom-bar {
+    width: 1036px;
+    margin-left: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-category {
+    padding: 10px 20px;
+    background-color: #72bf78;
+    color: white;
+    border: none;
+    border-radius: 0;
+    font-weight: bold;
+    margin-left: 0;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.7s;
+}
+.add-category:hover {
+    background-color: #007bff;
+    color: black;
+}
+.pagination-buttons button {
+    padding: 8px 12px;
+    background: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 0;
+    font-weight: bold;
+    margin-left: 0;
+}
+
+.pagination-buttons button:focus {
+    background-color: #007bff;
+    color: white;
+}

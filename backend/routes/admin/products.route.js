@@ -15,7 +15,11 @@ route.put("/products/edit/:id", controller.updatedProduct);
 
 // Xoa san pham
 route.put("/products/delete/:id", controller.deleteProduct);
+
 // Chi tiết sản phẩm
-route.get("/products/:id", controller.detailProduct);
+route.get("/products/detail/:id", controller.detailProduct);
+
+// Xem sản phẩm theo danh mục
+route.get("/products/category/:categoryId", controller.getProductsByCategory);
 
 module.exports = route;
