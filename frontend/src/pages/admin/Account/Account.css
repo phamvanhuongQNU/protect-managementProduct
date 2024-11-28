@@ -1,4 +1,3 @@
-
 .search-bar input {
   width: 400px;
   height: 46px;
@@ -8,14 +7,12 @@
   margin-right: 30px;
 }
 
-
 .user-avatar {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   border: 2px solid lightblue;
 }
-
 
 .user-list {
   width: 100%;
@@ -41,7 +38,7 @@
 }
 .user-table th,
 .user-table td {
-    padding: 12px 15px;
+  padding: 12px 15px;
 }
 /* add account */
 .add-account {

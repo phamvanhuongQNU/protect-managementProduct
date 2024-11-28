@@ -1,0 +1,18 @@
+
+.pagination-buttons .list-pagination{
+    cursor: pointer;
+    list-style: none;
+    padding: 8px 12px;
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 0;
+    font-weight: bold;
+    margin-left: 2px;
+    
+}
+.active-pagination{
+    
+    background-color:  #007bff !important;
+    color: #fff !important;
+}

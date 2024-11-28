@@ -1,0 +1,124 @@
+.your_order {
+  padding: 0 40px;
+  width: 100%;
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.your_order .row_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.your_order .item_1 {
+  font-size: 16px;
+  border-bottom: 2.5px solid #d9d9d9;
+  padding-bottom: 16px;
+}
+
+.your_order .item_product {
+  padding: 10px 0;
+}
+
+.your_order .discount_code {
+  padding-top: 15px;
+  border-top: 1px solid #d9d9d9;
+}
+
+.your_order {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.your_order .row_item button {
+  font-size: 15px;
+  color: #fff;
+  background-color: #338dbc;
+  height: 40px;
+  width: 106px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+.your_order .row_item button:hover {
+  background-color: #008fe5;
+}
+
+.your_order .item_2 {
+  padding: 10px 0;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.your_order .item_3 {
+  padding: 10px 0;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.your_order .row_item span:last-child {
+  font-size: 16px;
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.your_order .shipping {
+  display: flex;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.your_order .method_pay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.your_order .method_pay .row_item {
+  justify-content: flex-start;
+  padding: 18px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.your_order .method_pay #zalo-rmborder {
+  border-bottom: none;
+}
+
+input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background: transparent;
+}
+
+.your_order .order_item {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.your_order .order_item button {
+  font-size: 18px;
+  height: 50px;
+  width: 100%;
+}
+
+.your_order .order_item p:last-child {
+  font-size: 16px;
+  margin: 15px 0;
+}
