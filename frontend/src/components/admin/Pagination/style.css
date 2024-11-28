@@ -1,10 +1,4 @@
-.product-list{
-    padding: 50px;
-}
-.pagination-buttons ul{
-    display: flex;
 
-}
 .pagination-buttons .list-pagination{
     cursor: pointer;
     list-style: none;
