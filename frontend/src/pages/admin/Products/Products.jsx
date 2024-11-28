@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import React, { useEffect, useState,useCallback } from "react";
+import { Link, useOutletContext,useSearchParams} from "react-router-dom";
 import Product from "./Product";
 import "./Products.css";
 import { getData } from "../../../API/getAPI";
@@ -12,15 +12,17 @@ const Products = () => {
   const [filterStatus, setFilterStatus] = useState("");
   // Phân trang
   const [totalPage, setTotalPage] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
  
+  
   useEffect(() => {
     // Lấy data
     const fechAPI = async () => {
       const data = await getData("products");
-      console.log(data);
+      // console.log(data);
       setDataProducts(data.result.products);
       setTotalPage(Math.ceil(parseInt(data.result.total ) / 5));
-      console.log(Math.ceil(parseInt(data.result.total )))
+      
     };
 
     fechAPI();
@@ -45,14 +47,35 @@ const Products = () => {
   });
 
   // Phân trang
-  const onchanDataProduct = (data)=>{
-    setDataProducts(data)
-  }
+  const onchanDataProduct = useCallback((data)=>{
+      setDataProducts(data)
+  },[dataProducts])
 
-  console.log(dataProducts);
-  console.log(totalPage);
+  // Sắp xếp theo các tiêu chí
+ 
+  const handleChange = (e) =>{
+    // console.log(e.target.value);
+    const [sortKey,value] = e.target.value.split(" ");
+    const sortFetch =async (url)=>{
+      const data = await getData(url)
+      setDataProducts(data.result.products)
+    }
+    const paramString = `?key=${sortKey}&value=${value}`
+    setSearchParams(new URLSearchParams(paramString))
+    
+    sortFetch(`products?key=${sortKey}&value=${value}`)
+    
+    
+    
+  }
+  
+  // console.log(dataProducts);
+  // console.log(totalPage);
+  
   return (
+    
     <>
+    
       <div className="filter-section">
         <span>Bộ lọc:</span>
         <div className="filter">
@@ -79,7 +102,16 @@ const Products = () => {
             Dừng Hoạt Động
           </button>
         </div>
-        <button className="sort-button">Sắp Xếp Theo</button>
+        
+        <select onChange={handleChange} name="sort" id="" className="dropdown-sort">
+              <option value="name asc">Tiêu đề [A-Z]</option>
+              <option value="name desc">Tiêu đề [Z-A]</option>
+              <option value="price asc">Giá tăng dần</option>
+              <option value="price desc">Giá giảm dần</option>
+              <option value="position asc">STT tăng</option>
+              <option value="position desc">STT giảm</option>
+              
+            </select>
       </div>
 
       <div className="product-list">
@@ -118,7 +150,7 @@ const Products = () => {
           Thêm Sản Phẩm
         </Link>
 
-        <Pagination setDataProducts={onchanDataProduct} totalPage={totalPage}/>
+        <Pagination setDataProducts={onchanDataProduct} totalPage={totalPage} sortkey={searchParams.get("key")} value={searchParams.get("value")}/>
       </div>
     </>
   );

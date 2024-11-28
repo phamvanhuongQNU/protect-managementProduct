@@ -22,8 +22,6 @@ module.exports.Products = async (req, res) => {
     }else{
         sort.position = "asc"
     }
-    console.log(sort)
-
     const products = await Products.find(find).sort(sort).limit(pagination.limit).skip(pagination.skip);
     res.json({
         products : products,
