@@ -40,18 +40,35 @@ const Category = () => {
                     </thead>
                     <tbody>
                         {[...dataCategories].map((data) => (
-                            <tr
-                                className="data-category"
-                                onClick={() => handleCategoryClick(data._id)}
-                            >
+                            <tr className="data-category">
                                 <td>
                                     <input type="checkbox" />
                                 </td>
-                                <td className="name" width={"40%"}>
+                                <td
+                                    className="name"
+                                    width={"40%"}
+                                    onClick={() =>
+                                        handleCategoryClick(data._id)
+                                    }
+                                >
                                     <div>{data.title}</div>
                                 </td>
-                                <td className="price">{data.totalProducts}</td>
-                                <td className="price">{data.totalAmount}đ</td>
+                                <td
+                                    className="price"
+                                    onClick={() =>
+                                        handleCategoryClick(data._id)
+                                    }
+                                >
+                                    {data.totalProducts}
+                                </td>
+                                <td
+                                    className="price"
+                                    onClick={() =>
+                                        handleCategoryClick(data._id)
+                                    }
+                                >
+                                    {data.totalAmount}đ
+                                </td>
                                 <td>
                                     <div className="icon-wrapper">
                                         <Link

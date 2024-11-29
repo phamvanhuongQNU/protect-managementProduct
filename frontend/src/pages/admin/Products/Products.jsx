@@ -9,6 +9,8 @@ const Products = () => {
   const { searchQuery } = useOutletContext();
   const { categoryId } = useParams();
   const [dataProducts, setDataProducts] = useState([]);
+  // Load API
+  const [isLoading, setIsLoading] = useState(true);
   // Lọc
   const [filterStatus, setFilterStatus] = useState("");
   // Phân trang
@@ -24,7 +26,7 @@ const Products = () => {
       // console.log(data);
       setDataProducts(data.result.products);
       setTotalPage(Math.ceil(parseInt(data.result.total ) / 5));
-      
+      setIsLoading(false);
     };
 
     fechAPI();
@@ -66,10 +68,8 @@ const Products = () => {
     const paramString = `?key=${sortKey}&value=${value}`
     setSearchParams(new URLSearchParams(paramString))
     
-    sortFetch(`products?key=${sortKey}&value=${value}`)
-    
-    
-    
+    const endpoint = categoryId ? `products/category/${categoryId}` : "products";
+    sortFetch(`${endpoint}?key=${sortKey}&value=${value}`)
   }
   
   // console.log(dataProducts);
@@ -135,7 +135,13 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredProducts.length > 0 ? (
+            {isLoading ? (  
+              <tr>  
+                <td colSpan="7" style={{ textAlign: "center", color: "gray" }}>  
+                  Đang tải dữ liệu...  
+                </td>  
+              </tr>  
+            ) : filteredProducts.length > 0 ? (
               [...filteredProducts].map((element) => <Product data={element} />)
             ) : (
               <tr>

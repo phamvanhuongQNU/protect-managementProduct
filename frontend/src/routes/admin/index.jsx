@@ -12,10 +12,12 @@ function RouteAdmin() {
     <Routes>
       <Route path="admin">
         <Route path="products" element={<LayoutDefault />}>
+          <Route path="category/:categoryId/create" element={<CreateProduct />} />
+          <Route path="category/:categoryId/edit/:id" element={<EditProduct />} />
           <Route path="category/:categoryId" element={<Products />} />
-          <Route path="" element={<Products />} />
           <Route path="create" element={<CreateProduct />} />
           <Route path="edit/:id" element={<EditProduct />} />
+          <Route path="" element={<Products />} />
         </Route>
         <Route path="oder" element={<LayoutDefault />}>
           <Route path="" element={<Oder />} />
