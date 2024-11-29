@@ -52,7 +52,7 @@ const Products = () => {
   // Phân trang
   const onchanDataProduct = useCallback((data)=>{
       setDataProducts(data)
-  },[dataProducts])
+  }, [])
 
   // Sắp xếp theo các tiêu chí
  

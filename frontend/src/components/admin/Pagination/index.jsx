@@ -1,10 +1,12 @@
 import "./style.css";
+import { useParams } from "react-router-dom";
 import React, { useState, useMemo } from "react";
 import { getData } from "../../../API/getAPI";
 
 function Pagination(props) {
   const { setDataProducts, totalPage, sortkey, value } = props;
   const [currentPage, setCurrentPage] = useState(0);
+  const { categoryId } = useParams();
 
   const handleClickPagination = (e) => {
     const page = parseInt(e.target.id);
@@ -15,16 +17,16 @@ function Pagination(props) {
       const data = await getData(url);
       setDataProducts(data.result.products);
     };
+    const endpoint = categoryId ? `products/category/${categoryId}?limit=${5}&page=${currentPage + 1}`
+    : `products?limit=${5}&page=${currentPage + 1}`;
     if (sortkey && value)
       paginationFetch(
-        `products?limit=${5}&page=${
-          currentPage + 1
-        }&key=${sortkey}&value=${value}`
+        `${endpoint}&key=${sortkey}&value=${value}`
       );
     else {
-      paginationFetch(`products?limit=${5}&page=${currentPage + 1}`);
+      paginationFetch(endpoint);
     }
-  }, [currentPage]);
+  }, [currentPage, categoryId, setDataProducts, sortkey, value]);
 
   return (
     <div className="pagination-buttons">

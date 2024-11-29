@@ -8,25 +8,28 @@ module.exports.Products = async (req, res) => {
     };
 
     // Phân trang
-    const countProduct =await Products.findOne(find).countDocuments();
-    const pagination = paginationHelper({
-        limit : 5,
-        skip : 0
-    },req.query
-    )
+    const countProduct = await Products.findOne(find).countDocuments();
+    const pagination = paginationHelper(
+        {
+            limit: 5,
+            skip: 0,
+        },
+        req.query
+    );
     // Sắp xếp theo tiêu chi
-    let sort = {
+    let sort = {};
+    if (req.query.key) {
+        sort[req.query.key] = req.query.value;
+    } else {
+        sort.position = "asc";
     }
-    if (req.query.key){
-        sort[req.query.key] = req.query.value
-        
-    }else{
-        sort.position = "asc"
-    }
-    const products = await Products.find(find).sort(sort).limit(pagination.limit).skip(pagination.skip);
+    const products = await Products.find(find)
+        .sort(sort)
+        .limit(pagination.limit)
+        .skip(pagination.skip);
     res.json({
-        products : products,
-        total : countProduct
+        products: products,
+        total: countProduct,
     });
 };
 
@@ -95,12 +98,37 @@ module.exports.detailProduct = async (req, res) => {
 module.exports.getProductsByCategory = async (req, res) => {
     try {
         const { categoryId } = req.params;
-        const getProducts = await Products.find({
+        const find = {
             category_id: categoryId,
-            deleted: false
-        });
+            deleted: false,
+        };
 
-        res.status(200).json(getProducts);
+        // Phân trang
+        const countProduct = await Products.findOne(find).countDocuments();
+        const pagination = paginationHelper(
+            {
+                limit: 5,
+                skip: 0,
+            },
+            req.query
+        );
+        // Sắp xếp theo tiêu chi
+        let sort = {};
+        if (req.query.key) {
+            sort[req.query.key] = req.query.value;
+        } else {
+            sort.position = "asc";
+        }
+
+        const getProducts = await Products.find(find)
+            .sort(sort)
+            .limit(pagination.limit)
+            .skip(pagination.skip);
+
+        res.status(200).json({
+            products: getProducts,
+            total: countProduct,
+        });
     } catch (error) {
         res.status(500).json(error);
     }
