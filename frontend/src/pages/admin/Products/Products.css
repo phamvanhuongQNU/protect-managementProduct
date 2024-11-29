@@ -26,5 +26,21 @@ cursor: pointer;
   border-radius: 5px;
   font-size: 15px;
   font-weight: 600;
-  color: #36082f;
+  color: #000000;
+}
+.status-inactive{
+  background-color: red;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px ;
+  color: #fff;
+  font-weight: 600;
+}
+.status-active{
+  background-color: rgb(55, 0, 255);
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px ;
+  color: #fff;
+  font-weight: 600;
 }

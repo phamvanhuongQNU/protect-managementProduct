@@ -1,6 +1,6 @@
 import "./style.css";
 import { useParams } from "react-router-dom";
-import React, { useState, useMemo } from "react";
+import React, { useState,memo ,useMemo } from "react";
 import { getData } from "../../../API/getAPI";
 
 function Pagination(props) {
@@ -27,7 +27,7 @@ function Pagination(props) {
       paginationFetch(endpoint);
     }
   }, [currentPage, categoryId, setDataProducts, sortkey, value]);
-
+  console.log("laapj lai")
   return (
     <div className="pagination-buttons">
       <ul>
@@ -48,4 +48,4 @@ function Pagination(props) {
     </div>
   );
 }
-export default (Pagination);
+export default memo(Pagination);
