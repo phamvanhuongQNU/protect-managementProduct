@@ -1,0 +1,25 @@
+/* Filters */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-button,
+.filter-button.active {
+  padding: 8px 20px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 14px;
+}
+
+.filter-button.active {
+  color: black;
+  border: 2px solid black;
+}
+
+.filter-button:focus {
+  color: blue;
+  border: 2px solid blue;
+}

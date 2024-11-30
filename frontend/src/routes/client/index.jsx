@@ -3,6 +3,7 @@ import LayoutDefault from "../../layout/client/layoutDefault/layoutDefault";
 import Login from "../../pages/client/Login/index";
 import Cart from "../../pages/client/Cart/Cart";
 import Checkout from "../../pages/client/Checkout/Checkout";
+import Products from "../../pages/client/Products/Products";
 import { Route, Routes } from "react-router-dom";
 
 function RouteClient() {
@@ -13,6 +14,7 @@ function RouteClient() {
         <Route path="product/detail" element={<ProductDetail />} />
         <Route path="cart" element={<Cart />} />{" "}
         <Route path="checkout" element={<Checkout />} />{" "}
+        <Route path="products" element={<Products />} />{" "}
         {/* Route mới cho trang Cart */}
       </Route>
 

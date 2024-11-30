@@ -1,7 +1,5 @@
-
 import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
-
 
 const ProductDetail = () => {
   const { dem, tang, giam } = CountSLSP();
@@ -18,31 +16,31 @@ const ProductDetail = () => {
             <div className="product-images">
               <div className="main-image">
                 <img
-                  src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
+                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-002.jpg?v=1728376160827"
                   alt="Bàn phím"
                 />
               </div>
               <div className="thumbnail-images">
                 <img
-                  src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
+                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-08.jpg?v=1728376160827"
                   alt="Thumbnail 1"
                   tabIndex="0"
                   className="thumbnail"
                 />
                 <img
-                  src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
+                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-06.jpg?v=1728376160827"
                   alt="Thumbnail 2"
                   tabIndex="0"
                   className="thumbnail"
                 />
                 <img
-                  src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
+                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-00-27189afa-695e-4ed4-9cb2-6e8204301bae.jpg?v=1728376149987"
                   alt="Thumbnail 3"
                   tabIndex="0"
                   className="thumbnail"
                 />
                 <img
-                  src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
+                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-001.jpg?v=1728376160827"
                   alt="Thumbnail 4"
                   tabIndex="0"
                   className="thumbnail"
@@ -58,7 +56,9 @@ const ProductDetail = () => {
                 for Linux/Win/Mac(Gateron G Pro Brown, White)
               </h1>
               <div className="product-price">
-                <span className="original-price"><del>2.300.000đ</del></span>
+                <span className="original-price">
+                  <del>2.300.000đ</del>
+                </span>
                 <span className="sale-price">1.999.000đ</span>
               </div>
               <div className="product-sold">Đã bán 200</div>
@@ -71,7 +71,6 @@ const ProductDetail = () => {
                   <input type="text" value={dem} disabled />
                   <button onClick={tang}>+</button>
                 </div>
-                
               </div>
               <div className="product-actions">
                 <button className="add-to-cart-btn">THÊM VÀO GIỎ</button>

@@ -1,0 +1,14 @@
+.products-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+.products-wrapper {
+  padding: 10px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+.breadcrums {
+  padding: 15px;
+}
