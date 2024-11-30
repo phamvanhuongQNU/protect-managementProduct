@@ -5,9 +5,13 @@ const UserSchema = new mongoose.Schema({
     email : String,
     password : String,
     address : {
+        // Tỉnh
         province : String,
+        // Thành phố,thị xã
         district : String,
+        // Xã phường
         ward : String,
+        // Đường
         street : String
         
     },
@@ -20,3 +24,6 @@ const UserSchema = new mongoose.Schema({
 
 
 },{ timestamps: true })
+
+const User =  mongoose.model("User",UserSchema,"users");
+module.exports = User;

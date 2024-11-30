@@ -1,4 +1,4 @@
-module.exports = (length)=>{
+
     module.exports = (length) =>{
         let result = '';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -9,4 +9,3 @@ module.exports = (length)=>{
         }
         return result;
     }   
-}

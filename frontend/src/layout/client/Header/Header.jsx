@@ -27,7 +27,7 @@ const Header = () => {
             <Link to="#">Liên Hệ</Link>
           </li>
           <li>
-            <Link to={"#"}>Sản Phẩm</Link>
+            <Link to={"products"}>Sản Phẩm</Link>
           </li>
           <li>
             <Link to={"#"}>Giới Thiệu</Link>
