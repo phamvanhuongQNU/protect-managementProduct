@@ -20,8 +20,9 @@ const UserSchema = new mongoose.Schema({
     deleted : {
         type : Boolean,
         default : false
-    }
-
+    },
+    
+    role : String
 
 },{ timestamps: true })
 
