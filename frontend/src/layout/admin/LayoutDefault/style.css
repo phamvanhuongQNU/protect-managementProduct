@@ -26,7 +26,10 @@
     font-weight: bold;
     font-size: 24px;
 }
-
+.search-bar{
+    display: flex;
+    align-items: center;
+}
 .search-bar input {
     width: 400px;
     height: 46px;
@@ -37,8 +40,7 @@
 }
 
 .complete-button {
-    width: 109px;
-    height: 46px;
+ 
     padding: 8px 16px;
     background-color: #0f2c59;
     color: #fff;

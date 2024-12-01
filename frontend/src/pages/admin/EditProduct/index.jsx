@@ -1,132 +1,164 @@
-import {useParams} from "react-router-dom"
-import { useEffect,useState } from "react";
-import { getData,updateData } from "../../../API/getAPI";
-import "./style.css"
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getData, updateData } from "../../../API/getAPI";
+import "./style.css";
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 import TinyMCE from "../../../components/admin/UploadImage/TinyMCE";
-
-function EditProduct(){
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+function EditProduct() {
   // data của product
-  const [product,setProduct] = useState({});
+  const [product, setProduct] = useState({});
   // data của danh sách sản phẩm
-  const [categories,setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   // id của sản phẩm
-  const {id} = useParams();
+  const { id } = useParams();
   // Khi thay đổi input
-  const onchangeData = (e)=>{
-    if(e.target){
+  const onchangeData = (e) => {
+    if (e.target) {
       const name = e.target.name;
       const value = e.target.value;
-      
+
       setProduct({
         ...product,
-        [name] : value
-       })
-   
+        [name]: value,
+      });
 
-       return
+      return;
     }
     setProduct({
       ...product,
-      [e.name] : e.value
-     })
- 
-    
-  }
+      [e.name]: e.value,
+    });
+  };
 
   // sử kiện nhấn nut sửa
-  const handlSubmit = (e) =>{
+  const handlSubmit = (e) => {
     e.preventDefault();
-    const fetchApi = async (url,body)=>{
-      const result = await updateData(url,body);
+    const fetchApi = async (url, body) => {
+      const result = await updateData(url, body);
       console.log(result.status);
-    }
-    fetchApi(`products/edit/${id}`,product)
-    
-  } 
+    };
+    fetchApi(`products/edit/${id}`, product);
+  };
 
   // Lấy dự liệu
-  useEffect(()=>{
-    
-    const fetchApi = async (url,setData)=>{
+  useEffect(() => {
+    const fetchApi = async (url, setData) => {
       const data = await getData(url);
       setData(data.result);
-    }
-    fetchApi(`products/${id}`,setProduct);
-    fetchApi(`categories`,setCategories);
-  },[id])
+    };
+    fetchApi(`products/${id}`, setProduct);
+    fetchApi(`categories`, setCategories);
+  }, [id]);
 
-
-    return (
+  return (
     <>
-    <div className="edit-product">
-        <form className="form-edit" onSubmit={handlSubmit}>
-        <table className="edit-product__table" >
-          <tbody>
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Tiêu đề</td>
-              <td>
-                <input type="text" name="name" id="" value={product.name} onChange={onchangeData}/>
-              </td>
-            </tr>
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Mô tả</td>
-              <td>
-                <TinyMCE onchangeData={onchangeData} content={product.description}/>
-              </td>
-            </tr>
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Giá</td>
-              <td>
-                <input type="text" name="price" id=""  onChange={onchangeData} value={product.price} />
-              </td>
-            </tr>
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">%Giảm giá</td>
-              <td>
-                <input type="text" name="" id="" value={product.discount} onChange={onchangeData}/>
-              </td>
-            </tr>
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Số lượng</td>
-              <td>
-                <input type="number" name="" id="" value={parseInt(product.stock_quantity)} />
-              </td>
-            </tr >
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Ảnh</td>
-              <td>
-                <UploadImage onchangeData={onchangeData} urlImg={product.thumbnail}/>
-              </td>
-            </tr >
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Danh mục</td>
-              <td>
-                <select name="categories_id" onChange={onchangeData}>
-                  {[...categories].map((item,_) =><option value={item._id}>{item.title}</option>)}
-                </select>
-              </td>
-            </tr >
-            <tr className="edit-product__table__field">
-              <td className="edit-product__table__field__label">Trạng thái</td>
-              <td>
-                <span className="edit-product__table__field__radio">
-                  <input type="radio" checked={product.status === "active" ? true : false} name="status" value={"active"} onChange={onchangeData}/>
-                  <label>Hoạt động</label>
-                </span>
-                <span className="edit-product__table__field__radio">
-                  <input type="radio" checked={product.status === "inactive" ? true : false} name="status" value={"inactive"} onChange={onchangeData}/>
-                  <label>Không hoạt động</label>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <input className="form-edit__submit" type="submit" name="" id="" value={"Sửa"} />
-        </form>
-      </div>
+      <div className="edit-product">
+        
+        <Form method="post" onSubmit={handlSubmit}>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Tiêu đề</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control name="name" value={product.name} onChange={onchangeData} type="text" />
+            </Col>
+          </Form.Group>
 
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+             <h4> Mô tả</h4>
+            </Form.Label>
+            <Col sm="10">
+              <TinyMCE content={product.description} onchangeData={onchangeData} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Giá</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="number" name="price" value={product.price} onChange={onchangeData}/>
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>% giảm giá</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="number" max={100} name="discount" value={product.discount} onChange={onchangeData} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Số lượng</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="number" name="stock_quantity" value={product.stock_quantity} onChange={onchangeData} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Ảnh</h4>
+            </Form.Label>
+            <Col sm="10">
+              <UploadImage onchangeData={onchangeData} urlImg={product.thumbnail} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Danh mục</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Select name="category_id" onChange={onchangeData}>
+              {[...categories].map((item, _) => (
+                      <option selected={product.category_id === item._id ?true : false} value={item._id}>{item.title}</option>
+                    ))}
+              </Form.Select>
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Trạng thái</h4>
+            </Form.Label>
+            <Col sm="10">
+            <span className="create-product__table__field__radio">
+                    <input
+                      type="radio"
+                      name="status"
+                      checked={product.status === "active" ? true : false}
+                      value={"active"}
+                      onChange={onchangeData}
+                    />
+                    <label>Hoạt động</label>
+                  </span>
+                  <span className="create-product__table__field__radio">
+                    <input
+                      type="radio"
+                      name="status"
+                      checked={product.status === "active" ? false : true}
+                      value={"inactive"}
+                      onChange={onchangeData}
+                    />
+                    <label>Không hoạt động</label>
+                  </span>
+            </Col>
+            <Col sm="10"><input
+            className="form-create__submit"
+            type="submit"
+            name=""
+            id=""
+            value={"Sửa"}
+          /></Col>
+          </Form.Group>
+        </Form>
+
+
+
+      </div>
     </>
-    )
+  );
 }
 export default EditProduct;

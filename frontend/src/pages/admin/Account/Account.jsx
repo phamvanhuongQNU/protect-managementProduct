@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link} from "react-router-dom"
 import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 import "./Account.css";
 
@@ -7,7 +7,7 @@ const Account = () => {
   return (
     <>
       <div className="add-account">
-        <button className="add-button">Thêm Tài Khoản</button>
+        <Link to={'create'} className="add-button">Thêm Tài Khoản</Link>
       </div>
 
       <div className="user-list">

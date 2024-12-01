@@ -1,5 +1,4 @@
-import React from "react";
-import Header from "../../../layout/admin/Header/Header";
+
 import "./Oder.css";
 
 const Oder = () => {

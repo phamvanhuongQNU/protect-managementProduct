@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import TinyMCE from "../../../components/admin/UploadImage/TinyMCE";
 import { getData, createData } from "../../../API/getAPI";
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 function CreateProduct() {
   const [data, setData] = useState({});
   const [dataCategories, setdataCategories] = useState([]);
@@ -33,110 +36,91 @@ function CreateProduct() {
   }, []);
 
   // Tạo sản phẩm khi click và submit
-  const HandleonSubmit = (event) => {
+  const HandleSubmit = (event) => {
     event.preventDefault();
     console.log(data);
     const fetchApi = async () => {
       await createData("products/create", data);
-
     };
     fetchApi();
   };
+  console.log(data)
   return (
     <>
       <div className="create-product">
-        <form
-          className="form-create"
-          action=""
-          method="get"
-          onSubmit={HandleonSubmit}
-        >
-          <table className="create-product__table">
-            <tbody>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">Tiêu đề</td>
-                <td>
-                  <input
-                    type="text"
-                    name="name"
-                    id=""
-                    onChange={onchangeData}
-                  />
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">Mô tả</td>
-                <td>
-                  <TinyMCE onchangeData={onchangeData} />
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">Giá</td>
-                <td>
-                  <input
-                    type="number"
-                    name="price"
-                    id=""
-                    min={0}
-                    onChange={onchangeData}
-                  />
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">
-                  %Giảm giá
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    min={0}
-                    name="discount"
-                    id=""
-                    onChange={onchangeData}
-                  />
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">
-                  Số lượng
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    name="stock_quantity"
-                    id=""
-                    onChange={onchangeData}
-                  />
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">Ảnh</td>
-                <td>
-                  <UploadImage onchangeData={onchangeData} urlImg="" />
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">
-                  Danh mục
-                </td>
-                <td>
-                  <select name="categories_id" onChange={onchangeData}>
-                    {[...dataCategories].map((item, _) => (
+        
+        <Form method="post" onSubmit={HandleSubmit}>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Tiêu đề</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control name="name" onChange={onchangeData} type="text" />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+             <h4> Mô tả</h4>
+            </Form.Label>
+            <Col sm="10">
+              <TinyMCE onchangeData={onchangeData} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Giá</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="number" name="price" onChange={onchangeData}/>
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>% giảm giá</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="number" max={100} name="discount" onChange={onchangeData} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Số lượng</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control type="number" name="stock_quantity" onChange={onchangeData} />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Ảnh</h4>
+            </Form.Label>
+            <Col sm="10">
+              <UploadImage onchangeData={onchangeData} urlImg="" />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Danh mục</h4>
+            </Form.Label>
+            <Col sm="10">
+              <Form.Select name="category_id" onChange={onchangeData}>
+              {[...dataCategories].map((item, _) => (
                       <option value={item._id}>{item.title}</option>
                     ))}
-                  </select>
-                </td>
-              </tr>
-              <tr className="create-product__table__field">
-                <td className="create-product__table__field__label">
-                  Trạng thái
-                </td>
-                <td>
-                  <span className="create-product__table__field__radio">
+              </Form.Select>
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              <h4>Trạng thái</h4>
+            </Form.Label>
+            <Col sm="10">
+            <span className="create-product__table__field__radio">
                     <input
                       type="radio"
                       name="status"
-                      checked={true}
+                      
                       value={"active"}
                       onChange={onchangeData}
                     />
@@ -146,23 +130,22 @@ function CreateProduct() {
                     <input
                       type="radio"
                       name="status"
+                      
                       value={"inactive"}
                       onChange={onchangeData}
                     />
                     <label>Không hoạt động</label>
                   </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <input
+            </Col>
+            <Col sm="10"><input
             className="form-create__submit"
             type="submit"
             name=""
             id=""
             value={"Thêm"}
-          />
-        </form>
+          /></Col>
+          </Form.Group>
+        </Form>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Oder from "../../pages/admin/Oder/Oder";
 import Account from "../../pages/admin/Account/Account";
 import Category from "../../pages/admin/Category/Category";
+import CreateAccount from "../../pages/admin/CreateAccount";
 
 function RouteAdmin() {
   return (
@@ -24,6 +25,7 @@ function RouteAdmin() {
         </Route>
         <Route path="account" element={<LayoutDefault />}>
           <Route path="" element={<Account />} />
+          <Route path="create" element={<CreateAccount />} />
         </Route>
         <Route path="category" element={<LayoutDefault />}>
           <Route path="" element={<Category />} />

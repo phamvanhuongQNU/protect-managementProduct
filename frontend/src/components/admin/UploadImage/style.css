@@ -4,7 +4,7 @@
 }
 .upload-icon{
     position: absolute;
-    top: 2px;
+    top: 13px;
     left: 5px;
 }
 .image-label{
@@ -40,6 +40,6 @@
     position: absolute;
     color: #2e65da;
     top: -15px;
-    right: 225px;
+    left: 190px;
     cursor: pointer;
 }

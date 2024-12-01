@@ -8,7 +8,7 @@ const Sidebar = () => {
       </div>
       <ul className="menu-list">
         <li>
-          <a href="#">Tất cả</a>
+          <a href="#" >Tất cả</a>
         </li>
         <li>
           <a href="#">Xe</a>

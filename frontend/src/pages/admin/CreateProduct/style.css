@@ -1,13 +1,11 @@
 .create-product{
-    width: 95%;
-    height: 100%;
+    
     background:#fff;
-    margin: 0 auto;
+    padding: 50px;
 }
 .create-product__table{
-    margin: 0 auto;
     text-align: left;
-    width: 60%;
+ 
 }
 
 .create-product__table__field{
