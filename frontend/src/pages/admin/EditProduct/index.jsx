@@ -7,6 +7,7 @@ import TinyMCE from "../../../components/admin/UploadImage/TinyMCE";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { modalSuccess } from "../../../components/admin/Swal";
 function EditProduct() {
   // data của product
   const [product, setProduct] = useState({});
@@ -14,6 +15,7 @@ function EditProduct() {
   const [categories, setCategories] = useState([]);
   // id của sản phẩm
   const { id } = useParams();
+  
   // Khi thay đổi input
   const onchangeData = (e) => {
     if (e.target) {
@@ -39,6 +41,9 @@ function EditProduct() {
     const fetchApi = async (url, body) => {
       const result = await updateData(url, body);
       console.log(result.status);
+      if (result.status === 200){
+          modalSuccess("Cật nhập sản phẩm thành công");
+      }
     };
     fetchApi(`products/edit/${id}`, product);
   };

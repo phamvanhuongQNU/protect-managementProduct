@@ -14,7 +14,7 @@ route.post("/products/create", controller.createProducts);
 route.put("/products/edit/:id", controller.updatedProduct);
 
 // Xoa san pham
-route.put("/products/delete/:id", controller.deleteProduct);
+route.delete("/products/delete/:id", controller.deleteProduct);
 
 // Chi tiết sản phẩm
 route.get("/products/:id", controller.detailProduct);

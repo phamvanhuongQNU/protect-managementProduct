@@ -1,8 +1,29 @@
 import { Link } from "react-router-dom";
 import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
+import { deleteData } from "../../../API/getAPI";
+import { modalDelete } from "../../../components/admin/Swal"; 
+import Swal from "sweetalert2";
 import "./product.css"
 function Product(props){
-  const {data} = props;
+  const {data,handleDeleted} = props;
+ 
+  const handlDelete = ()=>{
+    const modal =  modalDelete("Xác nhận xoá");
+    
+    modal.then((result) => {
+      if (result.isConfirmed) {
+        handleDeleted(data._id)
+        Swal.fire({
+          title: "Xoá thành công",
+          text: "Sản phẩm đã bị xoá",
+          icon: "success",
+        });
+      }
+    });
+  }
+ 
+
+
     return (
         <>
           <tr>
@@ -24,7 +45,7 @@ function Product(props){
               <td>
               <div className="icon-wrapper">
                 <Link to={`edit/${data._id}`} className="edit-button"><FaRegEdit /></Link>
-                  <div className="delete-button"><FaRegTrashAlt /></div>
+                  <div className="delete-button"><FaRegTrashAlt onClick={handlDelete} /></div>
               </div>
                 
               </td>

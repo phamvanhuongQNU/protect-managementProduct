@@ -1,4 +1,5 @@
 const API_DOWNMAIN = "http://localhost:5000/admin/";
+
 export const get = async (path) => {
   const respone = await fetch(API_DOWNMAIN + path);
   const result = await respone.json();
@@ -40,4 +41,16 @@ export const put = async (path,body) =>{
     result : result,
     status : respone.status
   }
+}
+
+export const del = async(path)=>{
+  const respone = await fetch(API_DOWNMAIN + path,{
+    method : "delete"
+  });
+  const result = await respone.json();
+  return {
+    result : result,
+    status : respone.status
+  }
+  
 }

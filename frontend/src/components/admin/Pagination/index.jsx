@@ -27,7 +27,6 @@ function Pagination(props) {
       paginationFetch(endpoint);
     }
   }, [currentPage, categoryId, setDataProducts, sortkey, value]);
-  console.log("laapj lai")
   return (
     <div className="pagination-buttons">
       <ul>

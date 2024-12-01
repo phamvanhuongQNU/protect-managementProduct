@@ -2,7 +2,7 @@ import React, { useEffect, useState,useCallback } from "react";
 import { Link, useOutletContext, useSearchParams, useParams} from "react-router-dom";
 import Product from "./Product";
 import "./Products.css";
-import { getData } from "../../../API/getAPI";
+import { getData,deleteData } from "../../../API/getAPI";
 import Pagination from "../../../components/admin/Pagination";
 
 const Products = () => {
@@ -72,6 +72,17 @@ const Products = () => {
     sortFetch(`${endpoint}?key=${sortKey}&value=${value}`)
   }
   
+  // xự kiện xoá sản phẩm
+  const handleDeleted = (id)=>{
+    const deleteFetch = async ()=>{
+      await deleteData(`products/delete/${id}`)
+      console.log(id)
+    }
+    const newDataProduct = dataProducts.filter(item => (item._id !== id))
+    deleteFetch();
+    setDataProducts(newDataProduct)
+    console.log(newDataProduct)
+  }
   // console.log(dataProducts);
   // console.log(totalPage);
   
@@ -142,7 +153,7 @@ const Products = () => {
                 </td>  
               </tr>  
             ) : filteredProducts.length > 0 ? (
-              [...filteredProducts].map((element) => <Product data={element} />)
+              [...filteredProducts].map((element) => <Product data={element} handleDeleted={handleDeleted} />)
             ) : (
               <tr>
                 <td colSpan="7" style={{ textAlign: "center", color: "gray" }}>

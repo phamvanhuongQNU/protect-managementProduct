@@ -6,10 +6,12 @@ import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { modalSuccess } from "../../../components/admin/Swal";
+import { useNavigate } from "react-router";
 function CreateProduct() {
   const [data, setData] = useState({});
   const [dataCategories, setdataCategories] = useState([]);
-
+  const navigate = useNavigate()
   // Lấy data từ các input
   const onchangeData = (e) => {
     if (e.target) {
@@ -38,9 +40,15 @@ function CreateProduct() {
   // Tạo sản phẩm khi click và submit
   const HandleSubmit = (event) => {
     event.preventDefault();
-    console.log(data);
+    
     const fetchApi = async () => {
-      await createData("products/create", data);
+      const result = await createData("products/create", data);
+      if (result){
+        modalSuccess("Thêm sản phẩm thành công");
+        setTimeout(()=>{
+            navigate(-1)
+        },1000)
+      }
     };
     fetchApi();
   };
