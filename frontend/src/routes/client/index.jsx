@@ -5,6 +5,7 @@ import Cart from "../../pages/client/Cart/Cart";
 import Checkout from "../../pages/client/Checkout/Checkout";
 import Products from "../../pages/client/Products/Products";
 import { Route, Routes } from "react-router-dom";
+import Home from "../../pages/client/Home";
 
 function RouteClient() {
   return (
@@ -15,6 +16,7 @@ function RouteClient() {
         <Route path="cart" element={<Cart />} />{" "}
         <Route path="checkout" element={<Checkout />} />{" "}
         <Route path="products" element={<Products />} />{" "}
+        <Route path="" element={<Home />} />{" "}
         {/* Route mới cho trang Cart */}
       </Route>
 
