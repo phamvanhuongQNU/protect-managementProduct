@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProductGrid.css";
+import { get } from "../../../utils/request";
 
 const ProductGrid = () => {
-  const products = Array(9).fill({
-    name: "Bàn phím cơ không dây Logitech G515 Lightspeed TKL",
-    price: "1,999,000 đ",
-    sales: "200",
-    img: "https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-002.jpg?v=1728376160827",
-  });
+  const [dataProductsGrid, setDataProductsGrid] = useState([]);
+
+  useEffect(() => {
+    // Lấy data
+    const fetchAPI = async () => {
+      const data = await get("products", false);
+      setDataProductsGrid(data.result);
+    }
+    fetchAPI();
+  }, []);
+  console.log(dataProductsGrid);
 
   return (
     <div className="product-grid">
-      {products.map((product, index) => (
+      {[...dataProductsGrid].map((product, index) => (
         <div key={index} className="product-grid__card">
           <div className="product-grid__image">
-            <img src={product.img} alt="Product" />
+            <img src={product.thumbnail} alt="Product" />
           </div>
           <div className="product-grid__info">
             <div className="product-grid__name">
@@ -24,9 +30,9 @@ const ProductGrid = () => {
               </h3>
             </div>
             <div className="product-grid__details">
-              <span className="product-grid__price">{product.price}</span>
+              <span className="product-grid__price">{product.price} đ</span>
               <span className="product-grid__sales">
-                Đã bán: {product.sales}
+                Đã bán: {product.stock_quantity}
               </span>
             </div>
           </div>

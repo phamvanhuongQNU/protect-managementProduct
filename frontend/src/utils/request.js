@@ -1,7 +1,9 @@
 const API_DOWNMAIN = "http://localhost:5000/admin/";
+const API_DOWNMAIN_CLIENT = "http://localhost:5000";
 
-export const get = async (path) => {
-  const respone = await fetch(API_DOWNMAIN + path);
+export const get = async (path, isAdmin = true) => {
+  const basePath = isAdmin ? "admin/" : "";
+  const respone = await fetch(API_DOWNMAIN_CLIENT + "/" + basePath + path);
   const result = await respone.json();
   return {
     result : result,
