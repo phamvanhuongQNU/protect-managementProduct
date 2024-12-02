@@ -64,8 +64,8 @@ function EditProduct() {
         
         <Form method="post" onSubmit={handlSubmit}>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>Tiêu đề</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>Tiêu đề</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Control name="name" value={product.name} onChange={onchangeData} type="text" />
@@ -73,48 +73,48 @@ function EditProduct() {
           </Form.Group>
 
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-             <h4> Mô tả</h4>
+            <Form.Label column sm="2" className="text-align--right">
+             <h5> Mô tả</h5>
             </Form.Label>
             <Col sm="10">
               <TinyMCE content={product.description} onchangeData={onchangeData} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>Giá</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>Giá</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Control type="number" name="price" value={product.price} onChange={onchangeData}/>
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>% giảm giá</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>% giảm giá</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Control type="number" max={100} name="discount" value={product.discount} onChange={onchangeData} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>Số lượng</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>Số lượng</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Control type="number" name="stock_quantity" value={product.stock_quantity} onChange={onchangeData} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>Ảnh</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>Ảnh</h5>
             </Form.Label>
             <Col sm="10">
               <UploadImage onchangeData={onchangeData} urlImg={product.thumbnail} />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>Danh mục</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>Danh mục</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Select name="category_id" onChange={onchangeData}>
@@ -125,8 +125,8 @@ function EditProduct() {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              <h4>Trạng thái</h4>
+            <Form.Label column sm="2" className="text-align--right">
+              <h5>Trạng thái</h5>
             </Form.Label>
             <Col sm="10">
             <span className="create-product__table__field__radio">

@@ -8,6 +8,13 @@ export const  modalSuccess = (title) => {
     timer: 1500,
   });
 };
+export const  modalFailed = (title) => {
+  Swal.fire({
+    position: "center",
+    icon: "error",
+    title: title, 
+  });
+};
 export const modalDelete = (title)=>{
   return (
     Swal.fire({

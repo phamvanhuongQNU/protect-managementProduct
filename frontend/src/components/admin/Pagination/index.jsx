@@ -2,7 +2,7 @@ import "./style.css";
 import { useParams } from "react-router-dom";
 import React, { useState,memo ,useMemo } from "react";
 import { getData } from "../../../API/getAPI";
-
+import { FaArrowLeft,FaArrowRight } from "react-icons/fa";
 function Pagination(props) {
   const { setDataProducts, totalPage, sortkey, value } = props;
   const [currentPage, setCurrentPage] = useState(0);
@@ -30,6 +30,7 @@ function Pagination(props) {
   return (
     <div className="pagination-buttons">
       <ul>
+        {currentPage > 0 && <li className="list-pagination" onClick={()=>{setCurrentPage(currentPage-1)}}> <FaArrowLeft/> </li>}
         {[...Array(totalPage)].map((_, index) => (
           <li
             id={index}
@@ -43,6 +44,7 @@ function Pagination(props) {
             {index + 1}
           </li>
         ))}
+         {currentPage < (totalPage-1) && <li className="list-pagination" onClick={()=>{setCurrentPage(currentPage+1)}}> <FaArrowRight/> </li>}
       </ul>
     </div>
   );

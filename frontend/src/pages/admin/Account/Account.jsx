@@ -1,31 +1,9 @@
-import React from "react";
-import {Link} from "react-router-dom"
 import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
-import "./Account.css";
-
-const Account = () => {
-  return (
-    <>
-      <div className="add-account">
-        <Link to={'create'} className="add-button">Thêm Tài Khoản</Link>
-      </div>
-
-      <div className="user-list">
-        <table className="user-table">
-          <thead>
-            <tr>
-              <th>
-                <input type="checkbox" />
-              </th>
-              <th>STT</th>
-              <th>Tên Tài Khoản</th>
-              <th>Email</th>
-              <th>Cấp</th>
-              <th>Hành Động</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(4)].map((_, index) => (
+import { Link } from "react-router-dom";
+function Account(){
+    return(
+        <>
+         {[...Array(4)].map((_, index) => (
               <tr key={index}>
                 <td>
                   <input type="checkbox" />
@@ -35,34 +13,17 @@ const Account = () => {
                 <td>huongtk@gmail.com</td>
                 <td>Admin</td>
                 <td>
-                  <a href="#" className="detail">
-                    Chi Tiết
-                  </a>
-
-                  <a href="#" className="edit">
+                  <Link href="#" className="edit">
                     <FaRegEdit />
-                  </a>
+                  </Link>
 
-                  <a href="#" className="delete">
+                  <button  className="delete-btn">
                     <FaRegTrashAlt />
-                  </a>
+                  </button>
                 </td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="bottom-bar-account">
-        <div className="pagination-buttons-account">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Account;
+            </>
+    )
+}
+export default Account

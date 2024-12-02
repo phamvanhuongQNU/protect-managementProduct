@@ -47,6 +47,12 @@ module.exports.edit = async (req, res) => {
 // [POST] user/create
 module.exports.create = async (req, res) => {
   try {
+    if (req.body.password !== req.body.repeatPassword){
+      res.status(500).json({
+        message: "Xác nhận mật khẩu không khớp với mật khẩu",
+      });
+      return
+    }
     const newUser = new Users({
       fullName: req.body.fullName,
       email: req.body.email,
@@ -67,7 +73,7 @@ module.exports.create = async (req, res) => {
     const data = await newUser.save();
     res.status(200).json({
       data: data,
-      message: "Thêm thành công",
+      message: "Thêm người dùng thành công",
     });
   } catch {
     res.status(500).json({

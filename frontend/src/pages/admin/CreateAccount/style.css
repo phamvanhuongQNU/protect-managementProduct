@@ -1,0 +1,37 @@
+.create-container{
+    padding: 10px;
+}
+.form-create{
+    padding: 30px;
+   
+}
+.form--margin-bottom{
+    margin-bottom: 30px;
+}
+.title{
+    font-size: 20px;
+    font-weight: 600;
+}
+.align-item--right{
+    text-align: right;;
+}
+.add-user{
+    display: flex;
+    justify-content: right;
+}
+.btn-add-user{
+    margin-right: 30px;
+    border: none;
+    padding: 5px 20px;
+    padding-left: 10px;
+    border-radius: 5px;
+    background-color: #FF0000;
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    
+ 
+}
+.btn-add-user:hover{
+   opacity: 0.7;
+}

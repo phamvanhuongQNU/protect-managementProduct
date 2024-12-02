@@ -4,9 +4,10 @@ import CreateProduct from "../../pages/admin/CreateProduct";
 import EditProduct from "../../pages/admin/EditProduct";
 import { Route, Routes } from "react-router-dom";
 import Oder from "../../pages/admin/Oder/Oder";
-import Account from "../../pages/admin/Account/Account";
+import Account from "../../pages/admin/Account/Accounts";
 import Category from "../../pages/admin/Category/Category";
 import CreateAccount from "../../pages/admin/CreateAccount";
+import EditAccount from "../../pages/admin/EditAccount/index";
 
 function RouteAdmin() {
   return (
@@ -26,6 +27,7 @@ function RouteAdmin() {
         <Route path="account" element={<LayoutDefault />}>
           <Route path="" element={<Account />} />
           <Route path="create" element={<CreateAccount />} />
+          <Route path="edit/:id" element={<EditAccount />} />
         </Route>
         <Route path="category" element={<LayoutDefault />}>
           <Route path="" element={<Category />} />
