@@ -1,5 +1,6 @@
 const express = require("express");
-const routesAdmin = require("./routes/admin/index.route")
+const routesAdmin = require("./routes/admin/index.route");
+const routeClient = require("./routes/client/index.route");
 const databse = require("./config/database")
 const cors = require('cors')
 const dotenv = require("dotenv").config();
@@ -8,7 +9,8 @@ const port = dotenv.parsed.PORT;
 
 app.use(cors());
 app.use(express.json());
-routesAdmin(app)
+routesAdmin(app);
+routeClient(app);
 databse.connect(dotenv.parsed.URL_MONGO)
 app.listen(port,()=>{
     console.log(port + "success")
