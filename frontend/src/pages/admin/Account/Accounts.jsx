@@ -1,10 +1,22 @@
 import React from "react";
+import {useEffect,useState} from "react";
 import {Link} from "react-router-dom"
+import {getData} from '../../../API/getAPI'
 
 import "./Accounts.css";
 import Account from "./Account";
 
 const Accounts = () => {
+  const [dataUser,setDataUser] = useState([]);
+  useEffect(()=>{
+    const fetchApi = async ()=>{
+      const data = await getData("users");
+      
+      setDataUser(data.result.data);
+    }
+    fetchApi();
+  },[])
+  console.log(dataUser)
   return (
     <>
       <div className="add-account">
@@ -26,18 +38,13 @@ const Accounts = () => {
             </tr>
           </thead>
           <tbody>
-           <Account/>
+           <Account data={dataUser}/>
           </tbody>
         </table>
       </div>
 
       <div className="bottom-bar-account">
-        <div className="pagination-buttons-account">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-        </div>
+       
       </div>
     </>
   );

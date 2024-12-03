@@ -11,9 +11,9 @@ function CreateAccount() {
   const [address, setAddress] = useState({});
   const navigate = useNavigate();
   const onchangeData = (e) => {
-    console.log(e.target.name);
+    
     const name = e.target.name;
-    console.log(e.target.value);
+;
     const value = e.target.value;
     setData({
       ...data,
@@ -22,16 +22,18 @@ function CreateAccount() {
   };
   const onchangeAddress = (e) => {
     const name = e.target.name;
-
-    const value = e.target.value;
-    setAddress({
-      ...address,
-      [name]: value,
-    });
-    setData({
-      ...data,
-      address,
-    });
+      const value = e.target.value;
+      setData({
+        ...data,
+        address : {
+          ...address,
+          [name] : value
+        }
+      });
+      setAddress({
+        ...address,
+        [name] : value
+      })
   };
   
   // nút thêm sản phẩm
@@ -39,8 +41,6 @@ function CreateAccount() {
     const createFetch =async ()=>{
         const result = await createData("users/create",data);
         if(result.status === 200){
-          
-         
         }
        
         switch (result.status) {
@@ -62,6 +62,7 @@ function CreateAccount() {
     createFetch();
    
   }
+  console.log(data)
   return (
     <>
       <div className="create-container">
@@ -132,7 +133,7 @@ function CreateAccount() {
                 Họ tên
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" name="phone" onChange={onchangeData} />
+                <Form.Control type="text" name="fullName" onChange={onchangeData} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">
@@ -140,7 +141,7 @@ function CreateAccount() {
                 Số điện thoại
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" onChange={onchangeData} />
+                <Form.Control type="text" name="phone" onChange={onchangeData} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3">

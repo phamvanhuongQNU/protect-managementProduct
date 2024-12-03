@@ -1,19 +1,19 @@
 import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
-function Account(){
+function Account({data}){
     return(
         <>
-         {[...Array(4)].map((_, index) => (
+         {[...data].map((item, index) => (
               <tr key={index}>
                 <td>
                   <input type="checkbox" />
                 </td>
                 <td>{index + 1}</td>
-                <td>Phạm Văn Hương</td>
-                <td>huongtk@gmail.com</td>
-                <td>Admin</td>
+                <td>{item.fullName}</td>
+                <td>{item.email}</td>
+                <td>{item.role}</td>
                 <td>
-                  <Link href="#" className="edit">
+                  <Link to={`edit/${item._id}`} className="edit">
                     <FaRegEdit />
                   </Link>
 

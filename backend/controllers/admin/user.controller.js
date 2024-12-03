@@ -2,13 +2,13 @@ const md5 = require("md5");
 const Users = require("../../models/user.model");
 const randomString = require("../../helpers/randomString");
 
-// [GET] user
+// [GET] users
 module.exports.index = async (req, res) => {
   const find = {
     deleted: false,
   };
 
-  const data = await Users.findOne(find);
+  const data = await Users.find(find).select("role fullName email");
   res.status(200).json({
     data: data,
   });
@@ -69,6 +69,7 @@ module.exports.create = async (req, res) => {
       },
       phone: req.body.phone,
       token: randomString(30),
+      role :req.body.role
     });
     const data = await newUser.save();
     res.status(200).json({
