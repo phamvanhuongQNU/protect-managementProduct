@@ -15,11 +15,11 @@ export const  modalFailed = (title) => {
     title: title, 
   });
 };
-export const modalDelete = (title)=>{
+export const modalDelete = (title,text)=>{
   return (
     Swal.fire({
       title:  title,
-      text : "Bạn muốn xoá sản phẩm này?",
+      text : text,
       icon: "warning",
       showCancelButton: true,
       cancelButtonColor: "#3085d6",

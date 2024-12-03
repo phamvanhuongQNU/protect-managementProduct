@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
-import { deleteData } from "../../../API/getAPI";
 import { modalDelete } from "../../../components/admin/Swal"; 
 import Swal from "sweetalert2";
 import "./product.css"
@@ -8,7 +7,7 @@ function Product(props){
   const {data,handleDeleted} = props;
  
   const handlDelete = ()=>{
-    const modal =  modalDelete("Xác nhận xoá");
+    const modal =  modalDelete("Xác nhận xoá","Bạn muốn xoá sản phẩm này?");
     
     modal.then((result) => {
       if (result.isConfirmed) {

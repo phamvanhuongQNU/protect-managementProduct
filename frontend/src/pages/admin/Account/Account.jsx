@@ -1,28 +1,46 @@
 import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
+import {modalDelete} from "../../../components/admin/Swal/index"
 import { Link } from "react-router-dom";
-function Account({data}){
+import Swal from "sweetalert2";
+function Account({handleDeleted,data,index}){
+
+
+  const handlDelete = ()=>{
+    const modal =  modalDelete("Xác nhận xoá","Bạn muốn xoá");
+    
+    modal.then((result) => {
+      if (result.isConfirmed) {
+        handleDeleted(data._id)
+        Swal.fire({
+          title: "Xoá thành công",
+          text: "Người dùng đã bị xoá",
+          icon: "success",
+        });
+      }
+    });
+  }
     return(
         <>
-         {[...data].map((item, index) => (
-              <tr key={index}>
+        
+              <tr key={data._id}>
                 <td>
                   <input type="checkbox" />
                 </td>
                 <td>{index + 1}</td>
-                <td>{item.fullName}</td>
-                <td>{item.email}</td>
-                <td>{item.role}</td>
+                <td>{data.fullName}</td>
+                <td>{data.email}</td>
+                <td>{data.role}</td>
                 <td>
-                  <Link to={`edit/${item._id}`} className="edit">
+                  <Link to={`edit/${data._id}`} className="edit">
                     <FaRegEdit />
                   </Link>
 
-                  <button  className="delete-btn">
+                  <button className="delete-btn" onClick={handlDelete}>
                     <FaRegTrashAlt />
                   </button>
                 </td>
               </tr>
-            ))}
+         
             </>
     )
 }
