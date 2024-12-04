@@ -1,15 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+
+import {getData} from "../../../../API/getAPI"
 import "./NewProducts.css";
 
 const NewProducts = () => {
-    const newProducts = Array(8).fill({
-        name: "Bàn phím cơ Epomaker RT65",
-        price: "1,600,000 đ",
-        sales: "20",
-        sold: "200",
-        img: "https://epomaker.com/cdn/shop/files/IMG_7943_aa3a4f64-4c10-4f1b-aa7e-06f2d447dce2.png?v=1729567413&width=360",
-    });
+    
+    const [newProduct,setNewProduct] = useState([]);
+    const [limit,setLimit] = useState(8);
+
+    
+
+    // Nhấn nút xem them
+    const handleClick = ()=>{
+
+        setLimit(limit+4);
+    }
+    useEffect(()=>{
+        const fetchApi = async ()=>{
+            const res = await getData(`/products/new?limit=${limit}`,false);
+            setNewProduct(res.result)
+        }
+        fetchApi();
+    },[limit])
     return (
         <div className="new_products">
             <div className="products_title">
@@ -17,18 +30,18 @@ const NewProducts = () => {
             </div>
             <div className="products_main">
                 <div className="products_grid">
-                    {newProducts.map((element, index) => (
+                    {newProduct.map((element, index) => (
                         <div key={index} className="product_wrapper">
-                            <span className="sale">-{element.sales}%</span>
-                            <img src={element.img} alt="" />
+                            <span className="sale">-{element.discount}%</span>
+                            <img src={element.thumbnail} alt="" />
                             <div className="info_product">
                                 <p className="name">{element.name}</p>
                                 <span className="sold">
-                                    Đã bán {element.sold}
+                                    Đã bán {element.stock_quantity}
                                 </span>
                                 <div className="item_row">
-                                    <span className="sale_price">{element.price}</span>
-                                    <span className="price">1,920,000 đ</span>
+                                    <span className="sale_price"> {element.price - (element.price * (element.discount / 100))}đ</span>
+                                    <span className="price">{element.price}đ</span>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +49,7 @@ const NewProducts = () => {
                 </div>
             </div>
             <div className="more_button">
-                <Link>Xem thêm</Link>
+                <button onClick={handleClick}>Xem thêm</button>
             </div>
         </div>
     );

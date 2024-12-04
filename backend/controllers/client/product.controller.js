@@ -27,3 +27,25 @@ module.exports.getProductsByCategory = async (req, res) => {
         res.status(500).json(error);
     }
 };
+
+
+// [get] /products/new
+module.exports.getNewProducts = async (req, res) => {
+    try {
+      
+        const find = {
+            deleted : false
+        };
+        let limit = 8;
+        if (req.query.limit){
+            limit = parseInt(req.query.limit)
+            
+        }
+        const getProducts = await Products.find(find).sort({createAt : "desc"}).limit(limit);
+        res.status(200).json(getProducts);
+    
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+

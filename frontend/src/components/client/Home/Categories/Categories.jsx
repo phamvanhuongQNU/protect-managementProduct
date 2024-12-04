@@ -4,11 +4,7 @@ import {Link} from 'react-router-dom'
 import "./Categories.css";
 import {getData} from "../../../../API/getAPI"
 const Categories = () => {
-    const categoriesData = Array(5).fill({
-        title: "Đồ chơi",
-        img: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lnmfhlpiqui573.webp",
-        quantity: "30",
-    });
+  
     const [categories,setCategories] = useState([]);
     useEffect(()=>{
         const fetchApi = async()=>{
