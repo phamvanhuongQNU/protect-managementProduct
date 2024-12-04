@@ -51,6 +51,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    padding: 12px;
     transition: all 0.3s ease;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -58,8 +59,8 @@
 
 .ftproduct_wrapper .sale {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 12px;
+    right: 12px;
     background-color: var(--gold-color);
     color: var(--white-color);
     padding: 3px 6px;
@@ -86,7 +87,7 @@
 }
 
 .ftproduct_wrapper img {
-    width: 20vw;
+    width: 18vw;
     height: auto;
     object-fit: cover;
     transition: all 0.2s ease;
