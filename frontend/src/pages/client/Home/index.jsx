@@ -1,17 +1,10 @@
 import React from "react";
-<<<<<<< HEAD
 import "./style.css";
-import Categories from "../../../components/client/Home/Categories";
-import NewProducts from "../../../components/client/Home/NewProducts";
-import FeaturedProducts from "../../../components/client/Home/FeaturedProducts";
-import CustomSlider from "../../../components/client/Home/CustomSlider";
-import images from "../../../data/Images";
-=======
-import "./style.css"
 import Categories from "../../../components/client/Home/Categories/Categories";
 import NewProducts from "../../../components/client/Home/NewProducts/NewProducts";
 import FeaturedProducts from "../../../components/client/Home/FeaturedProducts/FeaturedProducts";
->>>>>>> b36bdbdab70f053dae19b5d6bc9f0f4c4f4b198e
+import CustomSlider from "../../../components/client/Home/CustomSlider/CustomSlider";
+import images from "../../../data/Images";
 
 const Home = () => {
     return <div className="home_container">
