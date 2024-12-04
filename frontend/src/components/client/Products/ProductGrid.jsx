@@ -10,8 +10,8 @@ const ProductGrid = () => {
   useEffect(() => {
     // Lấy data
     const fetchAPI = async () => {
-      const endpoint = categoryId ? `products/category/${categoryId}` : "products";
-      const data = await get(endpoint, false);
+      const endpoint = categoryId ? `/products/category/${categoryId}` : "/products";
+      const data = await getData(endpoint, false);
       setDataProductsGrid(data.result);
     }
     fetchAPI();
