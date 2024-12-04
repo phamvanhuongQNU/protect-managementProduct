@@ -1,11 +1,18 @@
 import React from "react";
-import "./style.css"
+import "./style.css";
 import Categories from "../../../components/client/Home/Categories";
 import NewProducts from "../../../components/client/Home/NewProducts";
 import FeaturedProducts from "../../../components/client/Home/FeaturedProducts";
+import CustomSlider from "../../../components/client/Home/CustomSlider";
+import images from "../../../data/Images";
 
 const Home = () => {
     return <div className="home_container">
+        <CustomSlider>
+            {images.map((image, index) => {
+                return <img key={index} src={image.imgURL} alt={image.imgAlt} />
+            })}
+        </CustomSlider>
         <div className="category_container">
             <Categories />
         </div>

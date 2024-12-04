@@ -3,6 +3,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.header_container {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+.announcement {
+  position: unset;
+  height: 30px;
+  background-color: teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.announcement span {
+  color: white;
+}
+
 /* header */
 .header {
   display: flex;
@@ -10,8 +32,6 @@
   align-items: center;
   background-color: var(--cream-color);
   padding: 15px 0px;
-  position: fixed;
-  z-index: 999;
   width: 100%;
   height: auto;
 }
