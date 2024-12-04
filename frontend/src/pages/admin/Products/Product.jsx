@@ -42,7 +42,7 @@ function Product(props){
               <td>
               <div className="icon-wrapper">
                 <Link to={`edit/${data._id}`} className="edit-button"><FaRegEdit /></Link>
-                  <div className="delete-button"><FaRegTrashAlt onClick={handlDelete} /></div>
+                  <div onClick={handlDelete} className="delete-button"><FaRegTrashAlt  /></div>
               </div>
                 
               </td>

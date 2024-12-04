@@ -3,6 +3,7 @@ import CountSLSP from "../../../components/client/CountSLSP";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getData } from "../../../API/getAPI";
+import DOMPurify from 'dompurify';
 const ProductDetail = () => {
   const { dem, tang, giam } = CountSLSP();
   const {id} = useParams();
@@ -78,8 +79,8 @@ const ProductDetail = () => {
 
           <div className="product-description">
             <h2>MÔ TẢ SẢN PHẨM</h2>
-            <p>
-             {dataProduct.description}
+            <p  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dataProduct.description) }}>
+             
             </p>
           </div>
         </div>
