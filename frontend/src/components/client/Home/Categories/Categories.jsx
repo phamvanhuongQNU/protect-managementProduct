@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import {Link} from 'react-router-dom'
 import "./Categories.css";
 import {getData} from "../../../../API/getAPI"
 const Categories = () => {
@@ -12,7 +13,8 @@ const Categories = () => {
     useEffect(()=>{
         const fetchApi = async()=>{
             const res = await getData("/categories",false);
-            console.log(res.result);
+          
+            setCategories(res.result);
         }
         fetchApi();
     },[])
@@ -23,19 +25,19 @@ const Categories = () => {
             </div>
             <div className="categories_main">
                 <div className="categories_flex">
-                    {categoriesData.map((element, index) => (
-                        <div key={index} className="categories_wrapper">
-                            <img src={element.img} alt="img" />
+                    {categories.map((element, index) => (
+                        <Link to={`products/category/${element._id}`} key={index} className="categories_wrapper">
+                            <img src={element.thumbnail} alt="img" />
                             <div className="column_item">
                                 <p className="name">{element.title}</p>
                                 <span className="quantity">
-                                    {element.quantity} sản phẩm
+                                    {element.totalProducts} sản phẩm
                                 </span>
                             </div>
                             <div className="arrow_right">
                                 <FiArrowRight />
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
