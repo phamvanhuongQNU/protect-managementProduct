@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./ProductGrid.css";
-import { get } from "../../../utils/request";
+import { getData } from "../../../API/getAPI"
 
 const ProductGrid = () => {
   const [dataProductsGrid, setDataProductsGrid] = useState([]);
@@ -10,8 +10,8 @@ const ProductGrid = () => {
   useEffect(() => {
     // Lấy data
     const fetchAPI = async () => {
-      const endpoint = categoryId ? `products/category/${categoryId}` : "products";
-      const data = await get(endpoint, false);
+      const endpoint = categoryId ? `/products/category/${categoryId}` : "/products";
+      const data = await getData(endpoint, false);
       setDataProductsGrid(data.result);
     }
     fetchAPI();

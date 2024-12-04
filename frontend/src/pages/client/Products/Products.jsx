@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../../components/client/Products/Sidebar";
-import Filters from "../../../components/client/Products/Filters";
+
 import ProductGrid from "../../../components/client/Products/ProductGrid";
 import "./Products.css";
 
@@ -15,7 +15,7 @@ const Products = () => {
           <Sidebar />
         </div>
         <div className="products-main">
-          <Filters />
+     
           <ProductGrid />
         </div>
       </div>

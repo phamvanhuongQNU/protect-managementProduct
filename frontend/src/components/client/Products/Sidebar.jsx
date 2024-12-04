@@ -37,9 +37,7 @@ const Sidebar = () => {
         </div>
           ))}
       </ul>
-      <div className="banner">
-        <h3>Banner</h3>
-      </div>
+      
     </div>
   );
 };

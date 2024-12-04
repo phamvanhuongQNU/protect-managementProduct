@@ -1,19 +1,19 @@
 import { get, post, put,del } from "../utils/request";
 
-export const getData = async(path)=>{
-    const result = await get(path)
+export const getData = async(path,isAdmin)=>{
+    const result = await get(path,isAdmin)
     return result;
 }
-export const createData =async (path,body) =>{
-    const result = await post(path,body);
+export const createData =async (path,body,isAdmin) =>{
+    const result = await post(path,body,isAdmin);
     return result;
 }
 
-export const updateData =async (path,body) =>{
-    const result = await put(path,body);
+export const updateData =async (path,body,isAdmin) =>{
+    const result = await put(path,body,isAdmin);
     return result;
 }
-export const deleteData = async (path) =>{
-    const result = await del(path)
+export const deleteData = async (path,isAdmin) =>{
+    const result = await del(path,isAdmin)
     return result
 }
