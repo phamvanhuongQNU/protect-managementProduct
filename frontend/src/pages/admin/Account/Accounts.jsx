@@ -1,7 +1,7 @@
 import React from "react";
 import {useEffect,useState} from "react";
 import {Link} from "react-router-dom"
-import {getData} from '../../../API/getAPI'
+import {getData,deleteData} from '../../../API/getAPI'
 
 import "./Accounts.css";
 import Account from "./Account";
@@ -16,6 +16,18 @@ const Accounts = () => {
     }
     fetchApi();
   },[])
+  // sự kiện xoá người dùng
+  const handleDeleted = (id)=>{
+    const deleteFetch = async ()=>{
+      const result = await deleteData(`users/delete/${id}`)
+      console.log(id)
+    }
+    const newDataUser = dataUser.filter(item => (item._id !== id))
+    deleteFetch();
+    setDataUser(newDataUser)
+    console.log(newDataUser)
+  }
+
   console.log(dataUser)
   return (
     <>
@@ -38,7 +50,8 @@ const Accounts = () => {
             </tr>
           </thead>
           <tbody>
-           <Account data={dataUser}/>
+            {[...dataUser].map((item,index) =>(<Account handleDeleted={handleDeleted} index={index} data={item}/>))}
+           
           </tbody>
         </table>
       </div>

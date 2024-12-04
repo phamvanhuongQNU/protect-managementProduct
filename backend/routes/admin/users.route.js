@@ -13,4 +13,8 @@ router.post("/users/create",controller.create)
 router.put("/users/edit/:id",controller.edit)
 
 // Xoá người dùng
+router.delete("/users/delete/:id",controller.delete)
+
+
+
 module.exports = router

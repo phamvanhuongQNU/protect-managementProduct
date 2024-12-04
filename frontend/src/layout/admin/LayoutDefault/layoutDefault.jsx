@@ -4,7 +4,7 @@ import TopBar from "../TopBar/TopBar"
 import "./style.css"
 import { useState } from "react"
 
-function LayoutDefault(){
+function LayoutDefault({titlePage}){
     const [searchQuery, setSearchQuery] = useState("");
 
     const handleSearch = (query) => {
@@ -17,7 +17,7 @@ function LayoutDefault(){
                 <div className="layout-container">
                     <Header/>
                     <main className="main-content-product">
-                        <TopBar titlePage={"Danh sách sản phẩm"} onSearch={handleSearch}/>
+                        <TopBar titlePage={titlePage} onSearch={handleSearch}/>
                         <Outlet context={{ searchQuery }} />
                     </main>
                 </div>

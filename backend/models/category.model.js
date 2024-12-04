@@ -5,7 +5,8 @@ const CategorySchema = new mongoose.Schema({
     deleted : {
         type : Boolean,
         default : false
-    }   
+    },
+    thumbnail : String
 },{timestamps : true})
 
 const Category = mongoose.model("Category",CategorySchema,"categories");

@@ -49,12 +49,24 @@
 .edit-button {
     color: var(--blue-color);
     text-decoration: none;
+    background-color: transparent;
+    z-index: 100;
 }
-
+.edit-button path{
+    
+    pointer-events: none;
+}
+.edit-button svg{
+    
+    pointer-events: none;
+}
 .delete-button {
     color: #ff4d4d;
+    background-color: transparent;
 }
-
+.delete-button svg,.delete-button path{
+    pointer-events: none;
+}
 /* Pagination Section */
 .bottom-bar {
     width: 1036px;
