@@ -11,5 +11,6 @@ route.get("/products/category/:categoryId", controller.getProductsByCategory);
 // Lấy sản phẩm mới nhất (Tạm thời lấy sản phẩm cũ vì sản phẩm mới không có)
 route.get("/products/new", controller.getNewProducts);
 route.get("/products/outstanding", controller.getOutstandingroducts);
+route.get("/products/detail/:id", controller.detail);
 
 module.exports = route

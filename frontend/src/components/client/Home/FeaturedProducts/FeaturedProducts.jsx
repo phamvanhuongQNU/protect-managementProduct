@@ -4,14 +4,9 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { BiShoppingBag } from "react-icons/bi";
 import React, { useEffect, useState } from "react";
 import {getData} from "../../../../API/getAPI"
+import { Link } from "react-router-dom";
 const FeaturedProducts = () => {
-    const featuredProducts = Array(8).fill({
-        name: "Bàn phím cơ Epomaker RT65",
-        price: "1,600,000 đ",
-        sales: "20",
-        sold: "200",
-        img: "https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-002.jpg?v=1728376160827",
-    });
+
     const [featuredProduct,setFeaturedProduct] = useState([]);
 
 
@@ -45,7 +40,7 @@ const FeaturedProducts = () => {
                             </div>
                             </div>
                             <div className="info_product">
-                                <p className="name">{element.name}</p>
+                                <Link to={`product/detail/${element._id}`} className="name">{element.name}</Link>
                                 <span className="sold">
                                     Đã bán {element.stock_quantity}
                                 </span>

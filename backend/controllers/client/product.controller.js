@@ -65,3 +65,16 @@ module.exports.getOutstandingroducts = async (req, res) => {
     }
 };
 
+// [get] /products/detail/:id
+module.exports.detail = async (req, res) => {
+    try {
+        const find = {
+            deleted: false,
+            _id : req.params.id
+        }
+        const product = await Products.findOne(find)
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};

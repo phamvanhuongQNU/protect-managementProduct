@@ -12,7 +12,7 @@ function RouteClient() {
     <Routes>
       {/* Layout mặc định */}
       <Route path="/" element={<LayoutDefault />}>
-        <Route path="product/detail" element={<ProductDetail />} />
+        <Route path="product/detail/:id" element={<ProductDetail />} />
         <Route path="cart" element={<Cart />} />{" "}
         <Route path="checkout" element={<Checkout />} />{" "}
         <Route path="products/category/:categoryId" element={<Products />}/>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-
+import {Link} from 'react-router-dom'
 import {getData} from "../../../../API/getAPI"
 import "./NewProducts.css";
 
@@ -35,7 +35,7 @@ const NewProducts = () => {
                             <span className="sale">-{element.discount}%</span>
                             <img src={element.thumbnail} alt="" />
                             <div className="info_product">
-                                <p className="name">{element.name}</p>
+                                <Link to={`product/detail/${element._id}`} className="name">{element.name}</Link>
                                 <span className="sold">
                                     Đã bán {element.stock_quantity}
                                 </span>

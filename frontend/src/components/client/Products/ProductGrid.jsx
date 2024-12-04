@@ -28,7 +28,7 @@ const ProductGrid = () => {
           <div className="product-grid__info">
             <div className="product-grid__name">
               <h3>
-                <Link to={"/product/detail"}>{product.name}</Link>
+                <Link to={`/product/detail/${product._id}`}>{product.name}</Link>
               </h3>
             </div>
             <div className="product-grid__details">

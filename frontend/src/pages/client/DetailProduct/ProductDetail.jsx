@@ -1,67 +1,64 @@
 import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
-
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getData } from "../../../API/getAPI";
 const ProductDetail = () => {
   const { dem, tang, giam } = CountSLSP();
+  const {id} = useParams();
+  const [dataProduct,setDataProduct] = useState({});
+  const [urlImage,setUrlImage] = useState("");
+  // Sự kiện nhấn ảnh
+  const handleClick = (e)=>{
+      setUrlImage(e.target.src);
+  }
+  useEffect(()=>{
+    const fetchApi = async ()=>{
+
+
+      const res = await getData(`/products/detail/${id}`,false);
+      setDataProduct(res.result)
+      setUrlImage(res.result.thumbnail);
+  }
+  fetchApi();
+  },[id])
+  console.log(dataProduct)
   return (
     <div className="layout-wrapper">
       <main className="main-content">
         <div className="container">
-          <div className="breadcrumb">
-            <a href="/">Trang chủ</a> &gt; <span>Bàn phím</span>
-          </div>
 
           <div className="product-container">
             {/* Product Images */}
             <div className="product-images">
               <div className="main-image">
                 <img
-                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-002.jpg?v=1728376160827"
-                  alt="Bàn phím"
+                  src={urlImage}
+                  alt=""
                 />
               </div>
               <div className="thumbnail-images">
-                <img
-                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-08.jpg?v=1728376160827"
-                  alt="Thumbnail 1"
-                  tabIndex="0"
-                  className="thumbnail"
-                />
-                <img
-                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-06.jpg?v=1728376160827"
-                  alt="Thumbnail 2"
-                  tabIndex="0"
-                  className="thumbnail"
-                />
-                <img
-                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-00-27189afa-695e-4ed4-9cb2-6e8204301bae.jpg?v=1728376149987"
-                  alt="Thumbnail 3"
-                  tabIndex="0"
-                  className="thumbnail"
-                />
-                <img
-                  src="https://bizweb.dktcdn.net/100/329/122/products/ban-phim-co-khong-day-logitech-g515-lightspeed-tkl-001.jpg?v=1728376160827"
-                  alt="Thumbnail 4"
-                  tabIndex="0"
-                  className="thumbnail"
-                />
+              <img alt="" onClick={handleClick}  className="thumbnail" src={dataProduct.thumbnail}></img>
+              { dataProduct.images && [...dataProduct.images].map((item)=> <img alt="" onClick={handleClick}  className="thumbnail" src={item}></img>)}
+              
               </div>
             </div>
 
             {/* Product Info */}
             <div className="product-info">
               <h1 className="product-title">
-                YUNZII YZ75 75% Hot Swappable Wireless Gaming Mechanical
+                {/* YUNZII YZ75 75% Hot Swappable Wireless Gaming Mechanical
                 Keyboard, RGB Backlights, BT5.0/2.4G/USB-C, Dye Sub PBT Keycaps
-                for Linux/Win/Mac(Gateron G Pro Brown, White)
+                for Linux/Win/Mac(Gateron G Pro Brown, White) */}
+                {dataProduct.name}
               </h1>
               <div className="product-price">
                 <span className="original-price">
-                  <del>2.300.000đ</del>
+                  <del>{dataProduct.price}đ</del>
                 </span>
-                <span className="sale-price">1.999.000đ</span>
+                <span className="sale-price">{dataProduct.price - (dataProduct.price * (dataProduct.discount / 100))}đ</span>
               </div>
-              <div className="product-sold">Đã bán 200</div>
+              <div className="product-sold">{dataProduct.stock_quanlity}</div>
               <div className="product-options">
                 <div className="quantity-selector">
                   <span>Số lượng:</span>
@@ -82,12 +79,7 @@ const ProductDetail = () => {
           <div className="product-description">
             <h2>MÔ TẢ SẢN PHẨM</h2>
             <p>
-              Hãy cùng cho bạn tiếm hiểu ngắn gọn một vài đặc điểm nổi bật của
-              sản phẩm. Đặt biệt, các phím thường để làm phím số và một vài phím
-              tắt thường dùng. Nếu quả thực bạn đang tìm kiếm một bộ bàn phím cơ
-              chất lượng tốt và giá cả phải chăng thì đừng bỏ qua sản phẩm của
-              chúng tôi. Sản phẩm được đóng gói cẩn thận đảm bảo sẽ đến tay bạn
-              một cách nguyên vẹn nhất.
+             {dataProduct.description}
             </p>
           </div>
         </div>

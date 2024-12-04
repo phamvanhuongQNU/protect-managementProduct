@@ -71,6 +71,7 @@
     color: var(--black-color);
     font-weight: 500;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .product_wrapper .sold {
