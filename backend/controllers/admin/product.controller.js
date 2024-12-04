@@ -94,7 +94,7 @@ module.exports.detailProduct = async (req, res) => {
     }
 };
 
-// [get] admin/products/:category
+// [get] admin/products/category/:category
 module.exports.getProductsByCategory = async (req, res) => {
     try {
         const { categoryId } = req.params;

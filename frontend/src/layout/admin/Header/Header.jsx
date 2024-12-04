@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
 import { CiUser } from "react-icons/ci";
 import { FaProductHunt } from "react-icons/fa6";
@@ -11,7 +11,7 @@ const Header = () => {
       <div className="logo-container">
         <div className="logo">
           <img
-            src="https://brandeps.com/icon-download/L/Lightning-icon-vector-07.svg"
+            src="/Lightning-icon-vector-07.svg"
             alt="logo"
           />
         </div>

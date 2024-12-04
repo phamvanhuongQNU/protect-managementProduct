@@ -15,6 +15,7 @@ function RouteClient() {
         <Route path="product/detail" element={<ProductDetail />} />
         <Route path="cart" element={<Cart />} />{" "}
         <Route path="checkout" element={<Checkout />} />{" "}
+        <Route path="products/category/:categoryId" element={<Products />}/>
         <Route path="products" element={<Products />} />{" "}
         <Route path="" element={<Home />} />{" "}
         {/* Route mới cho trang Cart */}

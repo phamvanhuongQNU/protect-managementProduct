@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./ProductGrid.css";
 import { get } from "../../../utils/request";
 
 const ProductGrid = () => {
   const [dataProductsGrid, setDataProductsGrid] = useState([]);
+  const { categoryId } = useParams();
 
   useEffect(() => {
     // Lấy data
     const fetchAPI = async () => {
-      const data = await get("products", false);
+      const endpoint = categoryId ? `products/category/${categoryId}` : "products";
+      const data = await get(endpoint, false);
       setDataProductsGrid(data.result);
     }
     fetchAPI();
-  }, []);
+  }, [categoryId]);
   console.log(dataProductsGrid);
 
   return (

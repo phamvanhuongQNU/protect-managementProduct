@@ -55,6 +55,9 @@
   width: 100px;
   margin-right: 10px;
 }
+.header-container .logo-text {
+  color: #fff;
+}
 .header-container .header-menu {
   font-size: 20px;
 }
