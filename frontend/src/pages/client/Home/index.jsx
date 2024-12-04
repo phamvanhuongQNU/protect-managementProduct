@@ -1,8 +1,8 @@
 import React from "react";
 import "./style.css"
-import Categories from "../../../components/client/Home/Categories";
-import NewProducts from "../../../components/client/Home/NewProducts";
-import FeaturedProducts from "../../../components/client/Home/FeaturedProducts";
+import Categories from "../../../components/client/Home/Categories/Categories";
+import NewProducts from "../../../components/client/Home/NewProducts/NewProducts";
+import FeaturedProducts from "../../../components/client/Home/FeaturedProducts/FeaturedProducts";
 
 const Home = () => {
     return <div className="home_container">

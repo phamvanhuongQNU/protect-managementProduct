@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./Categories.css";
-
+import {getData} from "../../../../API/getAPI"
 const Categories = () => {
     const categoriesData = Array(5).fill({
         title: "Đồ chơi",
         img: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lnmfhlpiqui573.webp",
         quantity: "30",
     });
-
+    const [categories,setCategories] = useState([]);
+    useEffect(()=>{
+        const fetchApi = async()=>{
+            const res = await getData("/categories",false);
+            console.log(res.result);
+        }
+        fetchApi();
+    },[])
     return (
         <div className="categories_column">
             <div className="categories_title">
