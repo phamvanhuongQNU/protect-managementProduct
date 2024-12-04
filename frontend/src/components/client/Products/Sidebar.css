@@ -21,7 +21,7 @@
   list-style: none;
 }
 
-.menu-list li a {
+.menu-list li .title_cate {
   display: block;
   padding: 12px 15px;
   color: #333;
@@ -29,9 +29,10 @@
   text-align: left;
   font-weight: bold;
   transition: background-color 0.2s;
+  cursor: pointer;
 }
 
-.menu-list li a:hover {
+.menu-list li .title_cate:hover {
   background-color: #f5f5f5;
 }
 
