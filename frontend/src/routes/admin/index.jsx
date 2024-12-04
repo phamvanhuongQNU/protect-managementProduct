@@ -13,7 +13,7 @@ function RouteAdmin() {
   return (
     <Routes>
       <Route path="admin">
-        <Route path="products" element={<LayoutDefault />}>
+        <Route path="products" element={<LayoutDefault titlePage={"Danh sách sản phẩm"} />}>
           <Route path="category/:categoryId/create" element={<CreateProduct />} />
           <Route path="category/:categoryId/edit/:id" element={<EditProduct />} />
           <Route path="category/:categoryId" element={<Products />} />
@@ -21,15 +21,15 @@ function RouteAdmin() {
           <Route path="edit/:id" element={<EditProduct />} />
           <Route path="" element={<Products />} />
         </Route>
-        <Route path="oder" element={<LayoutDefault />}>
+        <Route path="oder" element={<LayoutDefault titlePage="Danh sách đơn hàng"/>}>
           <Route path="" element={<Oder />} />
         </Route>
-        <Route path="account" element={<LayoutDefault />}>
+        <Route path="account" element={<LayoutDefault titlePage="Danh sách tài khoản" />}>
           <Route path="" element={<Account />} />
           <Route path="create" element={<CreateAccount />} />
           <Route path="edit/:id" element={<EditAccount />} />
         </Route>
-        <Route path="category" element={<LayoutDefault />}>
+        <Route path="category" element={<LayoutDefault titlePage = "Danh sách danh mục" />}>
           <Route path="" element={<Category />} />
         </Route>
       </Route>

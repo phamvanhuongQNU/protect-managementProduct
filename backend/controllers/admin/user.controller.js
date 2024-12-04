@@ -85,8 +85,8 @@ module.exports.create = async (req, res) => {
 };
 // [DEl] /users/delete/:id
 module.exports.delete = async (req, res) => {
+
   try {
-    
     await Users.updateOne({ _id: req.params.id }, {deleted : true});
     res.status(200).json({
       message: "Xoá người dùng thành công",

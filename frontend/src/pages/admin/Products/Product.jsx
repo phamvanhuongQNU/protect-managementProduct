@@ -21,8 +21,6 @@ function Product(props){
     });
   }
  
-
-
     return (
         <>
           <tr>
