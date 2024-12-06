@@ -17,3 +17,7 @@ export const deleteData = async (path,isAdmin) =>{
     const result = await del(path,isAdmin)
     return result
 }
+export const postData =async (path,body,isAdmin) =>{
+    const result = await post(path,body,isAdmin);
+    return result;
+}

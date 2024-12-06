@@ -6,6 +6,7 @@ import Checkout from "../../pages/client/Checkout/Checkout";
 import Products from "../../pages/client/Products/Products";
 import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/client/Home";
+import Private from "../../components/client/Private";
 
 function RouteClient() {
   return (
@@ -13,11 +14,15 @@ function RouteClient() {
       {/* Layout mặc định */}
       <Route path="/" element={<LayoutDefault />}>
         <Route path="product/detail/:id" element={<ProductDetail />} />
-        <Route path="cart" element={<Cart />} />{" "}
-        <Route path="checkout" element={<Checkout />} />{" "}
-        <Route path="products/category/:categoryId" element={<Products />}/>
-        <Route path="products" element={<Products />} />{" "}
-        <Route path="" element={<Home />} />{" "}
+
+        <Route element={<Private />}>
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+        </Route>
+
+        <Route path="products/category/:categoryId" element={<Products />} />
+        <Route path="products" element={<Products />} />
+        <Route path="" element={<Home />} />
         {/* Route mới cho trang Cart */}
       </Route>
 

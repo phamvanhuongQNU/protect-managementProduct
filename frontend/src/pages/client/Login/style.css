@@ -136,3 +136,6 @@
 .form-login__btn-login:hover {
   opacity: 0.8;
 }
+.message{
+  color: #ff512f;
+}

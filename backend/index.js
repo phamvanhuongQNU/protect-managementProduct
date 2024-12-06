@@ -1,4 +1,6 @@
 const express = require("express");
+const cookieParser = require("cookie-parser")
+
 const routesAdmin = require("./routes/admin/index.route");
 const routeClient = require("./routes/client/index.route");
 const databse = require("./config/database")
@@ -6,7 +8,7 @@ const cors = require('cors')
 const dotenv = require("dotenv").config();
 const app = express();
 const port = dotenv.parsed.PORT;
-
+app.use(cookieParser())
 app.use(cors());
 app.use(express.json());
 routesAdmin(app);

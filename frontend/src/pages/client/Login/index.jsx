@@ -3,15 +3,47 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useState } from "react";
+import {postData} from "../../../API/getAPI"
+import {useNavigate} from 'react-router-dom'
+import {setCookie} from '../../../utils/cookie'
+
 function Login() {
   const [passHidden, setPassHidden] = useState(true);
   const [typeInput,setTypeInput] = useState("password");
-
+  const [showMessage,setShowMessage] = useState("");
+  const navigate = useNavigate();
   // Thay đổi trạng thấy hiện(ẩn) mật khẩu
   const handleCLick = () => {
     setPassHidden(!passHidden);
     typeInput === "password" ? setTypeInput("text") : setTypeInput("password");
   };
+
+  // Nhấn nút đăng nhập
+  const handleOnSubmit = (e)=>{
+    e.preventDefault();
+    const inputEmail = document.querySelector("[name = email]")
+    const inputPassword = document.querySelector("[name = password]")
+    const body = {
+      email : inputEmail.value,
+      password : inputPassword.value
+    }
+    const fetchApi = async()=>{
+      const res = await postData("/login",body,false);
+      if(res.status !== 200){
+        inputEmail.value = "";
+        inputPassword.value = "";
+        setShowMessage(res.result.message)
+        return;
+      }
+      setCookie("token",res.result.data.token,1);
+    
+      navigate(-1)
+    }
+    fetchApi()
+    
+  }
+
+
   return (
     <>
       <body>
@@ -37,7 +69,7 @@ function Login() {
               </div>
               <div className="inner-wrap__right">
                 <div className="inner-wrap__right__title">Đăng Nhập</div>
-                <form action="" className="form-login">
+                <form action="" className="form-login" method="" onSubmit={handleOnSubmit}>
                   <div className="form-login__box-input">
                     <input
                       className="login-input"
@@ -55,7 +87,7 @@ function Login() {
                     <input
                       className="login-input input-password"
                       type= {typeInput}
-                      name=""
+                      name="password"
                       id="password"
                       placeholder=" "
                       
@@ -71,6 +103,7 @@ function Login() {
                       )}{" "}
                     </div>
                   </div>
+                  <p className="message">{showMessage}</p>
                   <Link
                     to={"forgot-password"}
                     className="form-login__forgot-password"

@@ -68,8 +68,7 @@ span {
 
 .main-image img {
   width: 100%;
- 
-  
+
   object-fit: contain;
   aspect-ratio: 16 / 9;
 }
@@ -202,12 +201,17 @@ span {
 .add-to-cart-btn {
   background-color: #ff4d4f;
   color: white;
+  text-decoration: none;
+  text-align: center;
 }
 
 .buy-now-btn {
   background-color: #f2efe5;
   color: black;
   border: 2px solid #ff4d4f;
+
+  text-decoration: none;
+  text-align: center;
 }
 
 /* Product Description */

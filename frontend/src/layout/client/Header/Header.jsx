@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from "react";
-import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import IconUser from "../../../components/client/IconUser"
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import {getCookie} from '../../../utils/cookie'
+
 const Header = () => {
+  const token = getCookie("token");
   const [isVisible, setIsVisible] = useState(true);  
   useEffect(() => {
     const handleScroll = () => {
@@ -61,12 +65,12 @@ const Header = () => {
         <div className="inner-logo">
           <ul className="list-icon">
           <li>
-              <Link to={"/login"}><FaUser className="icon" /></Link>
+              <IconUser token={token}/>
       
             </li>
             <li>
               <Link to={"/cart"}>
-                <FaShoppingCart className="icon" />
+                {token && <FaShoppingCart className="icon" />}
               </Link>
             </li>
           </ul>

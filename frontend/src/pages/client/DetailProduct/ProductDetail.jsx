@@ -1,6 +1,6 @@
 import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getData } from "../../../API/getAPI";
 import DOMPurify from 'dompurify';
@@ -71,8 +71,9 @@ const ProductDetail = () => {
                 </div>
               </div>
               <div className="product-actions">
-                <button className="add-to-cart-btn">THÊM VÀO GIỎ</button>
-                <button className="buy-now-btn">MUA NGAY</button>
+              
+                <Link to={"/cart"} className="add-to-cart-btn">THÊM VÀO GIỎ</Link>
+                <Link to={"/checkout"} className="buy-now-btn">MUA NGAY</Link>
               </div>
             </div>
           </div>
