@@ -1,4 +1,5 @@
 const Users = require("../../models/user.model");
+
 const md5 = require("md5");
 // [post] /login
 module.exports.login = async (req, res) => {
@@ -29,12 +30,14 @@ module.exports.login = async (req, res) => {
 };
 // [get] /user/detail/:token
 module.exports.detail = async (req, res) => {
+
   try{
       const token = req.params.token;
       const find = {
         token : token,
         deleted : false
       }
+      
       const user = await Users.findOne(find).select("-password -token -deleted -role");
       res.status(200).json({
         data :user
