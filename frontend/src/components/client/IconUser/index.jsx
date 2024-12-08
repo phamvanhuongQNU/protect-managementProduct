@@ -10,12 +10,14 @@ function IconUser ({token}){
     useEffect(()=>{
         const fetchApi =async ()=>{
             const res =await getData(`/user/detail/${token}`,false)
-            setFullName(res.result.data.fullName);
+            if(res.status === 200)
+                setFullName(res.result.data.fullName);  
         }
         if(token){
             fetchApi()
         }
     },[token])
+    console.log(token)
     return (
         <>
         {fullName === "" ?  <Link to={"/login"}><FaUser className="icon" /></Link> : fullName }

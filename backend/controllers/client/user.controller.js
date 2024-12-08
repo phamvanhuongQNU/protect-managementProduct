@@ -42,6 +42,12 @@ module.exports.detail = async (req, res) => {
       }
       
       const user = await Users.findOne(find).select("-password -token -deleted -role");
+      if (!user){
+        res.status(404).json({
+            message : "Không tồn tại"
+        })
+        return
+      }
       res.status(200).json({
         data :user
       })
