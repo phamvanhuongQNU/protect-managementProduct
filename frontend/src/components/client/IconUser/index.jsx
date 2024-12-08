@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function IconUser ({token}){
    
     const [fullName,setFullName ]= useState("")
-
+  
     useEffect(()=>{
         const fetchApi =async ()=>{
             const res =await getData(`/user/detail/${token}`,false)

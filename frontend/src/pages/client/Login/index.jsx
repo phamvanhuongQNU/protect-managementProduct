@@ -37,7 +37,7 @@ function Login() {
       }
       setCookie("token",res.result.data.token,1);
     
-      navigate(-1)
+      navigate("/")
     }
     fetchApi()
     
@@ -105,7 +105,7 @@ function Login() {
                   </div>
                   <p className="message">{showMessage}</p>
                   <Link
-                    to={"forgot-password"}
+                    to={"/forgot-password"}
                     className="form-login__forgot-password"
                   >
                     Quên mật khẩu
@@ -122,7 +122,7 @@ function Login() {
                       Bạn chưa có tài khoản?{" "}
                       <Link
                         className="form-login__btn-register"
-                        to={"register"}
+                        to={"/register"}
                       >
                         Đăng kí
                       </Link>

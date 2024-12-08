@@ -5,6 +5,9 @@ const controller = require("../../controllers/client/user.controller")
 
 // Đăng nhập
 route.post("/login",controller.login)
+// Đăng kí
+route.post("/register",controller.register)
+route.post("/registerOtp",controller.registerOtp)
 
 // Lấy thông tin chi tiết
 route.get("/user/detail/:token",controller.detail)

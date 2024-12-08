@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 
-module.exports = (email,otp,subject,html)=>{
+module.exports = (email,subject,html)=>{
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         port: 587,
@@ -13,9 +13,9 @@ module.exports = (email,otp,subject,html)=>{
       });
       var mailOptions = {
         from: 'phamvanhuongtk@mail.com',
-        to: 'dolataoday123@gmail.com',
-        subject: 'Sending Email using Node.js',
-        html : `Mã otp của bạn là <b>1232</b> Vui lòng không chia sẽ mã này cho người khác`
+        to: email,
+        subject: subject,
+        html : html
       };
       
       transporter.sendMail(mailOptions, function(error, info){
