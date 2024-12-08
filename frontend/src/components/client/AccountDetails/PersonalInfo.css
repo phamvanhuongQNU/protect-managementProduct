@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.personal-info {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.personal-info h2 {
+  margin-bottom: 20px;
+}
+
+.info-item {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.info-item strong {
+  color: #333;
+}
+
+.info-item span {
+  font-weight: 500;
+  color: #555;
+}
+
+.update-btn {
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.update-btn:hover {
+  background-color: #45a049;
+}

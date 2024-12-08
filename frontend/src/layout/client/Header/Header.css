@@ -58,7 +58,7 @@
   border: 2px solid var(--black-color);
 }
 
-.form__search .btn-search{
+.form__search .btn-search {
   position: absolute;
   right: 100px;
   color: var(--dark-gray-color);
@@ -76,7 +76,10 @@
   align-items: flex-start;
   gap: 30px;
 }
-
+.list-icon a {
+  text-decoration: none;
+  color: black;
+}
 .inner-menu a {
   position: relative;
   padding: 10px 0;
@@ -106,15 +109,15 @@
   transform: scale(1);
 }
 
-.list-icon{
+.list-icon {
   list-style: none;
   display: flex;
   align-items: center;
 }
-.list-icon li{
+.list-icon li {
   margin-left: 20px;
 }
-.list-icon li .icon{
+.list-icon li .icon {
   font-size: 24px;
   color: var(--black-color);
 }

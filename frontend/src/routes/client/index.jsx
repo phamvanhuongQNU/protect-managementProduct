@@ -1,13 +1,16 @@
 import ProductDetail from "../../pages/client/DetailProduct/ProductDetail";
 import LayoutDefault from "../../layout/client/layoutDefault/layoutDefault";
 import Login from "../../pages/client/Login/index";
-import Register from '../../pages/client/Register/index'
+import Register from "../../pages/client/Register/index";
 import Cart from "../../pages/client/Cart/Cart";
 import Checkout from "../../pages/client/Checkout/Checkout";
 import Products from "../../pages/client/Products/Products";
 import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/client/Home";
 import Private from "../../components/client/Private";
+import AccountDetail from "../../pages/client/AccountDetails/AccountDetails";
+import EditAccount from "../../pages/client/EditAccountDetails/EditAccount";
+import OrderDetails from "../../pages/client/OderDetails/OrderDetails";
 
 function RouteClient() {
   return (
@@ -24,6 +27,9 @@ function RouteClient() {
         <Route path="products/category/:categoryId" element={<Products />} />
         <Route path="products" element={<Products />} />
         <Route path="" element={<Home />} />
+        <Route path="/account/detail" element={<AccountDetail />} />
+        <Route path="/account/edit" element={<EditAccount />} />
+        <Route path="/order/details" element={<OrderDetails />} />
         {/* Route mới cho trang Cart */}
       </Route>
 
