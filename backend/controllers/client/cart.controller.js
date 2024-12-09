@@ -5,6 +5,7 @@ const Product = require('../../models/product.model');
 module.exports.index = async (req, res) => {
     try{
         const token = req.params.user_id;
+      
         const cart = await Cart.findOne({user_id : token});
         const products = cart.products;
 
@@ -49,8 +50,11 @@ module.exports.addProduct = async (req, res) => {
           },
         ],
       });
+      
       data = await newCart.save();
       res.status(200).json({ message: "Thêm giỏ hàng thành công", data: data });
+      return
+
     }
 
     // Nếu đã có giỏ hàng
@@ -61,7 +65,7 @@ module.exports.addProduct = async (req, res) => {
     if (productItem) {
       productItem.quanlity = productItem.quanlity + parseInt(quanlity);
 
-      await Cart.updateOne(existCart);
+      await Cart.updateOne({user_id : token},existCart);
       res.status(200).json(existCart);
     }
     // Nếu đã có sản phẩm trong giỏ hàng
@@ -70,7 +74,7 @@ module.exports.addProduct = async (req, res) => {
         product_id: IdProduct,
         quanlity: quanlity,
       });
-      await Cart.updateOne(existCart);
+      await Cart.updateOne({user_id : token},existCart);
 
       res.status(200).json(existCart);
     }

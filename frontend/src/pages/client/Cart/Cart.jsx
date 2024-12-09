@@ -19,12 +19,13 @@ const Cart = () => {
       const fetchApi =async ()=>{
         const res = await getData(`/cart/${token}`,false);
      
-        if (res.result){
+        if (res.result.data){
           setProducts(res.result.data);
         }
       }
       fetchApi()   
   },[token])
+  console.log(products.length)
   return (
     <div className="Cart">
       <div className="breadcrum">
