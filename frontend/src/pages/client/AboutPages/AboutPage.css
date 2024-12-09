@@ -1,0 +1,81 @@
+.about-page {
+  background: #f9f9f9;
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  padding-top: 140px;
+}
+
+.about-wrapper {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.about-title {
+  text-align: center;
+  color: #6200ea;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  color: #6200ea;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.core-values {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.reasons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.reason {
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reason h3 {
+  color: #6200ea;
+}
+
+.contact-info {
+  margin-top: 30px;
+  background: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.contact-link {
+  color: #6200ea;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}

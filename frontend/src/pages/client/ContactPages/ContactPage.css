@@ -1,0 +1,109 @@
+.contactPage-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 135px;
+}
+
+/* Intro Section */
+.contactPage-image-introduct {
+  text-align: center;
+  background-color: #6200ea;
+  color: white;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.contactPage-image-introduct h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Map and Information */
+.contactPage-container-content {
+  display: flex;
+  margin-top: 40px;
+  gap: 30px;
+}
+
+.contactPage-inner-left iframe {
+  width: 100%;
+  height: 510px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contactPage-inner-right {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contactPage-inner-right h3 {
+  font-size: 24px;
+  color: #6200ea;
+  font-weight: bold;
+}
+
+.contactPage-inner-right p {
+  font-size: 16px;
+}
+
+.contactPage-inner-right ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contactPage-inner-right ul li {
+  margin: 5px 0;
+}
+
+/* Support Section */
+.contactPage-title-tuvan {
+  text-align: center;
+  background-color: #6200ea;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 8px;
+}
+.contactPage-title-tuvan h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.contactPage-support {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.contactPage-support .icon {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin: 0 15px;
+}
+
+.contactPage-support .icon i {
+  font-size: 32px;
+  color: #6200ea;
+}
+
+.contactPage-support .icon p {
+  margin: 10px 0;
+}
+
+.contactPage-support .icon a {
+  color: #6200ea;
+  text-decoration: none;
+}
