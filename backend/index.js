@@ -9,7 +9,12 @@ const dotenv = require("dotenv").config();
 const app = express();
 const port = dotenv.parsed.PORT;
 app.use(cookieParser())
-app.use(cors());
+// cors
+var corsOptions = {
+     "origin" : "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE"
+  }
+app.use(cors(corsOptions));
 app.use(express.json());
 routesAdmin(app);
 routeClient(app);

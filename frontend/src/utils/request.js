@@ -62,3 +62,17 @@ export const del = async(path,isAdmin = true)=>{
   }
   
 }
+
+export const patch = async(path,isAdmin = true)=>{
+  const basePath = isAdmin ? API_DOWNMAIN  : API_DOWNMAIN_CLIENT;
+
+  const respone = await fetch(basePath + path,{
+    method : "put"
+  });
+  const result = await respone.json();
+  return {
+    result : result,
+    status : respone.status
+  }
+  
+}
