@@ -108,7 +108,7 @@ const Category = () => {
                   className="price"
                   onClick={() => handleCategoryClick(data._id)}
                 >
-                  {data.totalAmount}đ
+                  {(data.totalAmount).toLocaleString("vi-VN")} ₫
                 </td>
                 <td>
                   <div className="icon-wrapper">
