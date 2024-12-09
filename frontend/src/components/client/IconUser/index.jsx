@@ -17,7 +17,7 @@ function IconUser ({token}){
             fetchApi()
         }
     },[token])
-    console.log(token)
+
     return (
         <>
         {fullName === "" ?  <Link to={"/login"}><FaUser className="icon" /></Link> : fullName }

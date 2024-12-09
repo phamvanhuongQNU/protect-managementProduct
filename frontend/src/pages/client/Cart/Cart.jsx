@@ -1,58 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartItemList from "../../../components/client/page-Cart/CartItemList";
 import OrderSummaryDetails from "../../../components/client/page-Cart/OrderSummaryDetail";
+import { getData } from "../../../API/getAPI";
+import { getCookie } from "../../../utils/cookie";
 import "./Cart.css";
 const Cart = () => {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Sản phẩm 1",
-      color: "Đỏ",
-      image:
-        "https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg",
-      quantity: 1,
-      price: 1000000,
-    },
-    {
-      id: 2,
-      name: "Sản phẩm 2",
-      color: "Xanh",
-      image:
-        "https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg",
-      quantity: 2,
-      price: 1200000,
-    },
-  ]);
+  const token = getCookie("token");
+  const [products, setProducts] = useState([]);
 
-  const calculateSubtotal = () => {
-    return products.reduce(
-      (total, product) => total + product.price * product.quantity,
-      0
-    );
-  };
-
-  const calculateDiscount = () => {
-    return 0;
-  };
-
-  const calculateTotal = () => {
-    return calculateSubtotal() - calculateDiscount();
-  };
-
-  const handleQuantityChange = (id, newQuantity) => {
-    setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === id ? { ...product, quantity: newQuantity } : product
-      )
-    );
-  };
-
+  // Sự kiện xoá sản phẩm
   const handleDelete = (id) => {
-    setProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id !== id)
-    );
+    const newProducts = [...products].filter(product => product._id !== id)
+    setProducts(newProducts)
   };
 
+
+  useEffect(()=>{
+      const fetchApi =async ()=>{
+        const res = await getData(`/cart/${token}`,false);
+     
+        if (res.result){
+          setProducts(res.result.data);
+        }
+      }
+      fetchApi()   
+  },[token])
   return (
     <div className="Cart">
       <div className="breadcrum">
@@ -63,14 +35,11 @@ const Cart = () => {
           <h1>Giỏ hàng</h1>
           <CartItemList
             products={products}
-            onQuantityChange={handleQuantityChange}
-            onDelete={handleDelete}
+            handleDelete={handleDelete}
           />
         </div>
         <OrderSummaryDetails
-          subtotal={calculateSubtotal()}
-          discount={calculateDiscount()}
-          total={calculateTotal()}
+          
         />
       </div>
     </div>

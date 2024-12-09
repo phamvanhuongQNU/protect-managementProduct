@@ -2,8 +2,11 @@ import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
 import { useParams,Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getData } from "../../../API/getAPI";
+import { getData,postData } from "../../../API/getAPI";
 import DOMPurify from 'dompurify';
+import { getCookie } from "../../../utils/cookie";
+import {  toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = () => {
   const { dem, tang, giam } = CountSLSP();
   const {id} = useParams();
@@ -13,6 +16,28 @@ const ProductDetail = () => {
   const handleClick = (e)=>{
       setUrlImage(e.target.src);
   }
+
+  const handlClickAddCart = ()=>{
+   
+    
+    const fectchApi =async ()=>{
+      const body = {
+        token : getCookie("token"),
+        idProduct : id,
+        quanlity : dem
+      }
+      const res = await postData(`/cart/add-product`,body,false)
+      if (res.status === 200){
+        toast.success("Thêm giỏ hàng thành công");
+      }
+      else {
+        toast.error("Thêm thất bại");
+      }
+    }
+    fectchApi();
+  }
+
+
   useEffect(()=>{
     const fetchApi = async ()=>{
 
@@ -72,20 +97,20 @@ const ProductDetail = () => {
               </div>
               <div className="product-actions">
               
-                <Link to={"/cart"} className="add-to-cart-btn">THÊM VÀO GIỎ</Link>
+                <button  onClick={handlClickAddCart} className="add-to-cart-btn">THÊM VÀO GIỎ</button>
                 <Link to={"/checkout"} className="buy-now-btn">MUA NGAY</Link>
               </div>
             </div>
           </div>
-
+         
           <div className="product-description">
             <h2>MÔ TẢ SẢN PHẨM</h2>
             <p  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dataProduct.description) }}>
-             
             </p>
           </div>
         </div>
       </main>
+     
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import "./OrderSummaryDetail.css";
 import { Link } from "react-router-dom";
-const OrderSummaryDetails = ({ subtotal, discount, total }) => {
+const OrderSummaryDetails = () => {
   return (
     <div className="summary-details">
       <div className="info">
@@ -9,15 +9,15 @@ const OrderSummaryDetails = ({ subtotal, discount, total }) => {
       </div>
       <div className="tamtinh">
         <span>Tạm Tính</span>
-        <span>{subtotal.toLocaleString()} đ</span>
+        <span>0 đ</span>
       </div>
       <div className="giamgia">
         <span>Giảm Giá</span>
-        <span>{discount.toLocaleString()} đ</span>
+        <span>0 đ</span>
       </div>
       <div className="tong">
         <span>Tổng Cộng</span>
-        <span>{total.toLocaleString()} đ</span>
+        <span>0 đ</span>
       </div>
      
       <div className="ghichu">

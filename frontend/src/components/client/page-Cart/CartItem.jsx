@@ -1,46 +1,36 @@
 import React, { useState } from "react";
 import "./CartItem.css";
-const CartItem = ({ product, onQuantityChange, onDelete }) => {
-  const [quantity, setQuantity] = useState(product.quantity);
+const CartItem = ({ product, handleDelete }) => {
+  const [quanlity, setQuanlity] = useState(product.quanlity);
 
   const handleIncrease = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-    onQuantityChange(product.id, newQuantity);
+    
+    setQuanlity(quanlity + 1);
   };
 
   const handleDecrease = () => {
-    if (quantity > 1) {
-      const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
-      onQuantityChange(product.id, newQuantity);
+    if (quanlity > 1) {
+      setQuanlity(quanlity - 1);
     }
   };
-
-  const handleDelete = () => {
-    onDelete(product.id);
-  };
-
   return (
     <div className="sp1">
       <div className="xoaanh">
         <div className="xoa">
-          <button onClick={handleDelete}>Xoá</button>
+          <button onClick={()=>{handleDelete(product._id)}}>Xoá</button>
         </div>
         <div className="anh">
-          <img src={product.image} alt={product.name} />
+          <img src={product.thumbnail} alt={product.name} />
         </div>
       </div>
       <div className="tenmausoluong">
         <h4>{product.name}</h4>
-        <p>{product.color}</p>
         <button onClick={handleDecrease}>-</button>
-        <input type="number" value={quantity} readOnly />
+        <input type="number" value={quanlity} readOnly />
         <button onClick={handleIncrease}>+</button>
       </div>
-      <div className="gia">
-        <span>Giá</span>
-        <span>{(product.price * quantity).toLocaleString()}đ</span>
+      <div className="price">
+        <span>Giá : {product.price} đ</span>
       </div>
     </div>
   );
