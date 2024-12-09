@@ -1,4 +1,4 @@
-import { get, post, put,del } from "../utils/request";
+import { get, post, put,del,patch } from "../utils/request";
 
 export const getData = async(path,isAdmin)=>{
     const result = await get(path,isAdmin)
@@ -19,5 +19,9 @@ export const deleteData = async (path,isAdmin) =>{
 }
 export const postData =async (path,body,isAdmin) =>{
     const result = await post(path,body,isAdmin);
+    return result;
+}
+export const changeData =async (path,isAdmin) =>{
+    const result = await patch(path,isAdmin);
     return result;
 }

@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CartItem.css";
+import { changeData } from "../../../API/getAPI";
+import { getCookie } from "../../../utils/cookie";
 const CartItem = ({ product, handleDelete }) => {
   const [quanlity, setQuanlity] = useState(product.quanlity);
+  const token = getCookie("token");
+  const fetchApi =async (change)=>{
+
+   const res = await changeData(`/cart/${token}/${product._id}/${change}`,false);
+   console.log(res.result.data.products)
+  }
 
   const handleIncrease = () => {
     
+      
+      
+   
     setQuanlity(quanlity + 1);
   };
 
@@ -13,6 +24,9 @@ const CartItem = ({ product, handleDelete }) => {
       setQuanlity(quanlity - 1);
     }
   };
+  useEffect(()=>{
+    fetchApi(quanlity)
+  },[quanlity])
   return (
     <div className="sp1">
       <div className="xoaanh">

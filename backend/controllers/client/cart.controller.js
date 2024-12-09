@@ -82,3 +82,40 @@ module.exports.addProduct = async (req, res) => {
     res.status(500).json(error)
   }
 };
+
+// [post] /cart/:user_id/:product_id/:quanlity
+module.exports.changeQuanlity = async (req,res)=>{
+  try{
+      const token = req.params.user_id;
+      const product_id = req.params.product_id;
+      const quanlity  = req.params.quanlity;
+
+      const data = await Cart.findOne({user_id : token});
+
+      const product = data.products.find(item => item.product_id === product_id)
+      if (product){
+        // switch (changeQuanlity) {
+        //   case "increase":{
+        //       product.quanlity += 1
+        //     break;
+        //   }
+        //   case "decrease":{
+        //     product.quanlity -= 1
+        //   break;
+        // } 
+        //   default:
+        //     break;
+        // }
+        product.quanlity = quanlity
+      }
+      await Cart.updateOne({user_id :token},data)
+      res.status(200).json({
+        data : data,
+        
+      })
+
+  }
+  catch(error){
+    res.status(500).json(error)
+  }
+}
