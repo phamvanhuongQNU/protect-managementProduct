@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PaymentInfo from "../../../components/client/checkout/PaymentInfo";
 import OrderSummary from "../../../components/client/checkout/OrderSummary";
 import "./Checkout.css";
+import { getCookie } from "../../../utils/cookie";
+import { getData } from "../../../API/getAPI";
 const Checkout = () => {
+  const token = getCookie("token");
+  const [productsCart, setProductsCart] = useState([]);
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const res = await getData(`/checkout/${token}`, false);
+      if (res.result.data) {
+        setProductsCart(res.result.data);
+      }
+    }
+    fetchApi();
+  }, [token]);
+
   return (
     <div className="checkout-container">
       <div className="tieude">
@@ -15,7 +30,9 @@ const Checkout = () => {
       </div>
       <div className="checkout">
         <PaymentInfo />
-        <OrderSummary />
+        <OrderSummary 
+          productsCart={productsCart}
+        />
       </div>
     </div>
   );

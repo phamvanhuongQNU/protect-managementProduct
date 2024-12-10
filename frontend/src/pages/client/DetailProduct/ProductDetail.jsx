@@ -1,6 +1,6 @@
 import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
-import { useParams,Link,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getData,postData } from "../../../API/getAPI";
 import DOMPurify from 'dompurify';
@@ -8,18 +8,18 @@ import { getCookie } from "../../../utils/cookie";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = () => {
-  const navigate = useNavigate()
   const { dem, tang, giam } = CountSLSP();
   const {id} = useParams();
   const [dataProduct,setDataProduct] = useState({});
   const [urlImage,setUrlImage] = useState("");
+  const navigate = useNavigate();
   // Sự kiện nhấn ảnh
   const handleClick = (e)=>{
       setUrlImage(e.target.src);
   }
 
-  const handlClickAddCart = ()=>{
-   
+  const handlClickAddCart = (type)=>{
+    
     const fectchApi =async ()=>{
       const body = {
         token : getCookie("token"),
@@ -27,7 +27,10 @@ const ProductDetail = () => {
         quanlity : dem
       }
       const res = await postData(`/cart/add-product`,body,false)
-      if (res.status === 200){
+      if (type === "buyNow") {
+        navigate("/checkout");
+      }
+      else if (res.status === 200 && type === "addToCart"){
         toast.success("Thêm giỏ hàng thành công");
       }
       else {
@@ -100,8 +103,8 @@ const ProductDetail = () => {
               </div>
               <div className="product-actions">
               
-                <button  onClick={handlClickAddCart} className="add-to-cart-btn">THÊM VÀO GIỎ</button>
-                <Link to={"/checkout"} className="buy-now-btn">MUA NGAY</Link>
+                <button onClick={() => handlClickAddCart("addToCart")} className="add-to-cart-btn">THÊM VÀO GIỎ</button>
+                <button onClick={() => handlClickAddCart("buyNow")} className="buy-now-btn">MUA NGAY</button>
               </div>
             </div>
           </div>

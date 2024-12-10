@@ -11,7 +11,7 @@ export const get = async (path, isAdmin = true) => {
   }
 };
 
-export const post = async (path, body,isAdmin = true) => {
+export const post = async (path, body, isAdmin = true) => {
   const basePath = isAdmin ? API_DOWNMAIN  : API_DOWNMAIN_CLIENT;
 
   const respone = await fetch(basePath + path, {
