@@ -3,8 +3,9 @@ import {getData} from "../../../API/getAPI"
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getCookie } from "../../../utils/cookie";
 function IconUser ({token}){
-   
+    const role = getCookie("role");
     const [fullName,setFullName ]= useState("")
   
     useEffect(()=>{
@@ -13,7 +14,7 @@ function IconUser ({token}){
             if(res.status === 200)
                 setFullName(res.result.data.fullName);  
         }
-        if(token){
+        if(token && !role){
             fetchApi()
         }
     },[token])

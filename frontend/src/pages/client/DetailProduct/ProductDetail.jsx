@@ -37,7 +37,7 @@ const ProductDetail = () => {
         toast.error("Thêm thất bại");
       }
     }
-    if (getCookie("token"))
+    if (getCookie("token") && !getCookie("role"))
       fectchApi();
     else
       navigate("/login")

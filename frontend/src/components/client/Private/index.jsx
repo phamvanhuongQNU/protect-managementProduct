@@ -2,9 +2,10 @@ import { getCookie } from "../../../utils/cookie"
 import { Outlet,Navigate } from "react-router-dom";
 function Private(){
     const token = getCookie("token");
+    const role = getCookie("token");
     return (
         <>
-        {token ? <Outlet/> : <Navigate to={"/login"}/>}
+        {(token && !role) ? <Outlet/> : <Navigate to={"/login"}/>}
         </>
     )
 }
