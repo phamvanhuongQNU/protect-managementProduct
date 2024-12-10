@@ -8,10 +8,19 @@ import Row from "react-bootstrap/Row";
 
 import { useEffect, useState, memo } from "react";
 import { getData, updateData } from "../../../API/getAPI.js";
+import { getCookie } from "../../../utils/cookie.js";
 import { modalSuccess } from "../../../components/admin/Swal/index";
 function EditCategory({ handleClose, dataCategory, setDataCategories,id }) {
   const [data, setData] = useState({});
-
+  const [permissions, setPermissions] = useState([]);
+  const role = getCookie("role");
+  const token = getCookie("token");
+  const fetchPermission = async () => {
+    const permission = await getData(`roles/role/${token}`);
+   
+    setPermissions(permission.result.data.permissions);
+    
+  };
   const onchangeData = (e) => {
     if (e.target) {
       const name = e.target.name;
@@ -47,13 +56,15 @@ function EditCategory({ handleClose, dataCategory, setDataCategories,id }) {
        
         const result = await getData(`categories/${id}`);
         setData(result.result);
+
     };
+    fetchPermission()
     fetchApi();
   }, [id]);
 
   return (
     <>
-      <Modal show={true} onHide={handleClose}>
+      {(permissions.includes("update_category") || role === "QTV") && <Modal show={true} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Sửa Danh mục</Modal.Title>
         </Modal.Header>
@@ -98,7 +109,7 @@ function EditCategory({ handleClose, dataCategory, setDataCategories,id }) {
             Sửa
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>}
     </>
   );
 }

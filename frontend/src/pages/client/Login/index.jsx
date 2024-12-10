@@ -3,9 +3,9 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useState } from "react";
-import {postData} from "../../../API/getAPI"
+import {postData,getData} from "../../../API/getAPI"
 import {useNavigate} from 'react-router-dom'
-import {setCookie} from '../../../utils/cookie'
+import {setCookie,getCookie} from '../../../utils/cookie'
 
 function Login() {
   const [passHidden, setPassHidden] = useState(true);
@@ -36,8 +36,20 @@ function Login() {
         return;
       }
       setCookie("token",res.result.data.token,1);
-    
-      navigate("/")
+      // Kiểm tra phân quyền
+      const dataResult = await getData(`/user/detail/${getCookie("token")}`,false)
+      if (dataResult.status === 200){
+        // Nếu là tài khoản admin thì chuyển sang trang admin và ngược lại
+        if(dataResult.result.data.role_id){
+          setCookie("role",dataResult.result.data.role_id,1);
+          
+          navigate("/admin/account")
+          window.location.reload();
+        }else{
+          navigate("/")
+          navigate("/admin/account")
+        }
+      }
     }
     fetchApi()
     

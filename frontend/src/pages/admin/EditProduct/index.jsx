@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getData, updateData } from "../../../API/getAPI";
+import { getCookie } from "../../../utils/cookie";
 import "./style.css";
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 import TinyMCE from "../../../components/admin/UploadImage/TinyMCE";
@@ -16,6 +17,15 @@ function EditProduct() {
   // id của sản phẩm
   const { id } = useParams();
   
+  const [permissions, setPermissions] = useState([]);
+  const role = getCookie("role");
+  const token = getCookie("token");
+  const fetchPermission = async () => {
+    const permission = await getData(`roles/role/${token}`);
+   
+    setPermissions(permission.result.data.permissions);
+    
+  };
   // Khi thay đổi input
   const onchangeData = (e) => {
     if (e.target) {
@@ -56,16 +66,17 @@ function EditProduct() {
     };
     fetchApi(`products/${id}`, setProduct);
     fetchApi(`categories`, setCategories);
+    fetchPermission()
   }, [id]);
 
   return (
     <>
-      <div className="edit-product">
+      {(permissions.includes("update_product") || role === "QTV") &&<div className="edit-product">
         
         <Form method="post" onSubmit={handlSubmit}>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="2" className="text-align--right">
-              <h5>Tiêu đề</h5>
+              <h5>Tên</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Control name="name" value={product.name} onChange={onchangeData} type="text" />
@@ -162,7 +173,7 @@ function EditProduct() {
 
 
 
-      </div>
+      </div>}
     </>
   );
 }

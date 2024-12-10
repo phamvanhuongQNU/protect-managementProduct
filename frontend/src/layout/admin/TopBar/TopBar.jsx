@@ -1,6 +1,8 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { eraseCookie } from "../../../utils/cookie";
 function TopBar(props) {
+    const navigate = useNavigate();
     const { titlePage, onSearch } = props;
     const [searchValue, setSearchValue] = useState("");
 
@@ -21,6 +23,12 @@ function TopBar(props) {
         onSearch(searchValue);
       }
     }
+    // Đăng xuất
+    const signOutHandle = ()=>{
+      eraseCookie("token");
+      eraseCookie("role");
+      navigate("/login")
+    }
     return (
     
 
@@ -37,11 +45,7 @@ function TopBar(props) {
             <button className="complete-button" onClick={handleSearch}>Tìm kiếm</button>
           </div>
 
-          <img
-            className="user-avatar"
-            src="https://hoangthuong.net/wp-content/uploads/2022/05/hinh-anh-cho-con-de-thuong-27-680x356.jpg"
-            alt="User Avatar"
-          />
+          <div onClick={signOutHandle} className="btn-sign-out">Đăng xuất</div>
         </div>
        
         

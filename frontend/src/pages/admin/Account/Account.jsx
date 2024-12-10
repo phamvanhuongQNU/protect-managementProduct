@@ -2,12 +2,13 @@ import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 import {modalDelete} from "../../../components/admin/Swal/index"
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-function Account({handleDeleted,data,index}){
-
+import { useEffect, useState } from "react";
+import { getData } from "../../../API/getAPI";
+function Account({handleDeleted,data,index,role,roleEmployee}){
+  const [roleData,setRoleData] = useState("");
 
   const handlDelete = ()=>{
     const modal =  modalDelete("Xác nhận xoá","Bạn muốn xoá");
-    
     modal.then((result) => {
       if (result.isConfirmed) {
         handleDeleted(data._id)
@@ -19,6 +20,17 @@ function Account({handleDeleted,data,index}){
       }
     });
   }
+    useEffect(()=>{
+        const fetchApi = async()=>{
+          if (data.role_id){
+          const res = await getData(`roles/${data.role_id}`)
+          setRoleData(res.result.data.name)
+            
+          }
+        }
+        fetchApi()
+    },[data.role_id])
+    
     return(
         <>
         
@@ -29,15 +41,16 @@ function Account({handleDeleted,data,index}){
                 <td>{index + 1}</td>
                 <td>{data.fullName}</td>
                 <td>{data.email}</td>
-                <td>{data.role}</td>
+                <td>{roleData}</td>
                 <td>
-                  <Link to={`edit/${data._id}`} className="edit">
+                  {(role ==="QTV" || roleEmployee.includes("update_account")) && <Link to={`edit/${data._id}`} className="edit">
                     <FaRegEdit />
-                  </Link>
+                  </Link>}
 
-                  <button className="delete-btn" onClick={handlDelete}>
+                 
+                  {(role ==="QTV" || roleEmployee.includes("delete_account")) &&  <button className="delete-btn" onClick={handlDelete}>
                     <FaRegTrashAlt />
-                  </button>
+                  </button>}
                 </td>
               </tr>
          

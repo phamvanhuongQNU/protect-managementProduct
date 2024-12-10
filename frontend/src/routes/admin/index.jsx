@@ -8,29 +8,62 @@ import Account from "../../pages/admin/Account/Accounts";
 import Category from "../../pages/admin/Category/Category";
 import CreateAccount from "../../pages/admin/CreateAccount";
 import EditAccount from "../../pages/admin/EditAccount/index";
-
+import Permissions from "../../pages/admin/Permissions/index";
+import Private from "../../components/admin/Private";
+import Authorization from "../../components/admin/Authorization/index";
+import { getCookie } from "../../utils/cookie";
 function RouteAdmin() {
+  const token = getCookie("token");
+  const role = getCookie("role");
   return (
     <Routes>
-      <Route path="admin">
-        <Route path="products" element={<LayoutDefault titlePage={"Danh sách sản phẩm"} />}>
-          <Route path="category/:categoryId/create" element={<CreateProduct />} />
-          <Route path="category/:categoryId/edit/:id" element={<EditProduct />} />
-          <Route path="category/:categoryId" element={<Products />} />
-          <Route path="create" element={<CreateProduct />} />
-          <Route path="edit/:id" element={<EditProduct />} />
-          <Route path="" element={<Products />} />
-        </Route>
-        <Route path="oder" element={<LayoutDefault titlePage="Danh sách đơn hàng"/>}>
-          <Route path="" element={<Oder />} />
-        </Route>
-        <Route path="account" element={<LayoutDefault titlePage="Danh sách tài khoản" />}>
-          <Route path="" element={<Account />} />
-          <Route path="create" element={<CreateAccount />} />
-          <Route path="edit/:id" element={<EditAccount />} />
-        </Route>
-        <Route path="category" element={<LayoutDefault titlePage = "Danh sách danh mục" />}>
-          <Route path="" element={<Category />} />
+      <Route path="" element={<Private token={token} role={role} />}>
+        <Route path="admin">
+          <Route
+            path="products"
+            element={<LayoutDefault titlePage={"Danh sách sản phẩm"} />}
+          >
+            <Route
+              path="category/:categoryId/create"
+              element={<CreateProduct />}
+            />
+            <Route
+              path="category/:categoryId/edit/:id"
+              element={<EditProduct />}
+            />
+            <Route path="category/:categoryId" element={<Products />} />
+            <Route path="create" element={<CreateProduct />} />
+            <Route path="edit/:id" element={<EditProduct />} />
+            <Route path="" element={<Products />} />
+          </Route>
+          <Route
+            path="oder"
+            element={<LayoutDefault titlePage="Danh sách đơn hàng" />}
+          >
+            <Route path="" element={<Oder />} />
+          </Route>
+          <Route
+            path="account"
+            element={<LayoutDefault titlePage="Danh sách tài khoản" />}
+          >
+            <Route path="" element={<Account />} />
+            <Route path="create" element={<CreateAccount />} />
+            <Route path="edit/:id" element={<EditAccount />} />
+          </Route>
+          <Route
+            path="category"
+            element={<LayoutDefault titlePage="Danh sách danh mục" />}
+          >
+            <Route path="" element={<Category />} />
+          </Route>
+          <Route path="" element={<Authorization token={token} role={role} />}>
+            <Route
+              path="permissions"
+              element={<LayoutDefault titlePage="Phân quyền" />}
+            >
+              <Route path="" element={<Permissions />} />
+            </Route>
+          </Route>
         </Route>
       </Route>
     </Routes>

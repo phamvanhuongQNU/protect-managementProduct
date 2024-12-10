@@ -8,9 +8,9 @@ module.exports.index = async (req, res) => {
     deleted: false,
   };
 
-  const data = await Users.find(find).select("role fullName email");
+  const data = await Users.find(find).select("role_id fullName email token");
   res.status(200).json({
-    data: data,
+    data: data
   });
 };
 // [GET]  users/detail/:id
@@ -69,7 +69,7 @@ module.exports.create = async (req, res) => {
       },
       phone: req.body.phone,
       token: randomString(30),
-      role :req.body.role
+      role_id :req.body.role_id
     });
     const data = await newUser.save();
     res.status(200).json({
@@ -94,6 +94,22 @@ module.exports.delete = async (req, res) => {
   } catch {
     res.status(404).json({
       message: "Xoá người dùng thất bại",
+    });
+  }
+};
+// [GET]  /users/detail/:token
+module.exports.detailToken = async (req, res) => {
+  try {
+    const token = req.params.token;
+
+    const data = await Users.findOne({ token: token });
+
+    res.status(200).json({
+      data: data,
+    });
+  } catch {
+    res.status(404).json({
+      message: "NOT FOUND",
     });
   }
 };

@@ -96,3 +96,10 @@
     border-radius: 50%;
     border: 2px solid lightblue;
 }
+.btn-sign-out{
+    font-size: 20px;
+    font-weight: 600;
+   
+    color: #3636ce;
+    cursor: pointer;
+}

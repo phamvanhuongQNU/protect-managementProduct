@@ -79,3 +79,19 @@
 .header-container .header-menu .icon-menu{
   margin-right: 10px;
 }
+
+.info-user{
+  padding: 10px 22px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+.info-user-name{
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+.info-user-permission{
+  color: #6087db;
+  font-weight: 600;
+  
+}

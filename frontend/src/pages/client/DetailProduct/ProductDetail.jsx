@@ -1,6 +1,6 @@
 import "./ProductDetail.css";
 import CountSLSP from "../../../components/client/CountSLSP";
-import { useParams,Link } from "react-router-dom";
+import { useParams,Link,useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getData,postData } from "../../../API/getAPI";
 import DOMPurify from 'dompurify';
@@ -8,6 +8,7 @@ import { getCookie } from "../../../utils/cookie";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = () => {
+  const navigate = useNavigate()
   const { dem, tang, giam } = CountSLSP();
   const {id} = useParams();
   const [dataProduct,setDataProduct] = useState({});
@@ -19,7 +20,6 @@ const ProductDetail = () => {
 
   const handlClickAddCart = ()=>{
    
-    
     const fectchApi =async ()=>{
       const body = {
         token : getCookie("token"),
@@ -34,7 +34,10 @@ const ProductDetail = () => {
         toast.error("Thêm thất bại");
       }
     }
-    fectchApi();
+    if (getCookie("token"))
+      fectchApi();
+    else
+      navigate("/login")
   }
 
 
@@ -46,7 +49,7 @@ const ProductDetail = () => {
       setDataProduct(res.result)
       setUrlImage(res.result.thumbnail);
   }
-  fetchApi();
+    fetchApi();
   },[id])
   console.log(dataProduct)
   return (
@@ -105,7 +108,7 @@ const ProductDetail = () => {
          
           <div className="product-description">
             <h2>MÔ TẢ SẢN PHẨM</h2>
-            <p  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dataProduct.description) }}>
+            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(dataProduct.description) }}>
             </p>
           </div>
         </div>

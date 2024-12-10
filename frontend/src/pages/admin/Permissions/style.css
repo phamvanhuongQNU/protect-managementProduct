@@ -1,0 +1,8 @@
+.permission-container{
+    padding: 30px;
+}
+.permission-container .title{
+    /* font-size: 20px; */
+    
+    margin-bottom: 20px;
+}

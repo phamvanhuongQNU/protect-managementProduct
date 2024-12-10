@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom'
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import {createData} from "../../../API/getAPI.js"
+import {createData,getData} from "../../../API/getAPI.js"
+import { getCookie } from "../../../utils/cookie.js";
 import {modalSuccess,modalFailed} from "../../../components/admin/Swal/index.jsx"
 import "./style.css";
 function CreateAccount() {
   const [data, setData] = useState({});
+  const [roles, setRoles] = useState([]);
+
   const [address, setAddress] = useState({});
   const navigate = useNavigate();
+  const [permissions, setPermissions] = useState([]);
+  const role = getCookie("role");
+  const token = getCookie("token");
+  const fetchPermission = async () => {
+    const permission = await getData(`roles/role/${token}`);
+   
+    setPermissions(permission.result.data.permissions);
+    
+  };
   const onchangeData = (e) => {
     
     const name = e.target.name;
@@ -62,10 +74,19 @@ function CreateAccount() {
     createFetch();
    
   }
+  useEffect(()=>{
+    const fetchApi = async()=>{
+      const roles  = await getData("roles")
+      setRoles(roles.result.data)
+      
+    }
+    fetchPermission()
+    fetchApi()
+  },[])
   console.log(data)
   return (
     <>
-      <div className="create-container">
+     {(permissions.includes("add_account") || role === "QTV") && <> <div className="create-container">
         <div className="infoAccount">
         <div className="add-user"> <button className="btn-add-user" onClick={handleClick}> + Thêm </button></div>
           <div className="title">Thông tin tài khoản</div>
@@ -114,12 +135,15 @@ function CreateAccount() {
                 Nhóm quyền
               </Form.Label>
               <Col sm="10">
-                <Form.Select name="role" onChange={onchangeData}>
+                <Form.Select name="role_id" onChange={onchangeData}>
                   <option selected value="0">
                     Lựa chọn
                   </option>
-                  <option value="Quản trị viên">Quản trị viên</option>
-                  <option value="Nhân viên">Nhân viên</option>
+                  {roles.map((item)=> (<option
+                      value={item._id}
+                    >
+                      {item.name}
+                    </option>))}
                 </Form.Select>
               </Col>
             </Form.Group>
@@ -184,7 +208,7 @@ function CreateAccount() {
           </Form>
           
         </div>
-      </div>
+      </div></>}
     </>
   );
 }

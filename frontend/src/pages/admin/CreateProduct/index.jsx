@@ -2,6 +2,7 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import TinyMCE from "../../../components/admin/UploadImage/TinyMCE";
 import { getData, createData } from "../../../API/getAPI";
+import { getCookie } from "../../../utils/cookie";
 import UploadImage from "../../../components/admin/UploadImage/UploadImage";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -12,6 +13,15 @@ function CreateProduct() {
   const [data, setData] = useState({});
   const [dataCategories, setdataCategories] = useState([]);
   const navigate = useNavigate()
+  const [permissions, setPermissions] = useState([]);
+  const role = getCookie("role");
+  const token = getCookie("token");
+  const fetchPermission = async () => {
+    const permission = await getData(`roles/role/${token}`);
+   
+    setPermissions(permission.result.data.permissions);
+    
+  };
   // Lấy data từ các input
   const onchangeData = (e) => {
     if (e.target) {
@@ -33,7 +43,9 @@ function CreateProduct() {
     const fechApi = async () => {
       const data = await getData("categories");
       setdataCategories(data.result);
+      
     };
+    fetchPermission();
     fechApi();
   }, []);
 
@@ -55,12 +67,12 @@ function CreateProduct() {
   console.log(data)
   return (
     <>
-      <div className="create-product">
+      {(permissions.includes("add_product") || role === "QTV") && <div className="create-product">
         
         <Form method="post" onSubmit={HandleSubmit}>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="2" className="text-align--right">
-              <h5>Tiêu đề</h5>
+              <h5>Tên</h5>
             </Form.Label>
             <Col sm="10">
               <Form.Control name="name" onChange={onchangeData} type="text" />
@@ -154,7 +166,7 @@ function CreateProduct() {
           /></Col>
           </Form.Group>
         </Form>
-      </div>
+      </div>}
     </>
   );
 }

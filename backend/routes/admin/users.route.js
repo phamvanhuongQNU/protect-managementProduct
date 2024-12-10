@@ -4,6 +4,8 @@ const controller = require("../../controllers/admin/user.controller");
 
 // Lấy thông tin chi tiết người dùng
 router.get("/users/:id",controller.detail)
+// Lấy thông tin chi tiết người dùng theo token
+router.get("/users/detail/:token",controller.detailToken)
 // Lấy danh sách người dùng
 router.get("/users",controller.index)
 

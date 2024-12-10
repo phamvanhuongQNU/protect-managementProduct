@@ -3,8 +3,10 @@ import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 import { modalDelete } from "../../../components/admin/Swal"; 
 import Swal from "sweetalert2";
 import "./product.css"
+import { getCookie } from "../../../utils/cookie";
 function Product(props){
-  const {data,handleDeleted} = props;
+  const role = getCookie("role");
+  const {data,handleDeleted,roleEmployee} = props;
  
   const handlDelete = ()=>{
     const modal =  modalDelete("Xác nhận xoá","Bạn muốn xoá sản phẩm này?");
@@ -20,7 +22,7 @@ function Product(props){
       }
     });
   }
- 
+    console.log("ok")
     return (
         <>
           <tr>
@@ -37,12 +39,13 @@ function Product(props){
             <td className="name" width={"40%"} ><div>{data.name}</div></td>
             <td className="price">{data.price}đ</td>
             <td>
-              <div className={data.status === "active" ? "status-active" :"status-inactive"}>{data.status === "active" ? "Hoạt động" : "Không hoạt động"}</div>
+              <div className={data.status === "active" ? "status-active" :"status-inactive"}>{data.status === "active" ? "Còn hàng" : "Hết hàng "}</div>
               </td>
               <td>
               <div className="icon-wrapper">
-                <Link to={`edit/${data._id}`} className="edit-button"><FaRegEdit /></Link>
-                  <div onClick={handlDelete} className="delete-button"><FaRegTrashAlt  /></div>
+                {(role === "QTV" || roleEmployee.includes("update_product")) && <Link to={`edit/${data._id}`} className="edit-button"><FaRegEdit /></Link>}
+                {(role === "QTV" || roleEmployee.includes("delete_product")) &&  <div onClick={handlDelete} className="delete-button"><FaRegTrashAlt  /></div>}
+                 
               </div>
                 
               </td>

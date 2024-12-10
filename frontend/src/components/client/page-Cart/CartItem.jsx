@@ -7,15 +7,11 @@ const CartItem = ({ product, handleDelete }) => {
   const token = getCookie("token");
   const fetchApi =async (change)=>{
 
-   const res = await changeData(`/cart/${token}/${product._id}/${change}`,false);
-   console.log(res.result.data.products)
+    await changeData(`/cart/${token}/${product._id}/${change}`,false);
+   
   }
 
   const handleIncrease = () => {
-    
-      
-      
-   
     setQuanlity(quanlity + 1);
   };
 

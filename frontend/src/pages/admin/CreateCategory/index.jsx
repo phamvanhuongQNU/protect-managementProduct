@@ -5,10 +5,20 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useState,memo } from "react";
-import {createData} from '../../../API/getAPI.js'
+import {createData,getData} from '../../../API/getAPI.js'
+import { getCookie } from "../../../utils/cookie.js";
 import {modalSuccess} from '../../../components/admin/Swal/index'
 function CreateCategory({ handleClose,dataCategory,setDataCategories}) {
   const [data,setData] = useState({});
+  const [permissions, setPermissions] = useState([]);
+  const role = getCookie("role");
+  const token = getCookie("token");
+  const fetchPermission = async () => {
+    const permission = await getData(`roles/role/${token}`);
+   
+    setPermissions(permission.result.data.permissions);
+    
+  };
   const onchangeData = (e)=>{
     if (e.target){
       const name = e.target.name;
@@ -46,7 +56,7 @@ function CreateCategory({ handleClose,dataCategory,setDataCategories}) {
   console.log(data)
   return (
     <>
-      <Modal show={true} onHide={handleClose}>
+      {(permissions.includes("add_catgegory") || role === "QTV") && <Modal show={true} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Thêm Danh mục</Modal.Title>
         </Modal.Header>
@@ -86,7 +96,7 @@ function CreateCategory({ handleClose,dataCategory,setDataCategories}) {
             Thêm
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>}
     </>
   );
 }
