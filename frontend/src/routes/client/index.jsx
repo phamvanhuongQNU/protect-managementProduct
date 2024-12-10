@@ -11,7 +11,8 @@ import Private from "../../components/client/Private";
 import AccountDetail from "../../pages/client/AccountDetails/AccountDetails";
 import EditAccount from "../../pages/client/EditAccountDetails/EditAccount";
 import OrderDetails from "../../pages/client/OderDetails/OrderDetails";
-
+import AboutPage from "../../pages/client/AboutPages/AboutPage";
+import ContactPage from "../../pages/client/ContactPages/ContactPage";
 function RouteClient() {
   return (
     <Routes>
@@ -30,6 +31,8 @@ function RouteClient() {
         <Route path="/account/detail" element={<AccountDetail />} />
         <Route path="/account/edit" element={<EditAccount />} />
         <Route path="/order/details" element={<OrderDetails />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         {/* Route mới cho trang Cart */}
       </Route>
 

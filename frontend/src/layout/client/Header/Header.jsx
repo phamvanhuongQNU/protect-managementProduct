@@ -59,13 +59,13 @@ const Header = () => {
               <Link to={"/"}>Trang Chủ</Link>
             </li>
             <li>
-              <Link to="#">Liên Hệ</Link>
+              <Link to="/contact">Liên Hệ</Link>
             </li>
             <li>
               <Link to={"products"}>Sản Phẩm</Link>
             </li>
             <li>
-              <Link to={"#"}>Giới Thiệu</Link>
+              <Link to={"/about"}>Giới Thiệu</Link>
             </li>
           </ul>
         </div>
