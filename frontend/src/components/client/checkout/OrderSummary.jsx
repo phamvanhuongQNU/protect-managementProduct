@@ -1,35 +1,49 @@
 import React from "react";
 import "./OrderSummary.css";
-const OrderSummary = () => {
+import { postData } from "../../../API/getAPI";
+import { toast } from "react-toastify";
+import { getCookie } from "../../../utils/cookie";
+const OrderSummary = ({productsCart}) => {
+  const totalAmount = productsCart.reduce((sum, product) => sum + product.price * product.quanlity, 0);
+  const user_id = getCookie("token");
+
+  const handleClickOrder = () => {
+    const fetchApi = async () => {
+    const body = {
+      token: getCookie("token")
+    }
+    const res = await postData(`/order/create/${user_id}`, body, false);
+    if (res.status === 201) {
+      toast.success("Đặt hàng thành công");
+    } else {
+      toast.error("Đặt hàng thất bại");
+    }
+    }
+    fetchApi()
+  }
   return (
     <div className="column_wrapper your_order">
       <h3>ĐƠN HÀNG CỦA BẠN</h3>
-
-      <div className="row_item item_1">
-        <span>SẢN PHẨM</span>
-        <p>TẠM TÍNH</p>
+        <div className="row_item item_1">
+          <span>SẢN PHẨM</span>
+          <p>TẠM TÍNH</p>
+        </div>
+      {[...productsCart].map((data) => (
+      <div className="checkout_total" style={{width: "100%"}}>
+        <div className="row_item item_product">
+          <p>{data.name} x{data.quanlity}</p>
+          <span>
+            {(data.price * data.quanlity).toLocaleString("vi-VN")} <u>đ</u>
+          </span>
+        </div>
       </div>
-
-      <div className="row_item item_product">
-        <p>Tên sản phẩm x1</p>
-        <span>
-          200,000<u>đ</u>
-        </span>
-      </div>
-      <div className="row_item item_product">
-        <p>Tên sản phẩm x2</p>
-        <span>
-          400,000<u>đ</u>
-        </span>
-      </div>
-
-      <div className="row_item item_2">
-        <span>Tạm tính</span>
-        <span>
-          0<u>đ</u>
-        </span>
-      </div>
-
+      ))}
+        <div className="row_item item_2">
+          <span>Tạm tính</span>
+          <span>
+            {totalAmount.toLocaleString("vi-VN")} <u>đ</u>
+          </span>
+        </div>
       <p className="shipping pad">Chọn phương thức giao hàng</p>
       <div className="shipping pad">
         <input type="radio" name="ship" defaultChecked />
@@ -43,7 +57,7 @@ const OrderSummary = () => {
       <div className="row_item item_3">
         <span>Tổng</span>
         <span>
-          0<u>đ</u>
+          {totalAmount.toLocaleString("vi-VN")} <u>đ</u>
         </span>
       </div>
 
@@ -60,7 +74,7 @@ const OrderSummary = () => {
       </div>
 
       <div className="row_item order_item">
-        <button type="submit">Đặt hàng</button>
+        <button onClick={handleClickOrder} type="submit">Đặt hàng</button>
       </div>
     </div>
   );

@@ -7,6 +7,15 @@ import "./Cart.css";
 const Cart = () => {
   const token = getCookie("token");
   const [products, setProducts] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const calculateTotal = (products) => {
+    const total = products.reduce(
+      (sum, product) => sum + product.price * product.quanlity,
+      0
+    );
+    setTotalAmount(total);
+  };
 
   // Sự kiện xoá sản phẩm
   const handleDelete = (id) => {
@@ -14,6 +23,13 @@ const Cart = () => {
     setProducts(newProducts)
   };
 
+  const handleUpdateQuantity = (id, newQuantity) => {
+    const updatedProducts = products.map((product) =>
+      product._id === id ? { ...product, quanlity: newQuantity } : product
+    );
+    setProducts(updatedProducts);
+    calculateTotal(updatedProducts); // Cập nhật tổng tiền
+  };
 
   useEffect(()=>{
       const fetchApi =async ()=>{
@@ -21,6 +37,7 @@ const Cart = () => {
      
         if (res.result.data){
           setProducts(res.result.data);
+          calculateTotal(res.result.data);
         }
       }
       fetchApi()   
@@ -37,10 +54,11 @@ const Cart = () => {
           <CartItemList
             products={products}
             handleDelete={handleDelete}
+            handleUpdateQuantity={handleUpdateQuantity}
           />
         </div>
         <OrderSummaryDetails
-          
+          totalAmount={totalAmount}
         />
       </div>
     </div>

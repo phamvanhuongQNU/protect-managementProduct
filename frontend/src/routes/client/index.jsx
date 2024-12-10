@@ -30,7 +30,7 @@ function RouteClient() {
         <Route path="" element={<Home />} />
         <Route path="/account/detail" element={<AccountDetail />} />
         <Route path="/account/edit" element={<EditAccount />} />
-        <Route path="/order/details" element={<OrderDetails />} />
+        <Route path="/order/details/:id" element={<OrderDetails />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         {/* Route mới cho trang Cart */}

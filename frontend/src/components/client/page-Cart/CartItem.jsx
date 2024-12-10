@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CartItem.css";
 import { changeData } from "../../../API/getAPI";
 import { getCookie } from "../../../utils/cookie";
-const CartItem = ({ product, handleDelete }) => {
+const CartItem = ({ product, handleDelete, handleUpdateQuantity }) => {
   const [quanlity, setQuanlity] = useState(product.quanlity);
   const token = getCookie("token");
   const fetchApi =async (change)=>{
@@ -12,15 +12,13 @@ const CartItem = ({ product, handleDelete }) => {
   }
 
   const handleIncrease = () => {
-    
-      
-      
-   
+    handleUpdateQuantity(product._id, product.quanlity + 1);
     setQuanlity(quanlity + 1);
   };
 
   const handleDecrease = () => {
     if (quanlity > 1) {
+      handleUpdateQuantity(product._id, product.quanlity - 1);
       setQuanlity(quanlity - 1);
     }
   };
@@ -44,7 +42,7 @@ const CartItem = ({ product, handleDelete }) => {
         <button onClick={handleIncrease}>+</button>
       </div>
       <div className="price">
-        <span>Giá : {product.price} đ</span>
+        <span>Giá : {product.price.toLocaleString("vi-VN")} đ</span>
       </div>
     </div>
   );

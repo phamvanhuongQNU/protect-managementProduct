@@ -9,10 +9,10 @@
   display: flex;
   margin: 0 auto;
   gap: 10px;
-  padding-top: 10px;
 }
 .Cart {
-  padding-top: 80px;
+  padding-top: 140px;
+  padding-bottom: 40px;
   background-color: whitesmoke;
 }
 .order-summary {
@@ -26,7 +26,8 @@
 .order-items {
   flex: 2;
 }
-h1 {
+.order-items h1 {
   text-align: left;
   margin-bottom: 20px;
+  font-size: 2rem;
 }
