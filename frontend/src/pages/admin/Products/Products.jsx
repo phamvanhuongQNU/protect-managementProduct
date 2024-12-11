@@ -29,7 +29,7 @@ const Products = () => {
   const fetchPermission = useCallback(async()=>{
     
       const permission = await getData(`roles/role/${token}`);
-     
+      
       setPermissions(permission.result.data.permissions);
 
     

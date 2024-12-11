@@ -15,7 +15,7 @@ const Header = ({ dataUser, dataRole, role }) => {
     };
     fetchApi();
   }, []);
-  console.log(dataRole.name);
+ 
   return (
     <header className="header-container">
       <div className="logo-container">

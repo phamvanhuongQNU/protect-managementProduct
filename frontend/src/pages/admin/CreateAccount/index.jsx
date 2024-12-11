@@ -83,7 +83,7 @@ function CreateAccount() {
     fetchPermission()
     fetchApi()
   },[])
-  console.log(data)
+  
   return (
     <>
      {(permissions.includes("add_account") || role === "QTV") && <> <div className="create-container">

@@ -12,9 +12,11 @@ import Permissions from "../../pages/admin/Permissions/index";
 import Private from "../../components/admin/Private";
 import Authorization from "../../components/admin/Authorization/index";
 import { getCookie } from "../../utils/cookie";
+import { useRef } from "react";
 function RouteAdmin() {
-  const token = getCookie("token");
-  const role = getCookie("role");
+  const token = useRef(getCookie("token")).current;
+  const role = useRef(getCookie("role")).current;
+
   return (
     <Routes>
       <Route path="" element={<Private token={token} role={role} />}>
@@ -56,10 +58,14 @@ function RouteAdmin() {
           >
             <Route path="" element={<Category />} />
           </Route>
-          <Route path="" element={<Authorization token={token} role={role} />}>
+
+          <Route
+            path="permissions"
+            element={<LayoutDefault titlePage="Phân quyền" />}
+          >
             <Route
-              path="permissions"
-              element={<LayoutDefault titlePage="Phân quyền" />}
+              path=""
+              element={<Authorization token={token} role={role} />}
             >
               <Route path="" element={<Permissions />} />
             </Route>

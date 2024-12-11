@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { eraseCookie } from "../../../utils/cookie";
 function TopBar(props) {
     const navigate = useNavigate();
-    const { titlePage, onSearch } = props;
+    const { titlePage, onSearch,check } = props;
     const [searchValue, setSearchValue] = useState("");
 
     // Cap nhat gia tri state ipnut 
@@ -29,12 +29,13 @@ function TopBar(props) {
       eraseCookie("role");
       navigate("/login")
     }
+  
     return (
     
 
         <div className="top-bar">
           <h4>{titlePage}</h4>
-          <div className="search-bar">
+          {check !== titlePage && <div className="search-bar">
             <input
               type="text" 
               placeholder="Tìm kiếm..."
@@ -43,7 +44,7 @@ function TopBar(props) {
               onKeyDown={handleKeyDown}
             />
             <button className="complete-button" onClick={handleSearch}>Tìm kiếm</button>
-          </div>
+          </div>}   
 
           <div onClick={signOutHandle} className="btn-sign-out">Đăng xuất</div>
         </div>

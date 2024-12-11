@@ -5,7 +5,7 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 import { useState } from "react";
 import {postData,getData} from "../../../API/getAPI"
 import {useNavigate} from 'react-router-dom'
-import {setCookie,getCookie} from '../../../utils/cookie'
+import {setCookie,getCookie,eraseCookie} from '../../../utils/cookie'
 
 function Login() {
   const [passHidden, setPassHidden] = useState(true);
@@ -17,7 +17,12 @@ function Login() {
     setPassHidden(!passHidden);
     typeInput === "password" ? setTypeInput("text") : setTypeInput("password");
   };
-
+  if(getCookie("role")){
+    eraseCookie("role")
+  }
+  if(getCookie("token")){
+    eraseCookie("token")
+  }
   // Nhấn nút đăng nhập
   const handleOnSubmit = (e)=>{
     e.preventDefault();
@@ -42,7 +47,6 @@ function Login() {
         // Nếu là tài khoản admin thì chuyển sang trang admin và ngược lại
         if(dataResult.result.data.role_id){
           setCookie("role",dataResult.result.data.role_id,1);
-          
           navigate("/admin/account")
           window.location.reload();
         }else{

@@ -69,10 +69,10 @@ function EditAccount() {
       };
       fetchApi(`users/edit/${id}`, data);
     }
-    console.log(data)
+   
     return (
       <>
-        {(permissions.includes("update_product") || role === "QTV") && <div className="edit-container">
+        {(permissions.includes("update_account") || role === "QTV") && <div className="edit-container">
           <div className="infoAccount">
             <div className="edit-user"><button className="btn-edit-user" onClick={handleClick}>Cật nhật</button></div>
             <div className="title">Thông tin tài khoản</div>

@@ -2,12 +2,12 @@ import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import TopBar from "../TopBar/TopBar";
 import "./style.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef,memo } from "react";
 import { getData } from "../../../API/getAPI";
-import { getCookie } from "../../../utils/cookie";
+import { getCookie,setCookie } from "../../../utils/cookie";
 function LayoutDefault({ titlePage }) {
-  const token = getCookie("token");
-  const role = getCookie("role");
+  const token = useRef(getCookie("token")).current;
+  const role = useRef(getCookie("role")).current;
   const [searchQuery, setSearchQuery] = useState("");
   const [dataUser, setDataUser] = useState({});
   const [dataRole, setDataRole] = useState({});
@@ -21,6 +21,8 @@ function LayoutDefault({ titlePage }) {
       setDataRole(res.result.data);
       const user = await getData(`users/detail/${token}`);
       setDataUser(user.result.data);
+      setCookie("role",user.result.data.role_id,1)
+   
     };
     fetchApi();
   }, []);
@@ -30,11 +32,11 @@ function LayoutDefault({ titlePage }) {
       <div className="layout-container">
         <Header dataUser={dataUser} dataRole={dataRole} role={role} />
         <main className="main-content-product">
-          <TopBar titlePage={titlePage} onSearch={handleSearch} />
+          <TopBar titlePage={titlePage} check={"Phân quyền"} onSearch={handleSearch} />
           <Outlet context={{ searchQuery }} />
         </main>
       </div>
     </>
   );
 }
-export default LayoutDefault;
+export default memo(LayoutDefault);
