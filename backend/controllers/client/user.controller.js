@@ -209,6 +209,12 @@ module.exports.resetPassword =async (req,res)=>{
       const email = req.body.email;
       const newPassword = req.body.newPassword;
       const repeatPassword = req.body.repeatPassword;
+      if (newPassword === "" || repeatPassword === ""){
+        res.status(404).json({
+          message : "Thiếu dữ liệu"
+        })
+        return
+      }
       if (newPassword !== repeatPassword){
         res.status(404).json({
           message : "Xác nhận mật khẩu không đúng vui lòng nhập lại"
