@@ -45,8 +45,8 @@ const FeaturedProducts = () => {
                                     Đã bán {element.stock_quantity}
                                 </span>
                                 <div className="item_row">
-                                    <span className="sale_price">{element.price}đ</span>
-                                    <span className="price">{element.price - (element.price * (element.discount / 100))}đ</span>
+                                    <span className="sale_price">{(element.price - (element.price * (element.discount / 100)))?.toLocaleString("vi-VN")} <u>đ</u></span>
+                                    <span className="price">{element.price?.toLocaleString("vi-VN")} <u>đ</u></span>
                                 </div>
                             </div>
                         </div>

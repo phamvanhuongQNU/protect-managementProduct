@@ -24,7 +24,7 @@ const PersonalInfo = ({data}) => {
         <strong>Số điện thoại:</strong> <span>{data.phone}</span>
       </div>
       <div className="info-item">
-        <strong>Địa chỉ:</strong> <span>{data.address && `${data.address.province},${data.address.district},${data.address.ward}`}</span>
+        <strong>Địa chỉ:</strong> <span>{data.address && `${data.address.province},${data.address.district},${data.address.ward ? data.address.ward : "" }`}</span>
       </div>
       <Link to={"/account/edit"}>
         <button className="update-btn">Cập nhật thông tin</button>

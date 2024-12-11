@@ -1,7 +1,6 @@
 import React from "react";
 import "./OrderSummaryDetail.css";
-import { Link } from "react-router-dom";
-const OrderSummaryDetails = ({totalAmount}) => {
+const OrderSummaryDetails = ({totalAmount, handleCheckout}) => {
   return (
     <div className="summary-details">
       <div className="info">
@@ -25,8 +24,7 @@ const OrderSummaryDetails = ({totalAmount}) => {
         <textarea placeholder="Ghi chú"></textarea>
       </div>
       <div className="thanhtoan">
-        {totalAmount > 0 && <Link to={"/checkout"}>Thanh Toán</Link>
-        }
+        <button onClick={handleCheckout}>Thanh Toán</button>
       </div>
     </div>
   );

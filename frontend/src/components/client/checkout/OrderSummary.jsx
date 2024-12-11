@@ -10,7 +10,7 @@ const OrderSummary = ({productsCart}) => {
   const handleClickOrder = () => {
     const fetchApi = async () => {
     const body = {
-      token: getCookie("token")
+      selectedProducts: productsCart
     }
     const res = await postData(`/order/create/${user_id}`, body, false);
     if (res.status === 201) {

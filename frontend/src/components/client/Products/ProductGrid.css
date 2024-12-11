@@ -45,25 +45,35 @@
   color: #333;
   padding: 10px;
 }
-
-.product-grid__price {
+.sale_price {
   display: inline;
   color: #ff6b6b;
   font-weight: bold;
   font-size: 16px;
+  margin-bottom: 5px;
+  margin-right: 8px;
+}
+.product-grid__price {
+  display: inline;
+  font-size: 14px;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
 .product-grid__sales {
   color: #666;
   font-size: 14px;
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+  text-align: start;
 }
 .product-grid__details {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .product-grid__card:hover {

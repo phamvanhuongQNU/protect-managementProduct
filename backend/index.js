@@ -16,6 +16,7 @@ var corsOptions = {
   }
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 routesAdmin(app);
 routeClient(app);
 databse.connect(dotenv.parsed.URL_MONGO)

@@ -86,9 +86,9 @@ const ProductDetail = () => {
               </h1>
               <div className="product-price">
                 <span className="original-price">
-                  <del>{dataProduct.price}đ</del>
+                  <del>{dataProduct.price?.toLocaleString("vi-VN")} <u>đ</u></del>
                 </span>
-                <span className="sale-price">{dataProduct.price - (dataProduct.price * (dataProduct.discount / 100))}đ</span>
+                <span className="sale-price">{(dataProduct.price - (dataProduct.price * (dataProduct.discount / 100)))?.toLocaleString("vi-VN")} <u>đ</u></span>
               </div>
               <div className="product-sold">{dataProduct.stock_quanlity}</div>
               <div className="product-options">

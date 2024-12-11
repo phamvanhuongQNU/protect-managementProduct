@@ -45,7 +45,7 @@ const OrderDetails = () => {
         </tr>
         <tr>
           <th>Địa chỉ giao hàng</th>
-          <td>{dataOrder.address?.street}, {dataOrder.address?.district}, {dataOrder.address?.province}</td>
+          <td>{dataOrder.address?.street},{dataOrder.address?.ward}, {dataOrder.address?.district}, {dataOrder.address?.province}</td>
         </tr>
         <tr>
           <th>Tình trạng</th>

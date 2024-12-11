@@ -119,3 +119,26 @@ module.exports.changeQuanlity = async (req,res)=>{
     res.status(500).json(error)
   }
 }
+
+// [delete] /cart/:user_id/:product_id
+module.exports.deletedProductCart = async (req, res) => {
+  try { 
+      const token = req.params.user_id;
+      const product_id = req.params.product_id;
+
+      const cart = await Cart.findOne({ user_id: token });
+      if (!cart) {
+          return res.status(404).json({ message: "Cart not found" });
+      }  
+      console.log(product_id);
+      const deleteProduct = await Cart.findOneAndUpdate(
+          { user_id: token },
+          { $pull: { products: { product_id: product_id } } },
+          { new: true }
+      );
+
+      res.status.json(deleteProduct);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}

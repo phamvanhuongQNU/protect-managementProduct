@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PaymentInfo from "../../../components/client/checkout/PaymentInfo";
 import OrderSummary from "../../../components/client/checkout/OrderSummary";
 import "./Checkout.css";
-import { getCookie } from "../../../utils/cookie";
-import { getData } from "../../../API/getAPI";
+import { useLocation } from "react-router-dom";
 const Checkout = () => {
-  const token = getCookie("token");
-  const [productsCart, setProductsCart] = useState([]);
-
-  useEffect(() => {
-    const fetchApi = async () => {
-      const res = await getData(`/checkout/${token}`, false);
-      if (res.result.data) {
-        setProductsCart(res.result.data);
-      }
-    }
-    fetchApi();
-  }, [token]);
-
+  const location = useLocation();
+  const { selectedProducts } = location.state || { selectedProducts: [] };
+  
   return (
     <div className="checkout-container">
       <div className="tieude">
@@ -31,7 +20,7 @@ const Checkout = () => {
       <div className="checkout">
         <PaymentInfo />
         <OrderSummary 
-          productsCart={productsCart}
+          productsCart={selectedProducts}
         />
       </div>
     </div>

@@ -58,8 +58,9 @@
   margin-bottom: 20px;
 }
 
-.thanhtoan a {
+.thanhtoan button {
   display: block;
+  width: 100%;
   font-size: 18px;
   text-decoration: none;
   padding: 10px;
@@ -71,6 +72,6 @@
   font-weight: bold;
 }
 
-.thanhtoan a:hover {
+.thanhtoan button:hover {
   background-color: #051a33;
 }

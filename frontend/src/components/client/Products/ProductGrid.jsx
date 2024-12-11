@@ -31,11 +31,12 @@ const ProductGrid = () => {
                 <Link to={`/product/detail/${product._id}`}>{product.name}</Link>
               </h3>
             </div>
-            <div className="product-grid__details">
-              <span className="product-grid__price">{product.price} đ</span>
               <span className="product-grid__sales">
                 Đã bán: {product.stock_quantity}
               </span>
+            <div className="product-grid__details">
+              <span className="sale_price">{(product.price - (product.price * (product.discount / 100)))?.toLocaleString("vi-VN")} <u>đ</u></span>
+              <del className="product-grid__price">{product.price?.toLocaleString("vi-VN")} <u>đ</u></del>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ module.exports.getOrders = async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 // [get] /order/detail/:id
 module.exports.getOrder = async (req, res) => {
@@ -24,28 +24,31 @@ module.exports.getOrder = async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
 // [post] /order/create/:user_id
 module.exports.createOrder = async (req, res) => {
     try {
         const token = req.params.user_id;
+        const { selectedProducts } = req.body;
         const checkout = await Cart.findOne({ user_id: token });
-        const user = await User.findOne({ token : token}).select("address");
+        const user = await User.findOne({ token: token }).select("address");
 
         let totalAmount = 0;
-        const orderProducts = await Promise.all(checkout.products.map(async (product) => {
-            const price = (await getInfoProduct(product.product_id)).price;
-            const name = (await getInfoProduct(product.product_id)).name;
-            totalAmount += price * product.quanlity;
+        const orderProducts = await Promise.all(
+            selectedProducts.map(async (product) => {
+                const productInfo = await getInfoProduct(product._id);
 
-            return {
-                product_id: product.product_id,
-                name,
-                quanlity: product.quanlity,
-                price,
-            };
-        }));
+                totalAmount += productInfo.price * product.quanlity;
+
+                return {
+                    product_id: product._id,
+                    name: productInfo.name,
+                    quanlity: product.quanlity,
+                    price: productInfo.price,
+                };
+            })
+        );
 
         // Tạo đơn hàng mới
         const newOrder = new Order({
@@ -56,7 +59,18 @@ module.exports.createOrder = async (req, res) => {
         });
 
         // Xoá tất cả sản phẩm khỏi giỏ hàng
-        await Cart.findOneAndDelete({ user_id: token });
+        checkout.products = checkout.products.filter(
+            (product) =>
+                !selectedProducts.some(
+                    (selected) =>
+                        selected._id === product.product_id.toString()
+                )
+        );
+        if (checkout.products.length === 0) {
+            await Cart.findOneAndDelete({ user_id: token });
+        } else {
+            await checkout.save();
+        }
 
         const order = await newOrder.save();
         res.status(201).json({ data: order });
@@ -71,5 +85,5 @@ const getInfoProduct = async (id_product) => {
         deleted: false,
     }).select("price name");
 
-    return {price: product.price, name: product.name};
+    return product ? { price: product.price, name: product.name } : null;
 };
