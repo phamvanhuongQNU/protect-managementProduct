@@ -26,9 +26,7 @@ function Product(props){
     return (
         <>
           <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
+           
             <td>{data.position}</td>
             <td>
               <img

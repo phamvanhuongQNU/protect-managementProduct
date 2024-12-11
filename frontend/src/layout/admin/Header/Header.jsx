@@ -74,7 +74,7 @@ const Header = ({ dataUser, dataRole, role }) => {
             </li>
           )}
 
-          <li>
+          {/* <li>
             <NavLink
               className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "isActive" : ""
@@ -84,7 +84,7 @@ const Header = ({ dataUser, dataRole, role }) => {
               {" "}
               <BsCart4 className="icon-menu" /> Đơn hàng
             </NavLink>
-          </li>
+          </li> */}
 
           {([...roleEmloyee.permissions].includes("read_category") ||
             role === "QTV") && (

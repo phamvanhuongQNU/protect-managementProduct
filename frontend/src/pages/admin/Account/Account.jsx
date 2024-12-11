@@ -35,9 +35,6 @@ function Account({handleDeleted,data,index,role,roleEmployee}){
         <>
         
               <tr key={data._id}>
-                <td>
-                  <input type="checkbox" />
-                </td>
                 <td>{index + 1}</td>
                 <td>{data.fullName}</td>
                 <td>{data.email}</td>
