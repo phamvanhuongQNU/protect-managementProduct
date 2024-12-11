@@ -63,9 +63,7 @@ const Accounts = () => {
             <table className="user-table">
               <thead>
                 <tr>
-                  <th>
-                    <input type="checkbox" />
-                  </th>
+                  
                   <th>STT</th>
                   <th>Tên Tài Khoản</th>
                   <th>Email</th>

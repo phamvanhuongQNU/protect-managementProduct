@@ -13,6 +13,8 @@ import EditAccount from "../../pages/client/EditAccountDetails/EditAccount";
 import OrderDetails from "../../pages/client/OderDetails/OrderDetails";
 import AboutPage from "../../pages/client/AboutPages/AboutPage";
 import ContactPage from "../../pages/client/ContactPages/ContactPage";
+import ForgotPassword from "../../pages/client/ForgotPassword";
+import ResetPassword from "../../pages/client/ResetPassword";
 function RouteClient() {
   return (
     <Routes>
@@ -39,6 +41,8 @@ function RouteClient() {
       {/* Route riêng không sử dụng LayoutDefault */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword/>} />
+      <Route path="/reset-password" element={<ResetPassword/>} />
     </Routes>
   );
 }

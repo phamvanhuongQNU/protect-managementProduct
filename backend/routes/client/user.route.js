@@ -14,4 +14,10 @@ route.get("/user/detail/:token",controller.detail)
 // Chỉnh sửa thông tin
 route.put("/user/edit/:token",controller.edit)
 
+// Quên mâtk khẩu
+route.put("/forgot/:email",controller.forgot)
+route.post("/forgotOtp",controller.forgotOtp)
+route.post("/reset-password",controller.resetPassword)
+
+
 module.exports = route;

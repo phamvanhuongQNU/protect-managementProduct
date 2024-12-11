@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+}
+.otp-card{
+    padding: 50px;
+    z-index: 1;
+}
+.otp-card h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.notification{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.otp-card-inputs{
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    grid-template-columns: repeat(6,auto);
+    margin-bottom: 20px;
+}
+.otp-card-inputs input{
+
+    width: 50px;
+    height: 60px;
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 20px;
+    font-weight: 600;
+    border: 1px solid #000;
+   
+}
+.otp-card-inputs input:focus{
+    outline: 1px solid #A271D2;
+    border: none;
+}
+.otp-resend{
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+.button-send-otp{
+    display: block;
+    margin: 0 auto;
+    padding: 6px 40px;
+    border: none;
+    background-color: #A271D2;
+    border-radius: 14px;
+    font-size: 20px;
+    color: #fff;
+}
+.button-back{
+    position: absolute;
+    top: 6px;
+    font-size: 25px;
+    left: 7px;
+    cursor: pointer;
+}
+.message-margin-left{
+    margin-left: -19px;
+}

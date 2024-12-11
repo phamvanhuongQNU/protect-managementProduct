@@ -7,9 +7,7 @@ import "./Products.css";
 const Products = () => {
   return (
     <div className="products-container">
-      <div className="breadcrums">
-        <span>Trang Chủ</span> &gt; <span>Sản phẩm</span>
-      </div>
+      
       <div className="products-wrapper">
         <div className="products-sidebar">
           <Sidebar />

@@ -160,9 +160,7 @@ const Products = () => {
         <table className="product-table">
           <thead>
             <tr>
-              <th>
-                <input type="checkbox" />
-              </th>
+            
               <th>STT</th>
               <th>
                 <div className="title-image">Ảnh</div>

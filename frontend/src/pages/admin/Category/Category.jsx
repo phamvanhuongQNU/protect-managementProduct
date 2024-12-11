@@ -89,9 +89,7 @@ const Category = () => {
         <table className="category-table">
           <thead>
             <tr>
-              <th>
-                <input type="checkbox" />
-              </th>
+              
               <th>Danh Mục</th>
               <th>Tổng sản phẩm</th>
               <th>Tổng giá tiền</th>
@@ -101,9 +99,7 @@ const Category = () => {
           <tbody>
             {[...dataCategories].map((data) => (
               <tr className="data-category">
-                <td>
-                  <input type="checkbox" />
-                </td>
+               
                 <td
                   className="name"
                   width={"40%"}

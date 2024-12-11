@@ -1,14 +1,23 @@
 .products-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 150px;
 }
 .products-wrapper {
   padding: 10px;
   display: flex;
   gap: 40px;
   justify-content: center;
+  position: relative;
+  
 }
-.breadcrums {
-  padding: 15px;
+.products-sidebar{
+  width: 25%;
+  position: fixed;
+  left: 62px;
+    top: 120px
+}
+.products-main{
+  flex: 1;
+  margin-left: 30%;
 }

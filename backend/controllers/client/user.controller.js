@@ -4,6 +4,7 @@ const RandomNumber = require('../../helpers/randomNumber')
 const RandomString = require('../../helpers/randomString')
 const sendEmail = require('../../helpers/sendEmail')
 const md5 = require("md5");
+const { assign } = require("nodemailer/lib/shared");
 // [post] /login
 module.exports.login = async (req, res) => {
   try {
@@ -115,8 +116,6 @@ module.exports.registerOtp =async (req,res) =>{
       })
     return
     }
-
-
     // Thêm tài khoản vào dữ liệu
     const newUser = new Users({
       fullName : req.body.fullName,
@@ -148,3 +147,86 @@ module.exports.edit = async (req, res) => {
     });
   }
 };
+
+// forgot/:email
+module.exports.forgot =async (req,res)=>{
+  try{
+    const email = req.params.email;
+    const existUer = await Users.findOne({deleted : false,email : email});
+    if(!existUer){
+      res.status(404).json({
+        message : "Email không tồn tại"
+      })
+      return
+    }
+    //  gửi otp và email lên database
+    let timeExpire = new Date();
+    timeExpire.setTime(timeExpire.getTime() + 2 *60 *1000)
+    const dataOtp = new Otp({
+      email : email,
+      otp : RandomNumber(6),
+      expireAt : timeExpire
+    })
+    
+     await dataOtp.save();
+    // Gửi otp cho gmail 
+    const subject = "Mã xác nhận OTP"
+    const text = `Mã xác thực của bạn là <b>${dataOtp.otp}<b/>. Mã OTP này có hiệu lực trong 2 phút.Vui lòng không chia sẻ mã cho bất kì ai`
+    sendEmail(dataOtp.email,subject,text)
+    res.status(200).json({
+      message : "Gửi mã thành công",
+      data : dataOtp
+    })
+
+  }
+  catch(error){
+    res.status(500).json(error)
+  }
+}
+
+module.exports.forgotOtp =async (req,res) =>{
+  const email = req.body.email;
+  const otp = req.body.otp;
+  try{
+    const existOtpUser = await Otp.findOne({email : email,otp : otp});
+    if (!existOtpUser){
+      res.status(404).json({
+        message : "Bạn đã nhập sai mã otp vui lòng nhập lại."
+      })
+    return
+    }
+    res.status(200).json({
+      message : "Thành công"
+    })
+  }
+  catch(error){
+    res.status(500).json(error)
+  }
+}
+
+module.exports.resetPassword =async (req,res)=>{
+  try{
+      const email = req.body.email;
+      const newPassword = req.body.newPassword;
+      const repeatPassword = req.body.repeatPassword;
+      if (newPassword === "" || repeatPassword === ""){
+        res.status(404).json({
+          message : "Thiếu dữ liệu"
+        })
+        return
+      }
+      if (newPassword !== repeatPassword){
+        res.status(404).json({
+          message : "Xác nhận mật khẩu không đúng vui lòng nhập lại"
+        })
+        return
+      }
+      await Users.updateOne({email : email},{password : md5(newPassword)});
+      res.status(200).json({
+        message : "Đổi mật khẩu thành công"
+      })
+  }
+  catch(error){
+    res.status(500).json(error)
+  }
+}
