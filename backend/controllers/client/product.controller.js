@@ -41,7 +41,7 @@ module.exports.getNewProducts = async (req, res) => {
             limit = parseInt(req.query.limit)
             
         }
-        const getProducts = await Products.find(find).sort({createAt : "desc"}).limit(limit);
+        const getProducts = await Products.find(find).sort({position : "desc"}).limit(limit);
         res.status(200).json(getProducts);
     
     } catch (error) {

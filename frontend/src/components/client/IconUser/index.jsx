@@ -3,7 +3,7 @@ import {getData} from "../../../API/getAPI"
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getCookie } from "../../../utils/cookie";
+import { getCookie,eraseCookie } from "../../../utils/cookie";
 function IconUser ({token}){
     const role = getCookie("role");
     const [fullName,setFullName ]= useState("")
@@ -13,11 +13,14 @@ function IconUser ({token}){
             const res =await getData(`/user/detail/${token}`,false)
             if(res.status === 200)
                 setFullName(res.result.data.fullName);  
+            if (res.status === 404){
+                eraseCookie("token")
+            }
         }
         if(token && !role){
             fetchApi()
         }
-    },[token])
+    },[role,token])
 
     return (
         <>

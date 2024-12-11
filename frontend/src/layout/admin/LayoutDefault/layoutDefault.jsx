@@ -4,8 +4,10 @@ import TopBar from "../TopBar/TopBar";
 import "./style.css";
 import { useState, useEffect, useRef,memo } from "react";
 import { getData } from "../../../API/getAPI";
-import { getCookie,setCookie } from "../../../utils/cookie";
+import { getCookie,setCookie,eraseCookie } from "../../../utils/cookie";
+import { useNavigate } from "react-router-dom";
 function LayoutDefault({ titlePage }) {
+  const navigate = useNavigate()
   const token = useRef(getCookie("token")).current;
   const role = useRef(getCookie("role")).current;
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,8 +22,16 @@ function LayoutDefault({ titlePage }) {
       const res = await getData(`roles/${role}`);
       setDataRole(res.result.data);
       const user = await getData(`users/detail/${token}`);
-      setDataUser(user.result.data);
-      setCookie("role",user.result.data.role_id,1)
+
+      if(user.status === 200){
+        setDataUser(user.result.data);
+        setCookie("role",user.result.data.role_id,1)
+      }
+      if (user.status === 404){
+        eraseCookie("token");
+        eraseCookie("role");
+        navigate("/login")
+      }
    
     };
     fetchApi();

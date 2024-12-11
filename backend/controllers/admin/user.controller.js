@@ -102,13 +102,17 @@ module.exports.detailToken = async (req, res) => {
   try {
     const token = req.params.token;
 
-    const data = await Users.findOne({ token: token });
-
+    const data = await Users.findOne({ token: token,deleted : false });
+    if (!data){
+      res.status(404).json({
+        message : "Không tồn tại"
+      });
+    }
     res.status(200).json({
       data: data,
     });
   } catch {
-    res.status(404).json({
+    res.status(500).json({
       message: "NOT FOUND",
     });
   }
