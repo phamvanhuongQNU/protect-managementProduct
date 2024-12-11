@@ -80,6 +80,7 @@ const Header = () => {
               <Link to={"/cart"}>
                 {token && <FaShoppingCart className="icon" />}
               </Link>
+              
             </li>
           </ul>
         </div>

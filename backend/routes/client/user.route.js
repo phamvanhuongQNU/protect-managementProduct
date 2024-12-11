@@ -11,5 +11,7 @@ route.post("/registerOtp",controller.registerOtp)
 
 // Lấy thông tin chi tiết
 route.get("/user/detail/:token",controller.detail)
+// Chỉnh sửa thông tin
+route.put("/user/edit/:token",controller.edit)
 
 module.exports = route;

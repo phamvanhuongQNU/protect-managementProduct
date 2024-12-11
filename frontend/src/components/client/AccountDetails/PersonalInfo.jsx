@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./PersonalInfo.css";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({data}) => {
   // để tạm tại không biết viết :))))
   const [userInfo, setUserInfo] = useState({
     name: "Đặng Ngọc Việt",
@@ -15,16 +15,16 @@ const PersonalInfo = () => {
     <div className="personal-info">
       <h2>Thông tin cá nhân</h2>
       <div className="info-item">
-        <strong>Tên:</strong> <span>{userInfo.name}</span>
+        <strong>Tên:</strong> <span>{data.fullName}</span>
       </div>
       <div className="info-item">
-        <strong>Email:</strong> <span>{userInfo.email}</span>
+        <strong>Email:</strong> <span>{data.email}</span>
       </div>
       <div className="info-item">
-        <strong>Số điện thoại:</strong> <span>{userInfo.phone}</span>
+        <strong>Số điện thoại:</strong> <span>{data.phone}</span>
       </div>
       <div className="info-item">
-        <strong>Địa chỉ:</strong> <span>{userInfo.address}</span>
+        <strong>Địa chỉ:</strong> <span>{data.address && `${data.address.province},${data.address.district},${data.address.ward}`}</span>
       </div>
       <Link to={"/account/edit"}>
         <button className="update-btn">Cập nhật thông tin</button>

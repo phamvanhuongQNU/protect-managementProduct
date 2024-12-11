@@ -23,6 +23,7 @@ function Login() {
   if(getCookie("token")){
     eraseCookie("token")
   }
+
   // Nhấn nút đăng nhập
   const handleOnSubmit = (e)=>{
     e.preventDefault();
@@ -32,6 +33,7 @@ function Login() {
       email : inputEmail.value,
       password : inputPassword.value
     }
+
     const fetchApi = async()=>{
       const res = await postData("/login",body,false);
       if(res.status !== 200){
@@ -46,20 +48,18 @@ function Login() {
       if (dataResult.status === 200){
         // Nếu là tài khoản admin thì chuyển sang trang admin và ngược lại
         if(dataResult.result.data.role_id){
+          console.log(dataResult.result.data.role_id)
           setCookie("role",dataResult.result.data.role_id,1);
           navigate("/admin/account")
           window.location.reload();
         }else{
           navigate("/")
-          navigate("/admin/account")
+        
         }
       }
     }
     fetchApi()
-    
   }
-
-
   return (
     <>
       <body>

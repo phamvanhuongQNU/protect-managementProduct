@@ -134,3 +134,17 @@ module.exports.registerOtp =async (req,res) =>{
     res.status(500).json(error);
   }
 }
+// [PUT] users/edit/:token
+module.exports.edit = async (req, res) => {
+  try {
+    
+    await Users.updateOne({ token: req.params.token }, req.body);
+    res.status(200).json({
+      message: "Sửa thành công",
+    });
+  } catch {
+    res.status(404).json({
+      message: "Sửa thất bại",
+    });
+  }
+};
