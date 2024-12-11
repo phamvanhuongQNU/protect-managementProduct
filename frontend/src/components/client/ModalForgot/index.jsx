@@ -1,12 +1,14 @@
 import "./style.css";
 import { useState } from "react";
-
 import Modal from "react-bootstrap/Modal";
 import {modalSuccess} from '../../../components/client/Swal/index'
 import { IoArrowBackSharp } from "react-icons/io5";
 import { postData } from "../../../API/getAPI";
-import {useNavigate} from 'react-router-dom'
-export default function ModalOTP({ handleClose,data,route }) {
+import {useNavigate} from 'react-router-dom';
+import {setCookie} from '../../../utils/cookie'
+
+
+export default function ModalForgot({ handleClose,email }) {
   const navigate = useNavigate();
 
   const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -43,15 +45,16 @@ export default function ModalOTP({ handleClose,data,route }) {
   const handleClick = ()=>{
     const body = {
       otp : dataOtp,
-      ...data
+      email : email
     }
     const fetchApi =async ()=>{
-      const res = await postData("/registerOtp",body,false);
+      const res = await postData("/forgotOtp",body,false);
 
       if (res.status === 200){
-        modalSuccess("Đăng kí thành công");
+        modalSuccess("Thành công");
+        setCookie("email", email,1)
         setTimeout(()=>{
-          navigate("/login");
+          navigate(`/reset-password`);
         },2000)
         
        
@@ -69,7 +72,7 @@ export default function ModalOTP({ handleClose,data,route }) {
           <IoArrowBackSharp onClick={handleClose} className="button-back" />
           <div className="otp-card">
             <h1 className="title">XÁC THỰC OTP</h1>
-            <div className="notification">Chúng tôi đã gửi mã xác thực cho bạn qua email <b>{data.email}</b>.Mã xác thực có tác dụng trong 2 phút.</div>
+            <div className="notification">Chúng tôi đã gửi mã xác thực cho bạn qua email <b>{email}</b>.Mã xác thực có tác dụng trong 2 phút.</div>
             <div className="otp-card-inputs">
               {otp.map((data, index) => (
                 <input
